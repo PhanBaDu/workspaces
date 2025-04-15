@@ -15,7 +15,7 @@ import { loginSchema } from '@/features/auth/schema';
 import { useLogin } from '@/features/auth/api/use-login';
 
 export default function SignInCard() {
-    const { mutate } = useLogin();
+    const { mutate, isPending } = useLogin();
 
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -49,6 +49,7 @@ export default function SignInCard() {
                                         <Input
                                             {...field}
                                             type="email"
+                                            disabled={isPending}
                                             placeholder="Enter email address"
                                         />
                                     </FormControl>
@@ -64,6 +65,7 @@ export default function SignInCard() {
                                         <Input
                                             {...field}
                                             type="password"
+                                            disabled={isPending}
                                             placeholder="Enter password"
                                         />
                                     </FormControl>
@@ -72,7 +74,7 @@ export default function SignInCard() {
                             )}
                         />
 
-                        <Button className="w-full" disabled={false} size={'lg'}>
+                        <Button className="w-full" disabled={isPending} size={'lg'}>
                             LOGIN
                         </Button>
                     </form>

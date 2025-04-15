@@ -100,7 +100,7 @@ export default function SignUpCard() {
                         />
 
                         <Button className="w-full" disabled={false} size={'lg'}>
-                            LOGIN
+                            REGISTER
                         </Button>
                     </form>
                 </Form>

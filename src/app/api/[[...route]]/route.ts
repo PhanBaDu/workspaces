@@ -4,7 +4,7 @@ import auth from '@/features/auth/server/route';
 const app = new Hono().basePath('/api');
 
 const routes = app.route('/auth', auth);
-
+void routes;
 export const GET = handle(app);
 export const POST = handle(app);
 

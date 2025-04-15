@@ -4,9 +4,7 @@ import { Input } from '@/components/ui/input';
 export default function Home() {
     return (
         <div className="flex gap-4">
-            <Button size={'xs'} disabled={true}>
-                aimar
-            </Button>
+            <Button>aimar</Button>
             <Button variant={'secondary'}>Primary</Button>
             <Button variant={'destructive'}>Primary</Button>
             <Button variant={'ghost'}>Primary</Button>

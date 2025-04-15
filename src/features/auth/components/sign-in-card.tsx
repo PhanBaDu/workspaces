@@ -11,23 +11,22 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import Link from 'next/link';
-
-const formSchema = z.object({
-    email: z.string().trim().email(),
-    password: z.string().min(8, 'Minimum 8 characters'),
-});
+import { loginSchema } from '@/features/auth/schema';
+import { useLogin } from '@/features/auth/api/use-login';
 
 export default function SignInCard() {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { mutate } = useLogin();
+
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
         defaultValues: {
             email: '',
             password: '',
         },
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log({ values });
+    const onSubmit = (values: z.infer<typeof loginSchema>) => {
+        mutate({ json: values });
     };
 
     return (

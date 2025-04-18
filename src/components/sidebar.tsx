@@ -1,5 +1,6 @@
 import { DashedSeparator } from '@/components/dashed-separator';
 import Navigation from '@/components/navigation';
+import WorkspaceSwitcher from '@/components/workspace-switcher';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -14,6 +15,8 @@ export default function Sidebar() {
                     </h1>
                 </div>
             </Link>
+            <DashedSeparator className="my-4" />
+            <WorkspaceSwitcher />
             <DashedSeparator className="my-4" />
             <Navigation />
         </aside>

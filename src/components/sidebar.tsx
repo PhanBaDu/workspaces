@@ -9,7 +9,14 @@ export default function Sidebar() {
         <aside className="h-full bg-neutral-100 p-4 w-full">
             <Link href={'/'}>
                 <div className="flex items-center">
-                    <Image src={'/logo.svg'} height={152} width={56} alt="Logo Workspaces" />
+                    <Image
+                        src={'/logo.svg'}
+                        height={152}
+                        width={56}
+                        alt="Logo Workspaces"
+                        priority
+                        style={{ height: '47px', width: '57px' }}
+                    />
                     <h1 className="text-primary font-extrabold text-2xl mt-2 uppercase">
                         orkspaces
                     </h1>

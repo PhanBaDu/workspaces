@@ -20,14 +20,12 @@ import { useCreateWorkspace } from '@/features/workspaces/api/use-create-workspa
 import Image from 'next/image';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ImageIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 
 interface CreateWorkspaceFormProps {
     onCancel?: () => void;
 }
 
 export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormProps) {
-    const router = useRouter();
     const { mutate, isPending } = useCreateWorkspace();
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -44,15 +42,8 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
             ...values,
             image: values.image instanceof File ? values.image : '',
         };
-        mutate(
-            { form: finalValues },
-            {
-                onSuccess: ({ data }) => {
-                    form.reset();
-                    router.push(`/workspaces/${data.$id}`);
-                },
-            },
-        );
+
+        mutate({ form: finalValues });
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +56,7 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle className="text-xl font-bold"></CardTitle>
+                <CardTitle className="text-xl font-bold">Create a new workspace</CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />

@@ -14,7 +14,7 @@ import { DashedSeparator } from '@/components/dashed-separator';
 
 export const UserButton = () => {
     const { data: user, isLoading } = useCurrent();
-    const { mutate: logout, isPending } = useLogout();
+    const { mutate: logout } = useLogout();
 
     if (isLoading) {
         return (

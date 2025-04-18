@@ -1,12 +1,10 @@
 'use server';
 
 import { DATABASE_ID, MEMBERS_ID, WORKSPACES_ID } from '@/config';
-import { AUTH_COOKIE } from '@/features/auth/constants';
 import { getMember } from '@/features/members/utils';
 import { Workspace } from '@/features/workspaces/types';
 import { createSessionClient } from '@/lib/appwrite';
-import { cookies } from 'next/headers';
-import { Account, Client, Databases, Query } from 'node-appwrite';
+import { Query } from 'node-appwrite';
 
 export const getWorkspaces = async () => {
     try {

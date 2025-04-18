@@ -3,6 +3,7 @@ import { CalendarCheck2, CheckCheck, LayoutDashboard, SettingsIcon, UsersIcon } 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
+import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 
 const routes = [
     {
@@ -33,11 +34,14 @@ const routes = [
 
 export default function Navigation() {
     const pathname = usePathname();
+    const workspaceId = useWorkspaceId();
 
     return (
         <ul className="flex flex-col">
             {routes.map((item) => {
-                const isActive = pathname === item.href;
+                const fullHref = `/workspaces/${workspaceId}${item.href}`;
+
+                const isActive = pathname === fullHref;
                 const Icon = item.icon;
                 const IconActive = item.activeIcon;
 
@@ -48,7 +52,7 @@ export default function Navigation() {
                         variant={isActive ? 'primary' : 'ghost'}
                         className="hover:bg-primary hover:text-background flex justify-between items-center shadow-none duration-75"
                     >
-                        <Link href={item.href}>
+                        <Link href={fullHref}>
                             <div className="flex items-center gap-2">
                                 <Icon strokeWidth={2} />
                                 <span className="mt-[2px]">{item.label}</span>

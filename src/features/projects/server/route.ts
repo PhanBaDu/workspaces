@@ -101,13 +101,11 @@ const app = new Hono()
         if (image instanceof File) {
             const file = await storage.createFile(IMAGE_BUCKET_ID, ID.unique(), image);
 
-            const arrayBuffer = await storage.getFilePreview(IMAGE_BUCKET_ID, file.$id);
+            const arrayBuffer = await storage.getFileView(IMAGE_BUCKET_ID, file.$id);
 
             uploadedImageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString(
                 'base64',
             )}`;
-        } else {
-            uploadedImageUrl = image;
         }
 
         const project = await databases.updateDocument(DATABASE_ID, PROJECTS_ID, projectId, {

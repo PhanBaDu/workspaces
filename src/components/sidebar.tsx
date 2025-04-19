@@ -1,5 +1,6 @@
 import { DashedSeparator } from '@/components/dashed-separator';
 import Navigation from '@/components/navigation';
+import { Projects } from '@/components/projects';
 import WorkspaceSwitcher from '@/components/workspace-switcher';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,6 +27,8 @@ export default function Sidebar() {
             <WorkspaceSwitcher />
             <DashedSeparator className="my-4" />
             <Navigation />
+            <DashedSeparator className="my-4" />
+            <Projects />
         </aside>
     );
 }

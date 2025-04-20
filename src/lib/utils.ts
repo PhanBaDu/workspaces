@@ -6,12 +6,22 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function generateInviteCode(length: number) {
-    const charaters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012456789';
+    const charaters =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012456789';
     let result = '';
 
     for (let i = 0; i < length; i++) {
-        result += charaters.charAt(Math.floor(Math.random() * charaters.length));
+        result += charaters.charAt(
+            Math.floor(Math.random() * charaters.length),
+        );
     }
 
     return result;
+}
+
+export function snakeCaseToTitleCase(str: string) {
+    return str
+        .toLowerCase()
+        .replace(/_/g, ' ')
+        .replace(/\b\w/g, (char) => char.toUpperCase());
 }

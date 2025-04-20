@@ -2,7 +2,7 @@ import { DATABASE_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from '@/config';
 import { getMember } from '@/features/members/utils';
 import { Project } from '@/features/projects/types';
 import { createTaskSchema } from '@/features/tasks/schemas';
-import { TaskStatus } from '@/features/tasks/types';
+import { Task, TaskStatus } from '@/features/tasks/types';
 import { createAdminClient } from '@/lib/appwrite';
 import { sessionMiddleware } from '@/lib/session-middleware';
 import { zValidator } from '@hono/zod-validator';
@@ -30,8 +30,14 @@ const app = new Hono()
             const databases = c.get('databases');
             const user = c.get('user');
 
-            const { workspaceId, projectId, status, search, assigneeId, dueDate } =
-                c.req.valid('query');
+            const {
+                workspaceId,
+                projectId,
+                status,
+                search,
+                assigneeId,
+                dueDate,
+            } = c.req.valid('query');
 
             const member = await getMember({
                 databases,
@@ -43,7 +49,10 @@ const app = new Hono()
                 return c.json({ error: 'Unauthorized' }, 401);
             }
 
-            const query = [Query.equal('workspaceId', workspaceId), Query.orderDesc('$createdAt')];
+            const query = [
+                Query.equal('workspaceId', workspaceId),
+                Query.orderDesc('$createdAt'),
+            ];
 
             if (projectId) {
                 console.log('projectId: ', projectId);
@@ -70,7 +79,11 @@ const app = new Hono()
                 query.push(Query.search('search', search));
             }
 
-            const tasks = await databases.listDocuments(DATABASE_ID, TASKS_ID, query);
+            const tasks = await databases.listDocuments<Task>(
+                DATABASE_ID,
+                TASKS_ID,
+                query,
+            );
 
             const projectIds = tasks.documents.map((task) => task.projectId);
             const assigneeIds = tasks.documents.map((task) => task.assigneeId);
@@ -78,13 +91,17 @@ const app = new Hono()
             const projects = await databases.listDocuments<Project>(
                 DATABASE_ID,
                 PROJECTS_ID,
-                projectIds.length > 0 ? [Query.contains('$id', projectIds)] : [],
+                projectIds.length > 0
+                    ? [Query.contains('$id', projectIds)]
+                    : [],
             );
 
             const members = await databases.listDocuments<Project>(
                 DATABASE_ID,
                 MEMBERS_ID,
-                assigneeIds.length > 0 ? [Query.contains('$id', assigneeIds)] : [],
+                assigneeIds.length > 0
+                    ? [Query.contains('$id', assigneeIds)]
+                    : [],
             );
 
             const assignees = await Promise.all(
@@ -103,7 +120,9 @@ const app = new Hono()
                     (project) => project.$id === task.projectId,
                 );
 
-                const assignee = assignees.find((assignee) => assignee.$id === task.assigneeId);
+                const assignee = assignees.find(
+                    (assignee) => assignee.$id === task.assigneeId,
+                );
 
                 return {
                     ...task,
@@ -115,43 +134,64 @@ const app = new Hono()
             return c.json({ data: { ...tasks, documents: populatedTasks } });
         },
     )
-    .post('/', sessionMiddleware, zValidator('json', createTaskSchema), async (c) => {
-        const user = c.get('user');
-        const databases = c.get('databases');
-        const { name, status, workspaceId, projectId, dueDate, assigneeId } = c.req.valid('json');
-        const member = await getMember({
-            databases,
-            workspaceId,
-            userId: user.$id,
-        });
+    .post(
+        '/',
+        sessionMiddleware,
+        zValidator('json', createTaskSchema),
+        async (c) => {
+            const user = c.get('user');
+            const databases = c.get('databases');
+            const {
+                name,
+                status,
+                workspaceId,
+                projectId,
+                dueDate,
+                assigneeId,
+            } = c.req.valid('json');
+            const member = await getMember({
+                databases,
+                workspaceId,
+                userId: user.$id,
+            });
 
-        if (!member) {
-            return c.json({ error: 'Unauthorized' }, 401);
-        }
+            if (!member) {
+                return c.json({ error: 'Unauthorized' }, 401);
+            }
 
-        const highestPositionTask = await databases.listDocuments(DATABASE_ID, TASKS_ID, [
-            Query.equal('status', status),
-            Query.equal('workspaceId', workspaceId),
-            Query.orderAsc('position'),
-            Query.limit(1),
-        ]);
+            const highestPositionTask = await databases.listDocuments(
+                DATABASE_ID,
+                TASKS_ID,
+                [
+                    Query.equal('status', status),
+                    Query.equal('workspaceId', workspaceId),
+                    Query.orderAsc('position'),
+                    Query.limit(1),
+                ],
+            );
 
-        const newPosition =
-            highestPositionTask.documents.length > 0
-                ? highestPositionTask.documents[0].position + 1000
-                : 1000;
+            const newPosition =
+                highestPositionTask.documents.length > 0
+                    ? highestPositionTask.documents[0].position + 1000
+                    : 1000;
 
-        const task = await databases.createDocument(DATABASE_ID, TASKS_ID, ID.unique(), {
-            name,
-            status,
-            workspaceId,
-            projectId,
-            dueDate,
-            assigneeId,
-            position: newPosition,
-        });
+            const task = await databases.createDocument(
+                DATABASE_ID,
+                TASKS_ID,
+                ID.unique(),
+                {
+                    name,
+                    status,
+                    workspaceId,
+                    projectId,
+                    dueDate,
+                    assigneeId,
+                    position: newPosition,
+                },
+            );
 
-        return c.json({ data: task });
-    });
+            return c.json({ data: task });
+        },
+    );
 
 export default app;

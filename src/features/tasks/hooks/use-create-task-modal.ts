@@ -1,3 +1,4 @@
+import { TaskStatus } from '@/features/tasks/types';
 import { useQueryState, parseAsBoolean } from 'nuqs';
 
 export const useCreateTaskModal = () => {

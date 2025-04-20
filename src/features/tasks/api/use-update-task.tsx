@@ -6,37 +6,38 @@ import { client } from '@/lib/rpc';
 import { useRouter } from 'next/navigation';
 
 type ResponseType = InferResponseType<
-    (typeof client.api.tasks)[':taskId']['$delete'],
+    (typeof client.api.tasks)[':taskId']['$patch'],
     200
 >;
 type RequestType = InferRequestType<
-    (typeof client.api.tasks)[':taskId']['$delete']
+    (typeof client.api.tasks)[':taskId']['$patch']
 >;
 
-export const useDeleteTask = () => {
+export const useUpdateTask = () => {
     const router = useRouter();
     const queryClient = useQueryClient();
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
-        mutationFn: async ({ param }) => {
-            const response = await client.api.tasks[':taskId']['$delete']({
+        mutationFn: async ({ json, param }) => {
+            const response = await client.api.tasks[':taskId']['$patch']({
+                json,
                 param,
             });
 
             if (!response.ok) {
-                throw new Error('Failed to delete task');
+                throw new Error('Failed to create task');
             }
 
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Task deleted successfully');
+            toast.success('Task updated');
             router.refresh();
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
             queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
-            toast.error('Failed to delete task');
+            toast.error('Failed to update task');
         },
     });
 

@@ -1,5 +1,11 @@
 'use client';
-import { CalendarCheck2, CheckCheck, LayoutDashboard, SettingsIcon, UsersIcon } from 'lucide-react';
+import {
+    CalendarCheck2,
+    CheckCheck,
+    LayoutDashboard,
+    SettingsIcon,
+    UsersIcon,
+} from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
@@ -8,7 +14,7 @@ import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 const routes = [
     {
         label: 'Home',
-        href: '/',
+        href: '',
         icon: LayoutDashboard,
         activeIcon: CheckCheck,
     },
@@ -40,7 +46,6 @@ export default function Navigation() {
         <ul className="flex flex-col">
             {routes.map((item) => {
                 const fullHref = `/workspaces/${workspaceId}${item.href}`;
-
                 const isActive = pathname === fullHref;
                 const Icon = item.icon;
                 const IconActive = item.activeIcon;

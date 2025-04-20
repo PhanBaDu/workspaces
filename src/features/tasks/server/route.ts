@@ -72,7 +72,7 @@ const app = new Hono()
 
             const tasks = await databases.listDocuments(DATABASE_ID, TASKS_ID, query);
 
-            const projectIds = tasks.documents.map((task) => task.prorjectId);
+            const projectIds = tasks.documents.map((task) => task.projectId);
             const assigneeIds = tasks.documents.map((task) => task.assigneeId);
 
             const projects = await databases.listDocuments<Project>(

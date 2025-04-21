@@ -7,7 +7,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { useGetWorkspaces } from '@/features/workspaces/api/use-get-workspace';
+import { useGetWorkspaces } from '@/features/workspaces/api/use-get-workspaces';
 import { WorkspaceAvatar } from '@/features/workspaces/components/workspace-avatar';
 import { useCreateWorkspaceModal } from '@/features/workspaces/hooks/use-create-workspace-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
@@ -47,7 +47,9 @@ export default function WorkspaceSwitcher() {
                                     name={workspace.name}
                                     image={workspace.imageUrl}
                                 />
-                                <span className="truncate">{workspace.name}</span>
+                                <span className="truncate">
+                                    {workspace.name}
+                                </span>
                             </div>
                         </SelectItem>
                     ))}

@@ -3,13 +3,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
-import { useRouter } from 'next/navigation';
 
-type ResponseType = InferResponseType<(typeof client.api.projects)[':projectId']['$patch'], 200>;
-type RequestType = InferRequestType<(typeof client.api.projects)[':projectId']['$patch']>;
+type ResponseType = InferResponseType<
+    (typeof client.api.projects)[':projectId']['$patch'],
+    200
+>;
+type RequestType = InferRequestType<
+    (typeof client.api.projects)[':projectId']['$patch']
+>;
 
 export const useUpdateProject = () => {
-    const router = useRouter();
     const queryClient = useQueryClient();
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -27,9 +30,12 @@ export const useUpdateProject = () => {
         },
         onSuccess: ({ data }) => {
             toast.success('Projects updated');
-            router.refresh();
+            queryClient.invalidateQueries({ queryKey: ['project'] });
             queryClient.invalidateQueries({ queryKey: ['projects'] });
+            queryClient.invalidateQueries({ queryKey: ['tasks'] });
+            queryClient.invalidateQueries({ queryKey: ['project', data.$id] });
             queryClient.invalidateQueries({ queryKey: ['projects', data.$id] });
+            queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
             toast.error('Failed to update projects');

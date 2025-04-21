@@ -32,11 +32,15 @@ interface EditProjectFormProps {
     initialValues: Project;
 }
 
-export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProps) => {
+export const EditProjectForm = ({
+    onCancel,
+    initialValues,
+}: EditProjectFormProps) => {
     const router = useRouter();
     const { mutate, isPending } = useUpdateProject();
 
-    const { mutate: deleteProject, isPending: isDeletingProject } = useDeleteProject();
+    const { mutate: deleteProject, isPending: isDeletingProject } =
+        useDeleteProject();
 
     const [DeleteDialog, confirmDelete] = useConfirm(
         'Delete project',
@@ -74,17 +78,10 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
             ...values,
             image: values.image instanceof File ? values.image : '',
         };
-        mutate(
-            {
-                form: finalValues,
-                param: { projectId: initialValues.$id },
-            },
-            {
-                onSuccess: () => {
-                    form.reset();
-                },
-            },
-        );
+        mutate({
+            form: finalValues,
+            param: { projectId: initialValues.$id },
+        });
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -150,7 +147,8 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                                                     <div className="size-[72px] relative rounded-md overflow-hidden">
                                                         <Image
                                                             src={
-                                                                field.value instanceof File
+                                                                field.value instanceof
+                                                                File
                                                                     ? URL.createObjectURL(
                                                                           field.value,
                                                                       )
@@ -169,9 +167,12 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                                                     </Avatar>
                                                 )}
                                                 <div className="flex flex-col">
-                                                    <p className="text-sm">Project Icon</p>
+                                                    <p className="text-sm">
+                                                        Project Icon
+                                                    </p>
                                                     <p className="text-sm to-muted-foreground">
-                                                        JPG, PNG, SVG or JPEG, max 1MB
+                                                        JPG, PNG, SVG or JPEG,
+                                                        max 1MB
                                                     </p>
                                                     <input
                                                         type="file"
@@ -179,18 +180,27 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                                                         accept=".jpg, .png, .jpeg, .svg"
                                                         ref={inputRef}
                                                         disabled={isPending}
-                                                        onChange={handleImageChange}
+                                                        onChange={
+                                                            handleImageChange
+                                                        }
                                                     />
                                                     {field.value ? (
                                                         <Button
                                                             type="button"
                                                             disabled={isPending}
-                                                            variant={'destructive'}
+                                                            variant={
+                                                                'destructive'
+                                                            }
                                                             className="w-fit mt-2"
                                                             onClick={() => {
-                                                                field.onChange(null);
-                                                                if (inputRef.current) {
-                                                                    inputRef.current.value = '';
+                                                                field.onChange(
+                                                                    null,
+                                                                );
+                                                                if (
+                                                                    inputRef.current
+                                                                ) {
+                                                                    inputRef.current.value =
+                                                                        '';
                                                                 }
                                                             }}
                                                             size={'xs'}
@@ -230,7 +240,11 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                                     Cancel
                                 </Button>
 
-                                <Button disabled={isPending} type="submit" size={'lg'}>
+                                <Button
+                                    disabled={isPending}
+                                    type="submit"
+                                    size={'lg'}
+                                >
                                     Save Changes
                                 </Button>
                             </div>
@@ -244,7 +258,8 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                     <div className="flex flex-col">
                         <h3 className="font-bold">Danger Zone</h3>
                         <p className="text-sm text-muted-foreground">
-                            Deleteing a project is irreversible and will remove all associated data.
+                            Deleteing a project is irreversible and will remove
+                            all associated data.
                         </p>
                         <DashedSeparator className="py-7" />
 

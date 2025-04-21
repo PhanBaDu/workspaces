@@ -55,7 +55,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
             {
                 onSuccess: ({ data }) => {
                     form.reset();
-                    router.push(`/workspaces/${workspaceId}/projects/${data.$id}`);
+                    router.push(
+                        `/workspaces/${workspaceId}/projects/${data.$id}?projectId=${data.$id}`,
+                    );
                 },
             },
         );
@@ -107,8 +109,11 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                 <div className="size-[72px] relative rounded-md overflow-hidden">
                                                     <Image
                                                         src={
-                                                            field.value instanceof File
-                                                                ? URL.createObjectURL(field.value)
+                                                            field.value instanceof
+                                                            File
+                                                                ? URL.createObjectURL(
+                                                                      field.value,
+                                                                  )
                                                                 : field.value
                                                         }
                                                         alt="Logo"
@@ -124,9 +129,12 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                 </Avatar>
                                             )}
                                             <div className="flex flex-col">
-                                                <p className="text-sm">Project Icon</p>
+                                                <p className="text-sm">
+                                                    Project Icon
+                                                </p>
                                                 <p className="text-sm to-muted-foreground">
-                                                    JPG, PNG, SVG or JPEG, max 1MB
+                                                    JPG, PNG, SVG or JPEG, max
+                                                    1MB
                                                 </p>
                                                 <input
                                                     type="file"
@@ -143,9 +151,14 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                         variant={'destructive'}
                                                         className="w-fit mt-2"
                                                         onClick={() => {
-                                                            field.onChange(null);
-                                                            if (inputRef.current) {
-                                                                inputRef.current.value = '';
+                                                            field.onChange(
+                                                                null,
+                                                            );
+                                                            if (
+                                                                inputRef.current
+                                                            ) {
+                                                                inputRef.current.value =
+                                                                    '';
                                                             }
                                                         }}
                                                         size={'xs'}
@@ -158,7 +171,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                         disabled={isPending}
                                                         variant={'teritary'}
                                                         className="w-fit mt-2"
-                                                        onClick={() => inputRef.current?.click()}
+                                                        onClick={() =>
+                                                            inputRef.current?.click()
+                                                        }
                                                         size={'xs'}
                                                     >
                                                         Upload Image
@@ -183,7 +198,11 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                 Cancel
                             </Button>
 
-                            <Button disabled={isPending} type="submit" size={'lg'}>
+                            <Button
+                                disabled={isPending}
+                                type="submit"
+                                size={'lg'}
+                            >
                                 Create Project
                             </Button>
                         </div>

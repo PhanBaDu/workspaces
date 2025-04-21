@@ -30,7 +30,9 @@ const ProjectIdPage = async ({ params }: ProjectIdPageProps) => {
                         image={initialValues.imageUrl}
                         className="size-8"
                     />
-                    <p className="text-lg font-semibold">{initialValues.name}</p>
+                    <p className="text-lg font-semibold">
+                        {initialValues.name}
+                    </p>
                 </div>
                 <div>
                     <Button variant={'secondary'} size={'sm'} asChild>
@@ -43,7 +45,7 @@ const ProjectIdPage = async ({ params }: ProjectIdPageProps) => {
                     </Button>
                 </div>
             </div>
-            <TaskViewSwitcher />
+            <TaskViewSwitcher hideProjectFilter={true} />
         </div>
     );
 };

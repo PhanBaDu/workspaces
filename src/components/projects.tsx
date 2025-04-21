@@ -25,15 +25,16 @@ export const Projects = () => {
                 />
             </div>
             {data?.documents.map((project) => {
-                const href = `/workspaces/${workspaceId}/projects/${project.$id}`;
-                const isActive = pathname === href;
-
+                const href = `/workspaces/${workspaceId}/projects/${project.$id}?projectId=${project.$id}`;
+                const isActive =
+                    pathname + `?projectId=${project.$id}` === href;
                 return (
                     <Link href={href} key={project.$id}>
                         <div
                             className={cn(
                                 'flex items-center gap-2.5 p-2.5 rounded-md hover:opacity-75 transition cursor-pointer to-neutral-500',
-                                isActive && 'bg-white shadow-sm hover:opacity-100 text-primary',
+                                isActive &&
+                                    'bg-white shadow-sm hover:opacity-100 text-primary',
                             )}
                         >
                             <ProjectAvatar

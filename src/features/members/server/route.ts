@@ -1,5 +1,5 @@
 import { DATABASE_ID, MEMBERS_ID } from '@/config';
-import { MemberRole } from '@/features/members/types';
+import { Member, MemberRole } from '@/features/members/types';
 import { getMember } from '@/features/members/utils';
 import { createAdminClient } from '@/lib/appwrite';
 import { sessionMiddleware } from '@/lib/session-middleware';
@@ -27,9 +27,11 @@ const app = new Hono()
 
             if (!member) return c.json({ error: 'Unauthorized' }, 401);
 
-            const members = await databases.listDocuments(DATABASE_ID, MEMBERS_ID, [
-                Query.equal('workspaceId', workspaceId),
-            ]);
+            const members = await databases.listDocuments<Member>(
+                DATABASE_ID,
+                MEMBERS_ID,
+                [Query.equal('workspaceId', workspaceId)],
+            );
 
             const populatedMembers = await Promise.all(
                 members.documents.map(async (member) => {
@@ -53,11 +55,17 @@ const app = new Hono()
         const user = c.get('user');
         const databases = c.get('databases');
 
-        const memberToDelete = await databases.getDocument(DATABASE_ID, MEMBERS_ID, memberId);
+        const memberToDelete = await databases.getDocument(
+            DATABASE_ID,
+            MEMBERS_ID,
+            memberId,
+        );
 
-        const allMembersInWorkspace = await databases.listDocuments(DATABASE_ID, MEMBERS_ID, [
-            Query.equal('workspaceId', memberToDelete.workspaceId),
-        ]);
+        const allMembersInWorkspace = await databases.listDocuments(
+            DATABASE_ID,
+            MEMBERS_ID,
+            [Query.equal('workspaceId', memberToDelete.workspaceId)],
+        );
 
         const member = await getMember({
             databases,
@@ -67,7 +75,10 @@ const app = new Hono()
 
         if (!member) return c.json({ error: 'Unauthorized' }, 401);
 
-        if (member.id !== memberToDelete.$id && member.role !== MemberRole.ADMIN)
+        if (
+            member.id !== memberToDelete.$id &&
+            member.role !== MemberRole.ADMIN
+        )
             return c.json({ error: 'Unauthorized' }, 401);
 
         if (allMembersInWorkspace.total === 1)
@@ -87,11 +98,17 @@ const app = new Hono()
             const user = c.get('user');
             const databases = c.get('databases');
 
-            const memberToUpdate = await databases.getDocument(DATABASE_ID, MEMBERS_ID, memberId);
+            const memberToUpdate = await databases.getDocument(
+                DATABASE_ID,
+                MEMBERS_ID,
+                memberId,
+            );
 
-            const allMembersInWorkspace = await databases.listDocuments(DATABASE_ID, MEMBERS_ID, [
-                Query.equal('workspaceId', memberToUpdate.workspaceId),
-            ]);
+            const allMembersInWorkspace = await databases.listDocuments(
+                DATABASE_ID,
+                MEMBERS_ID,
+                [Query.equal('workspaceId', memberToUpdate.workspaceId)],
+            );
 
             const member = await getMember({
                 databases,
@@ -101,10 +118,14 @@ const app = new Hono()
 
             if (!member) return c.json({ error: 'Unauthorized' }, 401);
 
-            if (member.role !== MemberRole.ADMIN) return c.json({ error: 'Unauthorized' }, 401);
+            if (member.role !== MemberRole.ADMIN)
+                return c.json({ error: 'Unauthorized' }, 401);
 
             if (allMembersInWorkspace.total === 1)
-                return c.json({ error: 'Cannot downgrade the only member' }, 400);
+                return c.json(
+                    { error: 'Cannot downgrade the only member' },
+                    400,
+                );
 
             await databases.updateDocument(DATABASE_ID, MEMBERS_ID, memberId, {
                 role,

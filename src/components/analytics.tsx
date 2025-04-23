@@ -56,7 +56,6 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         }
                         increaseValue={data.incompleteTaskDifference}
                     />
-                    <DashedSeparator direction="vertical" />
                 </div>
             </div>
             <ScrollBar orientation="horizontal" />

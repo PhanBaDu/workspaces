@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { createTaskSchema } from '../schemas';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
@@ -42,7 +41,6 @@ export const CreateTaskForm = ({
     projectOptions,
     memberOptions,
 }: CreateTaskFormProps) => {
-    const router = useRouter();
     const workspaceId = useWorkspaceId();
     const { mutate, isPending } = useCreateTask();
 
@@ -126,11 +124,16 @@ export const CreateTaskForm = ({
                                             <FormMessage />
                                             <SelectContent>
                                                 {memberOptions.map((member) => (
-                                                    <SelectItem key={member.id} value={member.id}>
+                                                    <SelectItem
+                                                        key={member.id}
+                                                        value={member.id}
+                                                    >
                                                         <div className="flex items-center gap-x-2">
                                                             <MemberAvatar
                                                                 className="size-6"
-                                                                name={member.name}
+                                                                name={
+                                                                    member.name
+                                                                }
                                                             />
                                                             {member.name}
                                                         </div>
@@ -158,19 +161,31 @@ export const CreateTaskForm = ({
                                             </FormControl>
                                             <FormMessage />
                                             <SelectContent>
-                                                <SelectItem value={TaskStatus.BACKLOG}>
+                                                <SelectItem
+                                                    value={TaskStatus.BACKLOG}
+                                                >
                                                     Backlog
                                                 </SelectItem>
-                                                <SelectItem value={TaskStatus.IN_PROGRESS}>
+                                                <SelectItem
+                                                    value={
+                                                        TaskStatus.IN_PROGRESS
+                                                    }
+                                                >
                                                     In Progress
                                                 </SelectItem>
-                                                <SelectItem value={TaskStatus.IN_REVIEW}>
+                                                <SelectItem
+                                                    value={TaskStatus.IN_REVIEW}
+                                                >
                                                     In Review
                                                 </SelectItem>
-                                                <SelectItem value={TaskStatus.TODO}>
+                                                <SelectItem
+                                                    value={TaskStatus.TODO}
+                                                >
                                                     Todo
                                                 </SelectItem>
-                                                <SelectItem value={TaskStatus.DONE}>
+                                                <SelectItem
+                                                    value={TaskStatus.DONE}
+                                                >
                                                     Done
                                                 </SelectItem>
                                             </SelectContent>
@@ -196,18 +211,27 @@ export const CreateTaskForm = ({
                                             </FormControl>
                                             <FormMessage />
                                             <SelectContent>
-                                                {projectOptions.map((project) => (
-                                                    <SelectItem key={project.id} value={project.id}>
-                                                        <div className="flex items-center gap-x-2">
-                                                            <ProjectAvatar
-                                                                className="size-6"
-                                                                name={project.name}
-                                                                image={project.imageUrl}
-                                                            />
-                                                            {project.name}
-                                                        </div>
-                                                    </SelectItem>
-                                                ))}
+                                                {projectOptions.map(
+                                                    (project) => (
+                                                        <SelectItem
+                                                            key={project.id}
+                                                            value={project.id}
+                                                        >
+                                                            <div className="flex items-center gap-x-2">
+                                                                <ProjectAvatar
+                                                                    className="size-6"
+                                                                    name={
+                                                                        project.name
+                                                                    }
+                                                                    image={
+                                                                        project.imageUrl
+                                                                    }
+                                                                />
+                                                                {project.name}
+                                                            </div>
+                                                        </SelectItem>
+                                                    ),
+                                                )}
                                             </SelectContent>
                                         </Select>
                                     </FormItem>
@@ -227,7 +251,11 @@ export const CreateTaskForm = ({
                                 Cancel
                             </Button>
 
-                            <Button disabled={isPending} type="submit" size={'lg'}>
+                            <Button
+                                disabled={isPending}
+                                type="submit"
+                                size={'lg'}
+                            >
                                 Create Task
                             </Button>
                         </div>

@@ -39,8 +39,7 @@ export const EditProjectForm = ({
     const router = useRouter();
     const { mutate, isPending } = useUpdateProject();
 
-    const { mutate: deleteProject, isPending: isDeletingProject } =
-        useDeleteProject();
+    const { mutate: deleteProject } = useDeleteProject();
 
     const [DeleteDialog, confirmDelete] = useConfirm(
         'Delete project',

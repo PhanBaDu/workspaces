@@ -8,7 +8,7 @@ import {
     addMonths,
     subMonths,
 } from 'date-fns';
-import { enUS, id } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 import { useState } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';

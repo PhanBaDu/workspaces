@@ -8,7 +8,6 @@ import {
     Draggable,
     DropResult,
 } from '@hello-pangea/dnd';
-import { BanknoteArrowDown } from 'lucide-react';
 import KanbanColumnHeader from '@/features/tasks/components/kanban-column-header';
 import KanbanCard from '@/features/tasks/components/kanban-card';
 

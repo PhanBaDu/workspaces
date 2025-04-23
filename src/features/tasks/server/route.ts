@@ -80,27 +80,22 @@ const app = new Hono()
             ];
 
             if (projectId) {
-                console.log('projectId: ', projectId);
                 query.push(Query.equal('projectId', projectId));
             }
 
             if (status) {
-                console.log('status: ', status);
                 query.push(Query.equal('status', status));
             }
 
             if (assigneeId) {
-                console.log('assigneeId: ', assigneeId);
                 query.push(Query.equal('assigneeId', assigneeId));
             }
 
             if (dueDate) {
-                console.log('dueDate: ', dueDate);
                 query.push(Query.equal('dueDate', dueDate));
             }
 
             if (search) {
-                console.log('search: ', search);
                 query.push(Query.search('search', search));
             }
 
@@ -113,21 +108,27 @@ const app = new Hono()
             const projectIds = tasks.documents.map((task) => task.projectId);
             const assigneeIds = tasks.documents.map((task) => task.assigneeId);
 
-            const projects = await databases.listDocuments<Project>(
-                DATABASE_ID,
-                PROJECTS_ID,
+            const projects =
                 projectIds.length > 0
-                    ? [Query.contains('$id', projectIds)]
-                    : [],
-            );
+                    ? await databases.listDocuments<Project>(
+                          DATABASE_ID,
+                          PROJECTS_ID,
+                          projectIds.length > 0
+                              ? [Query.contains('$id', projectIds)]
+                              : [],
+                      )
+                    : { documents: [], total: 0 };
 
-            const members = await databases.listDocuments<Project>(
-                DATABASE_ID,
-                MEMBERS_ID,
+            const members =
                 assigneeIds.length > 0
-                    ? [Query.contains('$id', assigneeIds)]
-                    : [],
-            );
+                    ? await databases.listDocuments<Project>(
+                          DATABASE_ID,
+                          MEMBERS_ID,
+                          assigneeIds.length > 0
+                              ? [Query.contains('$id', assigneeIds)]
+                              : [],
+                      )
+                    : { documents: [], total: 0 };
 
             const assignees = await Promise.all(
                 members.documents.map(async (member) => {
@@ -155,7 +156,6 @@ const app = new Hono()
                     assignee,
                 };
             });
-
             return c.json({ data: { ...tasks, documents: populatedTasks } });
         },
     )

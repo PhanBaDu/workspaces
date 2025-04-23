@@ -14,12 +14,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { createTaskSchema } from '../schemas';
-import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { DashedSeparator } from '@/components/dashed-separator';
-import { useCreateTask } from '@/features/tasks/api/use-create-task';
 import { DatePicker } from '@/components/date-picker';
 import {
     Select,
@@ -46,8 +43,6 @@ export const EditTaskForm = ({
     memberOptions,
     initialValues,
 }: EditTaskFormProps) => {
-    const router = useRouter();
-    const workspaceId = useWorkspaceId();
     const { mutate, isPending } = useUpdateTask();
 
     const form = useForm<z.infer<typeof createTaskSchema>>({

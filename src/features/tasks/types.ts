@@ -1,4 +1,3 @@
-import { Project } from '@/features/projects/types';
 import { Models } from 'node-appwrite';
 
 export enum TaskStatus {

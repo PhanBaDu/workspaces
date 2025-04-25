@@ -73,7 +73,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle>Create a new project</CardTitle>
+                <CardTitle className="uppercase">
+                    Create a new project
+                </CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />
@@ -122,17 +124,20 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                     />
                                                 </div>
                                             ) : (
-                                                <Avatar className="size-[72px]">
-                                                    <AvatarFallback>
-                                                        <ImageIcon className="size-[36px] text-neutral-400" />
+                                                <Avatar className="size-[72px] rounded">
+                                                    <AvatarFallback className="rounded-md">
+                                                        <ImageIcon
+                                                            strokeWidth={2}
+                                                            className="size-[36px] text-muted-foreground"
+                                                        />
                                                     </AvatarFallback>
                                                 </Avatar>
                                             )}
-                                            <div className="flex flex-col">
-                                                <p className="text-sm">
+                                            <div className="flex flex-col mb-1">
+                                                <p className="text-sm text-muted-foreground">
                                                     Project Icon
                                                 </p>
-                                                <p className="text-sm to-muted-foreground">
+                                                <p className="text-sm text-muted-foreground">
                                                     JPG, PNG, SVG or JPEG, max
                                                     1MB
                                                 </p>

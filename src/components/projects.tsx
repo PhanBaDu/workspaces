@@ -1,13 +1,14 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { useGetProjects } from '@/features/projects/api/use-get-projects';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { useCreateProjectModal } from '@/features/projects/hooks/use-create-project-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { cn } from '@/lib/utils';
+import { CheckCheck, SquarePlus } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { RiAddCircleFill } from 'react-icons/ri';
 
 export const Projects = () => {
     const pathname = usePathname();
@@ -18,10 +19,12 @@ export const Projects = () => {
     return (
         <div className="flex flex-col gap-y-2">
             <div className="flex items-center justify-between">
-                <p className="text-xs uppercase text-neutral-500">Projects</p>
-                <RiAddCircleFill
+                <p className="text-sm uppercase font-semibold">Projects</p>
+                <SquarePlus
                     onClick={open}
-                    className="size-5 text-neutral-500 cursor-pointer hover:opacity-75 transition"
+                    strokeWidth={2.4}
+                    size={18}
+                    className="cursor-pointer hover:opacity-75 transition"
                 />
             </div>
             {data?.documents.map((project) => {
@@ -30,20 +33,28 @@ export const Projects = () => {
                     pathname + `?projectId=${project.$id}` === href;
                 return (
                     <Link href={href} key={project.$id}>
-                        <div
+                        <Button
+                            variant={isActive ? 'primary' : 'ghost'}
                             className={cn(
-                                'flex items-center gap-2.5 p-2.5 rounded-md hover:opacity-75 transition cursor-pointer to-neutral-500',
-                                isActive &&
-                                    'bg-white shadow-sm hover:opacity-100 text-primary',
+                                'flex w-full items-center justify-between p-2.5 rounded-md transition cursor-pointer',
                             )}
                         >
-                            <ProjectAvatar
-                                image={project.imageUrl}
-                                name={project.name}
-                                className="rounded-md"
-                            />
-                            <span className="truncate"> {project.name}</span>
-                        </div>
+                            <div className="flex items-center gap-2.5">
+                                <ProjectAvatar
+                                    image={project.imageUrl}
+                                    name={project.name}
+                                    fallbackClassName={
+                                        isActive
+                                            ? 'bg-primary-foreground text-primary'
+                                            : undefined
+                                    }
+                                />
+                                <span className="truncate text-xs">
+                                    {project.name}
+                                </span>
+                            </div>
+                            {isActive && <CheckCheck />}
+                        </Button>
                     </Link>
                 );
             })}

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Sidebar() {
     return (
-        <aside className="h-full bg-neutral-100 p-4 w-full">
+        <aside className="h-full border-r bg-muted p-4 w-full">
             <Link href={'/'}>
                 <div className="flex items-center">
                     <Image
@@ -23,11 +23,11 @@ export default function Sidebar() {
                     </h1>
                 </div>
             </Link>
-            <DashedSeparator className="my-4" />
+            <DashedSeparator className="my-5" />
             <WorkspaceSwitcher />
-            <DashedSeparator className="my-4" />
+            <DashedSeparator className="my-5" />
             <Navigation />
-            <DashedSeparator className="my-4" />
+            <DashedSeparator className="my-5" />
             <Projects />
         </aside>
     );

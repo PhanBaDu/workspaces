@@ -28,8 +28,8 @@ export default function Navbar() {
     return (
         <nav className="pt-4 px-6 flex items-center justify-between">
             <div className="lg:flex flex-col hidden">
-                <h1 className="text-2xl font-semibold">{title}</h1>
-                <p className="text-muted-foreground">{description}</p>
+                <h1 className="text-xl font-semibold uppercase">{title}</h1>
+                <p className="text-muted-foreground text-sm">{description}</p>
             </div>
             <MobileSideBar />
             <UserButton />

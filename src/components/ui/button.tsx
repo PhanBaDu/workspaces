@@ -5,19 +5,21 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-neutral-100 disabled:from-neutral-100 disabled:to-neutral-100 disabled:text-neutral-300 border border-neutral-200 shadow-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-neutral-100 disabled:from-neutral-100 disabled:to-neutral-100 disabled:text-neutral-300 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
     {
         variants: {
             variant: {
-                primary: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+                primary:
+                    'bg-primary text-primary-foreground hover:bg-primary/90',
                 destructive:
-                    'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+                    'bg-destructive text-destructive-foreground hover:bg-destructive/90',
                 outline:
-                    'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-                secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+                    'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+                secondary:
+                    'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground border-none shadow-none',
                 link: 'text-primary underline-offset-4 hover:underline border-none bg-transparent shadow-none',
-                muted: 'bg-neutral-200 text-neutral-600 hover:bg-neutral-200/80',
+                muted: 'bg-muted-foreground text-background hover:bg-muted-foreground/80',
                 teritary:
                     'bg-blue-100 text-blue-600 border-transparent hover:bg-blue-200 shadow-none',
             },

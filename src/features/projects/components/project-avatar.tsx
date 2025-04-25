@@ -17,17 +17,22 @@ export const ProjectAvatar = ({
 }: ProjectAvatarProps) => {
     if (image) {
         return (
-            <div className={cn('size-5 relative rounded-md overflow-hidden', className)}>
+            <div
+                className={cn(
+                    'size-6 relative rounded-md overflow-hidden',
+                    className,
+                )}
+            >
                 <Image src={image} alt={name} fill className="object-cover" />
             </div>
         );
     }
 
     return (
-        <Avatar className={cn('size-5 rounded-md', className)}>
+        <Avatar className={cn('size-6 rounded-md', className)}>
             <AvatarFallback
                 className={cn(
-                    'text-white rounded-md bg-blue-600 font-semibold text-sm  uppercase',
+                    'text-background rounded bg-primary font-bold text-xs uppercase',
                     fallbackClassName,
                 )}
             >

@@ -9,7 +9,7 @@ import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 
 interface AnalyticsCardProps {
     title: string;
-    value: number;
+    value?: number;
     variant: 'up' | 'down';
     increaseValue: number;
 }

@@ -8,7 +8,7 @@ interface StandloneLayoutProps {
 
 const StandloneLayout = ({ children }: StandloneLayoutProps) => {
     return (
-        <main className="bg-neutral-100 min-h-screen">
+        <main className="bg-muted min-h-screen">
             <div className="mx-auto max-w-screen-2xl p-4">
                 <nav className="flex justify-between items-center">
                     <Link href={'/'} className="flex items-center">
@@ -26,7 +26,9 @@ const StandloneLayout = ({ children }: StandloneLayoutProps) => {
                     </Link>
                     <UserButton />
                 </nav>
-                <div className="flex flex-col items-center justify-center py-4">{children}</div>
+                <div className="flex flex-col items-center justify-center py-4">
+                    {children}
+                </div>
             </div>
         </main>
     );

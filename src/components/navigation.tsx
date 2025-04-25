@@ -55,7 +55,7 @@ export default function Navigation() {
                         key={item.href}
                         asChild
                         variant={isActive ? 'primary' : 'ghost'}
-                        className="hover:bg-primary hover:text-background flex justify-between items-center shadow-none duration-75"
+                        className="flex justify-between items-center shadow-none duration-75"
                     >
                         <Link href={fullHref}>
                             <div className="flex items-center gap-2">

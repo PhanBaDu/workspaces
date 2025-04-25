@@ -8,10 +8,19 @@ interface WorkspaceAvatarProps {
     className?: string;
 }
 
-export const WorkspaceAvatar = ({ image, name, className }: WorkspaceAvatarProps) => {
+export const WorkspaceAvatar = ({
+    image,
+    name,
+    className,
+}: WorkspaceAvatarProps) => {
     if (image) {
         return (
-            <div className={cn('size-10 relative rounded-md overflow-hidden', className)}>
+            <div
+                className={cn(
+                    'size-10 relative rounded-md overflow-hidden',
+                    className,
+                )}
+            >
                 <Image src={image} alt={name} fill className="object-cover" />
             </div>
         );
@@ -20,7 +29,7 @@ export const WorkspaceAvatar = ({ image, name, className }: WorkspaceAvatarProps
     return (
         <Avatar className={cn('size-10', className)}>
             <AvatarFallback
-                className="text-white bg-blue-600 rounded-md font-semibold text-lg
+                className="text-primary rounded-md font-semibold text-sm
              uppercase"
             >
                 {name[0]}

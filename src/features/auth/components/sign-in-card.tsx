@@ -124,7 +124,7 @@ export default function SignInCard() {
             <div className="px-7">
                 <DashedSeparator />
             </div>
-            <CardContent className="p-7 flex items-center justify-center">
+            <CardContent className="p-7 text-sm flex items-center justify-center">
                 <p>Don&apos;t havev an account?</p>
                 <Link className="text-blue-700" href={'/sign-up'}>
                     &nbsp;Sign Up

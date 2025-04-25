@@ -26,7 +26,9 @@ interface CreateWorkspaceFormProps {
     onCancel?: () => void;
 }
 
-export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormProps) {
+export default function CreateWorkspaceForm({
+    onCancel,
+}: CreateWorkspaceFormProps) {
     const { mutate, isPending } = useCreateWorkspace();
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -57,7 +59,9 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle className="text-xl font-bold">Create a new workspace</CardTitle>
+                <CardTitle className="text-xl font-semibold uppercase">
+                    Create a new workspace
+                </CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />
@@ -73,7 +77,10 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
                                     <FormItem>
                                         <FormLabel>Workspace Name</FormLabel>
                                         <FormControl>
-                                            <Input {...field} placeholder="Enter workspace name" />
+                                            <Input
+                                                {...field}
+                                                placeholder="Enter workspace name"
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -89,8 +96,11 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
                                                 <div className="size-[72px] relative rounded-md overflow-hidden">
                                                     <Image
                                                         src={
-                                                            field.value instanceof File
-                                                                ? URL.createObjectURL(field.value)
+                                                            field.value instanceof
+                                                            File
+                                                                ? URL.createObjectURL(
+                                                                      field.value,
+                                                                  )
                                                                 : field.value
                                                         }
                                                         alt="Logo"
@@ -99,16 +109,23 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
                                                     />
                                                 </div>
                                             ) : (
-                                                <Avatar className="size-[72px]">
-                                                    <AvatarFallback>
-                                                        <ImageIcon className="size-[36px] text-neutral-400" />
+                                                <Avatar className="size-[72px] rounded">
+                                                    <AvatarFallback className="rounded-md">
+                                                        <ImageIcon
+                                                            size={36}
+                                                            strokeWidth={1.7}
+                                                            className="text-muted-foreground"
+                                                        />
                                                     </AvatarFallback>
                                                 </Avatar>
                                             )}
-                                            <div className="flex flex-col">
-                                                <p className="text-sm">Workspace Icon</p>
-                                                <p className="text-sm to-muted-foreground">
-                                                    JPG, PNG, SVG or JPEG, max 1MB
+                                            <div className="flex flex-col mb-1">
+                                                <p className="text-sm text-muted-foreground">
+                                                    Workspace Icon
+                                                </p>
+                                                <p className="text-sm to-muted-foreground text-muted-foreground">
+                                                    JPG, PNG, SVG or JPEG, max
+                                                    1MB
                                                 </p>
                                                 <input
                                                     type="file"
@@ -126,9 +143,14 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
                                                         size={'xs'}
                                                         className="w-fit mt-2"
                                                         onClick={() => {
-                                                            field.onChange(null);
-                                                            if (inputRef.current)
-                                                                inputRef.current.value = '';
+                                                            field.onChange(
+                                                                null,
+                                                            );
+                                                            if (
+                                                                inputRef.current
+                                                            )
+                                                                inputRef.current.value =
+                                                                    '';
                                                         }}
                                                     >
                                                         Remove Image
@@ -139,8 +161,10 @@ export default function CreateWorkspaceForm({ onCancel }: CreateWorkspaceFormPro
                                                         disabled={isPending}
                                                         variant={'teritary'}
                                                         size={'xs'}
-                                                        className="w-fit mt-2"
-                                                        onClick={() => inputRef.current?.click()}
+                                                        className="w-fit mt-2 rounded-md"
+                                                        onClick={() =>
+                                                            inputRef.current?.click()
+                                                        }
                                                     >
                                                         Upload Image
                                                     </Button>

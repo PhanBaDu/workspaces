@@ -70,7 +70,7 @@ export const EditTaskForm = ({
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle>Edit a task</CardTitle>
+                <CardTitle className="uppercase">Edit a task</CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />

@@ -30,8 +30,10 @@ export default function MembersList() {
         'destructive',
     );
 
-    const { mutate: updateMember, isPending: isUpdatingMember } = useUpdateMember();
-    const { mutate: deleteMember, isPending: isDeletingMember } = useDeleteMember();
+    const { mutate: updateMember, isPending: isUpdatingMember } =
+        useUpdateMember();
+    const { mutate: deleteMember, isPending: isDeletingMember } =
+        useDeleteMember();
 
     const handleUpdateMember = (memberId: string, role: MemberRole) => {
         updateMember({
@@ -65,7 +67,9 @@ export default function MembersList() {
                         Back
                     </Link>
                 </Button>
-                <CardTitle className="text-xl font-bold">Members list</CardTitle>
+                <CardTitle className="text-lg font-bold uppercase">
+                    Members list
+                </CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />
@@ -81,37 +85,53 @@ export default function MembersList() {
                             "
                             />
                             <div className="flex flex-col">
-                                <p className="text-sm font-medium">{member.name}</p>
-                                <p className="text-sm text-muted-foreground">{member.email}</p>
+                                <p className="text-sm font-medium">
+                                    {member.name}
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    {member.email}
+                                </p>
                             </div>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button className="ml-auto" variant={'secondary'} size={'icon'}>
+                                    <Button
+                                        className="ml-auto"
+                                        variant={'secondary'}
+                                        size={'icon'}
+                                    >
                                         <MoreVertical className="size-4 text-muted-foreground" />
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent side="bottom" align="end">
                                     <DropdownMenuItem
-                                        className="font-medium"
+                                        className="font-medium cursor-pointer"
                                         onClick={() =>
-                                            handleUpdateMember(member.$id, MemberRole.ADMIN)
+                                            handleUpdateMember(
+                                                member.$id,
+                                                MemberRole.ADMIN,
+                                            )
                                         }
                                         disabled={isUpdatingMember}
                                     >
                                         Set as Administrator
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
-                                        className="font-medium"
+                                        className="font-medium cursor-pointer"
                                         onClick={() =>
-                                            handleUpdateMember(member.$id, MemberRole.MEMBER)
+                                            handleUpdateMember(
+                                                member.$id,
+                                                MemberRole.MEMBER,
+                                            )
                                         }
                                         disabled={isUpdatingMember}
                                     >
                                         Set as Member
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
-                                        className="font-medium text-amber-700"
-                                        onClick={() => handleDeleteMember(member.$id)}
+                                        className="font-medium text-destructive cursor-pointer focus:text-destructive"
+                                        onClick={() =>
+                                            handleDeleteMember(member.$id)
+                                        }
                                         disabled={isDeletingMember}
                                     >
                                         Remove {member.name}
@@ -119,7 +139,9 @@ export default function MembersList() {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>
-                        {index < data.documents.length - 1 && <Separator className="my-2.5" />}
+                        {index < data.documents.length - 1 && (
+                            <Separator className="my-2.5" />
+                        )}
                     </Fragment>
                 ))}
             </CardContent>

@@ -15,13 +15,13 @@ export const MemberAvatar = ({
     return (
         <Avatar
             className={cn(
-                'size-5 transition border border-neutral-300 rounded-full',
+                'size-5 transition border border-muted-foreground rounded-full',
                 className,
             )}
         >
             <AvatarFallback
                 className={cn(
-                    'bg-neutral-200 font-medium to-neutral-500 flex items-center',
+                    'bg-muted font-medium to-primary flex items-center',
                     fallbackClassName,
                 )}
             >

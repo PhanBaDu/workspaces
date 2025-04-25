@@ -109,7 +109,7 @@ export default function CreateWorkspaceForm({
                                                     />
                                                 </div>
                                             ) : (
-                                                <Avatar className="size-[72px] rounded">
+                                                <Avatar className="size-[72px] rounded-md">
                                                     <AvatarFallback className="rounded-md">
                                                         <ImageIcon
                                                             size={36}

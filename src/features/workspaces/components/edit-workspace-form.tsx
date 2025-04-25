@@ -33,11 +33,16 @@ interface EditWorkspaceFormProps {
     initialValues: Workspace;
 }
 
-export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorkspaceFormProps) {
+export default function EditWorkspaceForm({
+    onCancel,
+    initialValues,
+}: EditWorkspaceFormProps) {
     const router = useRouter();
     const { mutate, isPending } = useUpdateWorkspace();
-    const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } = useDeleteWorkspace();
-    const { mutate: resetInviteCode, isPending: isResettingInviteCode } = useResetInviteCode();
+    const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } =
+        useDeleteWorkspace();
+    const { mutate: resetInviteCode, isPending: isResettingInviteCode } =
+        useResetInviteCode();
 
     const [DeleteDialog, confirmDelete] = useConfirm(
         'Delete Workspace',
@@ -122,13 +127,18 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                         onClick={
                             onCancel
                                 ? onCancel
-                                : () => router.push(`/workspaces/${initialValues.$id}`)
+                                : () =>
+                                      router.push(
+                                          `/workspaces/${initialValues.$id}`,
+                                      )
                         }
                     >
+                        <ArrowLeftIcon className="size-4" />
                         Back
-                        <ArrowLeftIcon className="size-4 mr-2" />
                     </Button>
-                    <CardTitle>Update Workspace</CardTitle>
+                    <CardTitle className="uppercase">
+                        Update Workspace
+                    </CardTitle>
                 </CardHeader>
                 <div className="px-7">
                     <DashedSeparator />
@@ -142,7 +152,9 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                                     name="name"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Workspace Name</FormLabel>
+                                            <FormLabel>
+                                                Workspace Name
+                                            </FormLabel>
                                             <FormControl>
                                                 <Input
                                                     {...field}
@@ -163,7 +175,8 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                                                     <div className="size-[72px] relative rounded-md overflow-hidden">
                                                         <Image
                                                             src={
-                                                                field.value instanceof File
+                                                                field.value instanceof
+                                                                File
                                                                     ? URL.createObjectURL(
                                                                           field.value,
                                                                       )
@@ -175,16 +188,19 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <Avatar className="size-[72px]">
-                                                        <AvatarFallback>
-                                                            <ImageIcon className="size-[36px] text-neutral-400" />
+                                                    <Avatar className="size-[72px] rounded-md">
+                                                        <AvatarFallback className="rounded-md">
+                                                            <ImageIcon className="size-[36px] text-muted-foreground" />
                                                         </AvatarFallback>
                                                     </Avatar>
                                                 )}
-                                                <div className="flex flex-col">
-                                                    <p className="text-sm">Workspace Icon</p>
-                                                    <p className="text-sm to-muted-foreground">
-                                                        JPG, PNG, SVG or JPEG, max 1MB
+                                                <div className="flex flex-col mb-1">
+                                                    <p className="text-sm text-muted-foreground">
+                                                        Workspace Icon
+                                                    </p>
+                                                    <p className="text-sm text-muted-foreground">
+                                                        JPG, PNG, SVG or JPEG,
+                                                        max 1MB
                                                     </p>
                                                     <input
                                                         type="file"
@@ -192,19 +208,28 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                                                         accept=".jpg, .png, .jpeg, .svg"
                                                         ref={inputRef}
                                                         disabled={isPending}
-                                                        onChange={handleImageChange}
+                                                        onChange={
+                                                            handleImageChange
+                                                        }
                                                     />
                                                     {field.value ? (
                                                         <Button
                                                             type="button"
                                                             disabled={isPending}
-                                                            variant={'destructive'}
+                                                            variant={
+                                                                'destructive'
+                                                            }
                                                             size={'xs'}
                                                             className="w-fit mt-2"
                                                             onClick={() => {
-                                                                field.onChange(null);
-                                                                if (inputRef.current)
-                                                                    inputRef.current.value = '';
+                                                                field.onChange(
+                                                                    null,
+                                                                );
+                                                                if (
+                                                                    inputRef.current
+                                                                )
+                                                                    inputRef.current.value =
+                                                                        '';
                                                             }}
                                                         >
                                                             Remove Image
@@ -259,7 +284,8 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                     <div className="flex flex-col">
                         <h3 className="font-bold">Invite Members</h3>
                         <p className="text-sm text-muted-foreground">
-                            Use the invite link to add members to your workspace.
+                            Use the invite link to add members to your
+                            workspace.
                         </p>
                         <div className="mt-4">
                             <div className="flex items-center gap-x-2">
@@ -292,8 +318,8 @@ export default function EditWorkspaceForm({ onCancel, initialValues }: EditWorks
                     <div className="flex flex-col">
                         <h3 className="font-bold">Danger Zone</h3>
                         <p className="text-sm text-muted-foreground">
-                            Deleteing a workspace is irreversible and will remove all associated
-                            data.
+                            Deleteing a workspace is irreversible and will
+                            remove all associated data.
                         </p>
                         <DashedSeparator className="py-7" />
 

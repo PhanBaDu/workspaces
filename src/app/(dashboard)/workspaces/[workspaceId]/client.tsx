@@ -53,8 +53,8 @@ export const WorkspaceIdClient = () => {
         <div className="h-full flex flex-col space-y-4">
             <Analytics data={analytics} />
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                <TaskList data={tasks.documents} total={tasks.total} />
                 <ProjectList data={projects.documents} total={projects.total} />
+                <TaskList data={tasks.documents} total={tasks.total} />
                 <MembersList data={members.documents} total={members.total} />
             </div>
         </div>
@@ -71,16 +71,16 @@ export const TaskList = ({ data, total }: TaskListProps) => {
     const workspaceId = useWorkspaceId();
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1">
-            <div className="bg-muted rounded-lg p-4">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
+            <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">Tasks ({total})</p>
                     <Button
-                        variant={'muted'}
+                        variant={'primary'}
                         size={'icon'}
                         onClick={createTask}
                     >
-                        <PlusIcon className="size-4 text-neutral-400" />
+                        <PlusIcon className="size-4" />
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />
@@ -90,17 +90,19 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                             <Link
                                 href={`/workspaces/${workspaceId}/tasks/${task.$id}`}
                             >
-                                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
+                                <Card className="shadow-none border-none rounded-lg hover:opacity-75 transition">
                                     <CardContent className="p-4">
-                                        <p className="text-lg font-medium truncate">
+                                        <p className="text-xs lg:text-base font-medium truncate">
                                             {task.name}
                                         </p>
                                         <div className="flex items-center gap-x-2">
-                                            <p>{task.project.name}</p>
-                                            <div className="size-1 rounded-full bg-neutral-300" />
+                                            <p className="text-xs lg:text-sm">
+                                                {task.project.name}
+                                            </p>
+                                            <div className="size-1 rounded-full bg-muted-foreground/80" />
                                             <div className="text-sm text-muted-foreground flex items-center">
                                                 <CalendarIcon className="size-3 mr-1" />
-                                                <span className="truncate">
+                                                <span className="truncate text-xs lg:text-sm">
                                                     {formatDistanceToNow(
                                                         new Date(task.dueDate),
                                                     )}
@@ -116,7 +118,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                         No tasks found
                     </li>
                 </ul>
-                <Button variant={'muted'} className="mt-4 w-full">
+                <Button variant={'primary'} className="mt-4 w-full">
                     <Link href={`/workspaces/${workspaceId}/tasks`}>
                         Show All
                     </Link>
@@ -136,16 +138,16 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
     const workspaceId = useWorkspaceId();
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1">
-            <div className="bg-white border  rounded-lg p-4">
+        <div className="flex flex-col gap-y-4 col-span-1 bg-muted rounded-lg">
+            <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">Projects ({total})</p>
                     <Button
-                        variant={'secondary'}
+                        variant={'primary'}
                         size={'icon'}
                         onClick={createProject}
                     >
-                        <PlusIcon className="size-4 text-neutral-400" />
+                        <PlusIcon className="size-4" />
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />
@@ -155,7 +157,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                             <Link
                                 href={`/workspaces/${workspaceId}/projects/${project.$id}`}
                             >
-                                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
+                                <Card className="shadow-none border-none rounded-lg hover:opacity-75 transition">
                                     <CardContent className="p-4 flex items-center gap-x-2.5">
                                         <ProjectAvatar
                                             className="size-12"
@@ -189,13 +191,13 @@ export const MembersList = ({ data, total }: MembersListProps) => {
     const workspaceId = useWorkspaceId();
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1">
-            <div className="bg-white border  rounded-lg p-4">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
+            <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">Member ({total})</p>
-                    <Button asChild variant={'secondary'} size={'icon'}>
+                    <Button asChild variant={'primary'} size={'icon'}>
                         <Link href={`/workspaces/${workspaceId}/members`}>
-                            <SettingsIcon className="size-4 text-neutral-400" />
+                            <SettingsIcon className="size-4" />
                         </Link>
                     </Button>
                 </div>
@@ -203,17 +205,17 @@ export const MembersList = ({ data, total }: MembersListProps) => {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {data.map((member) => (
                         <li key={member.id}>
-                            <Card className="shadow-none rounded-lg overflow-hidden">
+                            <Card className="shadow-none border-none rounded-lg overflow-hidden">
                                 <CardContent className="p-3 flex flex-col items-center gap-x-2">
                                     <MemberAvatar
                                         className="size-12"
                                         name={member.name}
                                     />
                                     <div className="flex flex-col items-center overflow-hidden">
-                                        <p className="text-lg font-medium line-clamp-1">
+                                        <p className="text-sm lg:text-base font-medium line-clamp-1">
                                             {member.name}
                                         </p>
-                                        <p className="text-sm text-muted-foreground line-clamp-1">
+                                        <p className="text-xs lg:text-sm text-muted-foreground line-clamp-1">
                                             {member.email}
                                         </p>
                                     </div>

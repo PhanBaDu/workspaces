@@ -30,7 +30,7 @@ export default function AnalyticsCard({
             <CardHeader>
                 <div className="flex items-center gap-x-2.5">
                     <CardDescription className="flex items-center gap-x-2 font-medium overflow-hidden">
-                        <span className="truncate text-base">{title}</span>
+                        <span className="truncate text-sm">{title}</span>
                     </CardDescription>
                     <div className="flex items-center gap-x-1">
                         <Icon className={cn(iconColor, 'size- 4')} />

@@ -46,17 +46,17 @@ export default function KanbanColumnHeader({
                 <h2 className="text-sm font-medium">
                     {snakeCaseToTitleCase(board)}
                 </h2>
-                <div className="size-5 flex items-center justify-center rounded-md bg-neutral-200 text-xs text-neutral-700 font-medium">
+                <div className="size-5 flex items-center justify-center rounded-md bg-muted-foreground/15 text-[10px] text-primary font-medium">
                     {taskCount}
                 </div>
             </div>
             <Button
-                className="size-5"
-                variant={'ghost'}
+                className="size-5 rounded"
+                variant={'primary'}
                 size={'icon'}
                 onClick={open}
             >
-                <PlusIcon className="size-4 text-neutral-500" />
+                <PlusIcon className="size-4" />
             </Button>
         </div>
     );

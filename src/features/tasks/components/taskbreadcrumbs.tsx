@@ -50,9 +50,11 @@ export default function TaskBreadcrumbs({
             <ProjectAvatar
                 name={project.name}
                 image={project.imageUrl}
-                className="size-6 lg:size-8"
+                className="size-6 lg:size-8 mr-2"
             />
-            <Link href={`/workspaces/${workspaceId}/projects/${project.$id}`}>
+            <Link
+                href={`/workspaces/${workspaceId}/projects/${project.$id}?projectId=${project.$id}`}
+            >
                 <p className="text-xs lg:text-lg font-semibold text-muted-foreground hover:opacity-75">
                     {project.name}
                 </p>

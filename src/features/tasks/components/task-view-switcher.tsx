@@ -84,7 +84,7 @@ const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
                         size={'sm'}
                         className="w-full lg:w-auto"
                     >
-                        <PlusIcon className="size-4 mr-2" /> New
+                        <PlusIcon className="size-4" /> New
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />

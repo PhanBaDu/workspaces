@@ -94,7 +94,7 @@ export const EditProjectForm = ({
         <div className="flex flex-col gap-y-4">
             <DeleteDialog />
             <Card className="w-full h-full border-none shadow-none">
-                <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
+                <CardHeader className="flex flex-row items-center justify-between gap-x-4 p-7 space-y-0">
                     <Button
                         size={'sm'}
                         variant={'secondary'}
@@ -107,10 +107,15 @@ export const EditProjectForm = ({
                                       )
                         }
                     >
+                        <ArrowLeftIcon className="size-4" />
                         Back
-                        <ArrowLeftIcon className="size-4 mr-2" />
                     </Button>
-                    <CardTitle>{initialValues.name}</CardTitle>
+                    <CardTitle>
+                        <span className="uppercase mr-2 text-muted-foreground">
+                            Project Name:{' '}
+                        </span>
+                        {initialValues.name}
+                    </CardTitle>
                 </CardHeader>
                 <div className="px-7">
                     <DashedSeparator />
@@ -159,13 +164,13 @@ export const EditProjectForm = ({
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <Avatar className="size-[72px]">
-                                                        <AvatarFallback>
-                                                            <ImageIcon className="size-[36px] text-neutral-400" />
+                                                    <Avatar className="size-[72px] rounded-md">
+                                                        <AvatarFallback className="rounded-md">
+                                                            <ImageIcon className="size-[36px] text-muted-foreground" />
                                                         </AvatarFallback>
                                                     </Avatar>
                                                 )}
-                                                <div className="flex flex-col">
+                                                <div className="flex flex-col mb-1">
                                                     <p className="text-sm">
                                                         Project Icon
                                                     </p>

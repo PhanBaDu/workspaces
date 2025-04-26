@@ -128,7 +128,7 @@ export default function MembersList() {
                                         Set as Member
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
-                                        className="font-medium text-destructive cursor-pointer focus:text-destructive"
+                                        className="font-medium dark:text-red-500 text-destructive cursor-pointer focus:text-destructive"
                                         onClick={() =>
                                             handleDeleteMember(member.$id)
                                         }

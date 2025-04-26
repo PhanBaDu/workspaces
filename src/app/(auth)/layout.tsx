@@ -1,5 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -10,6 +11,7 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
     const pathname = usePathname();
+    const { theme } = useTheme();
     const isSignIn = pathname === '/sign-in';
 
     return (
@@ -18,7 +20,11 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                 <nav className="flex justify-between items-center">
                     <div className="flex items-center">
                         <Image
-                            src={'/logo.svg'}
+                            src={
+                                theme === 'light'
+                                    ? '/light-logo.svg'
+                                    : '/dark-logo.svg'
+                            }
                             height={152}
                             width={56}
                             alt="Logo Workspaces"

@@ -1,5 +1,5 @@
+import SidebarLogo from '@/components/sidebar-logo';
 import { UserButton } from '@/features/auth/components/user-button';
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface StandloneLayoutProps {
@@ -12,17 +12,7 @@ const StandloneLayout = ({ children }: StandloneLayoutProps) => {
             <div className="mx-auto max-w-screen-2xl p-4">
                 <nav className="flex justify-between items-center">
                     <Link href={'/'} className="flex items-center">
-                        <Image
-                            src={'/logo.svg'}
-                            height={152}
-                            width={56}
-                            alt="Logo Workspaces"
-                            priority
-                            style={{ height: '47px', width: '57px' }}
-                        />
-                        <h1 className="text-primary font-extrabold text-2xl mt-2 uppercase">
-                            orkspaces
-                        </h1>
+                        <SidebarLogo />
                     </Link>
                     <UserButton />
                 </nav>

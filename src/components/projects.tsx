@@ -49,9 +49,7 @@ export const Projects = () => {
                                             : undefined
                                     }
                                 />
-                                <span className="truncate text-xs">
-                                    {project.name}
-                                </span>
+                                <span className="truncate">{project.name}</span>
                             </div>
                             {isActive && <CheckCheck />}
                         </Button>

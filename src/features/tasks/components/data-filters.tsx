@@ -65,7 +65,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
                     className="w-full
                  lg:w-auto h-8"
                 >
-                    <div className="flex items-center pr-2 text-black">
+                    <div className="flex items-center pr-2 text-secondary-foreground">
                         <ListCheckIcon className="size-4 h-4 w-4 mr-2" />
                         <SelectValue placeholder="All statuses" />
                     </div>
@@ -92,7 +92,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
                     className="w-full
                  lg:w-auto h-8"
                 >
-                    <div className="flex items-center pr-2 text-black">
+                    <div className="flex items-center pr-2 text-secondary-foreground">
                         <UserIcon className="size-4 h-4 w-4 mr-2" />
                         <SelectValue placeholder="All assignees" />
                     </div>
@@ -116,7 +116,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
                         className="w-full
                  lg:w-auto h-8"
                     >
-                        <div className="flex items-center pr-2 text-black">
+                        <div className="flex items-center pr-2 text-secondary-foreground">
                             <FolderIcon className="size-4 h-4 w-4 mr-2" />
                             <SelectValue placeholder="All projects" />
                         </div>
@@ -137,7 +137,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
             )}
             <DatePicker
                 placeholder="Due date"
-                className="w-full lg:w-auto h-8 text-black"
+                className="w-full lg:w-auto h-8 text-secondary-foreground"
                 value={dueDate ? new Date(dueDate) : undefined}
                 onChange={(date) =>
                     setFilters({ dueDate: date ? date.toISOString() : null })

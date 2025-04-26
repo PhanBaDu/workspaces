@@ -49,7 +49,6 @@ export default function WorkspaceSwitcher() {
                         >
                             <div className="flex justify-start items-center gap-2 font-medium">
                                 <WorkspaceAvatar
-                                    className="rounded-s"
                                     name={workspace.name}
                                     image={workspace.imageUrl}
                                 />

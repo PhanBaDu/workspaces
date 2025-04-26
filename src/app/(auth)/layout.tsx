@@ -1,6 +1,7 @@
 'use client';
 import SidebarLogo from '@/components/sidebar-logo';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -11,6 +12,8 @@ interface AuthLayoutProps {
 export default function AuthLayout({ children }: AuthLayoutProps) {
     const pathname = usePathname();
     const isSignIn = pathname === '/sign-in';
+    const t = useTranslations('AuthPage');
+
     return (
         <div className="bg-muted min-h-screen">
             <main className="mx-auto max-w-screen-2xl p-4">
@@ -21,7 +24,9 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                     <div className="flex items-center gap-2">
                         <Button variant={'outline'} asChild>
                             <Link href={isSignIn ? '/sign-up' : '/sign-in'}>
-                                {isSignIn ? 'Sign Up' : 'Sign In'}
+                                {isSignIn
+                                    ? `${t('signIn.href')}`
+                                    : `${t('signUp.href')}`}
                             </Link>
                         </Button>
                     </div>

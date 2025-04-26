@@ -26,9 +26,12 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { registerSchema } from '@/features/auth/schema';
 import { useRegister } from '@/features/auth/api/use-register';
+import { useTranslations } from 'next-intl';
 
 export default function SignUpCard() {
     const { mutate } = useRegister();
+    const t = useTranslations('AuthPage');
+
     const form = useForm<z.infer<typeof registerSchema>>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
@@ -46,16 +49,22 @@ export default function SignUpCard() {
         <Card className="w-full h-full md:w-[487px] border-none shadow-none rounded-md">
             <CardHeader className="flex items-center justify-center text-center p-7">
                 <CardTitle className="text-2xl uppercase font-semibold">
-                    SIGN UP
+                    {t('signUp.title')}
                 </CardTitle>
                 <CardDescription>
-                    By signing up, you agree to our{' '}
+                    {t('signUp.desc-1')}{' '}
                     <Link href={'/privacy'}>
-                        <span className="text-blue-700">Privacy Policy</span>
+                        <span className="text-blue-700">
+                            {' '}
+                            {t('signUp.desc-2')}
+                        </span>
                     </Link>{' '}
-                    and{' '}
+                    {t('signUp.desc-3')}{' '}
                     <Link href={'/terms'}>
-                        <span className="text-blue-700">Terms of Service</span>
+                        <span className="text-blue-700">
+                            {' '}
+                            {t('signUp.desc-4')}
+                        </span>
                     </Link>
                 </CardDescription>
             </CardHeader>
@@ -78,7 +87,7 @@ export default function SignUpCard() {
                                         <Input
                                             {...field}
                                             type="text"
-                                            placeholder="Enter your name"
+                                            placeholder={`${t('signUp.name')}`}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -93,7 +102,7 @@ export default function SignUpCard() {
                                         <Input
                                             {...field}
                                             type="email"
-                                            placeholder="Enter email address"
+                                            placeholder={`${t('signUp.email')}`}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -108,7 +117,9 @@ export default function SignUpCard() {
                                         <Input
                                             {...field}
                                             type="password"
-                                            placeholder="Enter password"
+                                            placeholder={`${t(
+                                                'signUp.password',
+                                            )}`}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -116,8 +127,12 @@ export default function SignUpCard() {
                             )}
                         />
 
-                        <Button className="w-full" disabled={false} size={'lg'}>
-                            REGISTER
+                        <Button
+                            className="w-full uppercase"
+                            disabled={false}
+                            size={'lg'}
+                        >
+                            {t('signUp.submit')}
                         </Button>
                     </form>
                 </Form>
@@ -133,7 +148,7 @@ export default function SignUpCard() {
                     className="w-full"
                 >
                     <FcGoogle className="size-5" />
-                    Login with Google
+                    {t('google')}
                 </Button>
                 <Button
                     disabled={false}
@@ -142,16 +157,16 @@ export default function SignUpCard() {
                     className="w-full"
                 >
                     <FaGithub className="size-5" />
-                    Login with Github
+                    {t('github')}
                 </Button>
             </CardContent>
             <div className="px-7">
                 <DashedSeparator />
             </div>
             <CardContent className="p-7 text-sm flex items-center justify-center">
-                <p>Already have an account?</p>
+                <p>{t('signUp.sign-desc')}</p>
                 <Link className="text-blue-700" href={'/sign-in'}>
-                    &nbsp;Sign In
+                    &nbsp;{t('signUp.href')}
                 </Link>
             </CardContent>
         </Card>

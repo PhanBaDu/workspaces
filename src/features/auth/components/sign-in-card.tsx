@@ -20,9 +20,11 @@ import Link from 'next/link';
 import { loginSchema } from '@/features/auth/schema';
 import { useLogin } from '@/features/auth/api/use-login';
 import { signUpWithGithub, signUpWithGoogle } from '@/lib/server/oauth';
+import { useTranslations } from 'next-intl';
 
 export default function SignInCard() {
     const { mutate, isPending } = useLogin();
+    const t = useTranslations('AuthPage');
 
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -40,7 +42,7 @@ export default function SignInCard() {
         <Card className="w-full h-full md:w-[487px] border-none shadow-none rounded-md">
             <CardHeader className="flex items-center justify-center text-center p-7">
                 <CardTitle className="text-2xl uppercase font-semibold">
-                    Welcome back!
+                    {t('signIn.title')}
                 </CardTitle>
             </CardHeader>
             <div className="px-7">
@@ -62,7 +64,7 @@ export default function SignInCard() {
                                             {...field}
                                             type="email"
                                             disabled={isPending}
-                                            placeholder="Enter email address"
+                                            placeholder={`${t('signIn.email')}`}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -78,7 +80,9 @@ export default function SignInCard() {
                                             {...field}
                                             type="password"
                                             disabled={isPending}
-                                            placeholder="Enter password"
+                                            placeholder={`${t(
+                                                'signIn.password',
+                                            )}`}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -87,11 +91,11 @@ export default function SignInCard() {
                         />
 
                         <Button
-                            className="w-full"
+                            className="w-full uppercase"
                             disabled={isPending}
                             size={'lg'}
                         >
-                            LOGIN
+                            {`${t('signIn.submit')}`}
                         </Button>
                     </form>
                 </Form>
@@ -108,7 +112,7 @@ export default function SignInCard() {
                     className="w-full"
                 >
                     <FcGoogle className="size-5" />
-                    Login with Google
+                    {t('google')}
                 </Button>
                 <Button
                     disabled={isPending}
@@ -118,16 +122,16 @@ export default function SignInCard() {
                     className="w-full"
                 >
                     <FaGithub className="size-5" />
-                    Login with Github
+                    {t('github')}
                 </Button>
             </CardContent>
             <div className="px-7">
                 <DashedSeparator />
             </div>
             <CardContent className="p-7 text-sm flex items-center justify-center">
-                <p>Don&apos;t havev an account?</p>
+                <p>{t('signIn.sign-desc')}</p>
                 <Link className="text-blue-700" href={'/sign-up'}>
-                    &nbsp;Sign Up
+                    &nbsp;{t('signIn.href')}
                 </Link>
             </CardContent>
         </Card>

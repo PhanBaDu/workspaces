@@ -1,5 +1,27 @@
 {
-    "HomePage": {
-        "title": "Hello world!"
+    "AuthPage": {
+        "google": "Login with Google",
+        "github": "Login with Github",
+        "signIn": {
+            "title": "Welcome back!",
+            "email": "Enter email address",
+            "password": "Enter password",
+            "submit": "Login",
+            "href": "Sign Up",
+            "sign-desc": "Don't havev an account?"
+        },
+        "signUp": {
+            "title": "Sign Up",
+            "desc-1": "By signing up, you agree to our",
+            "desc-2": "Privacy Policy",
+            "desc-3": "and",
+            "desc-4": "Terms of Service",
+            "name": "Enter your name",
+            "email": "Enter email address",
+            "password": "Enter password",
+            "submit": "Register",
+            "href": "Sign In",
+            "sign-desc": "Already have an account?"
+        }
     }
 }

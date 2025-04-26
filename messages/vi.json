@@ -1,5 +1,27 @@
 {
-    "HomePage": {
-        "title": "Hello world!"
+    "AuthPage": {
+        "google": "Đăng nhập bằng Google",
+        "github": "Đăng nhập bằng Github",
+        "signIn": {
+            "title": "Chào mừng bạn trở lại!",
+            "email": "Nhập email của bạn...",
+            "password": "Nhập mật khẩu của bạn...",
+            "submit": "Đăng nhập",
+            "href": "Đăng ký",
+            "sign-desc": "Bạn chưa có tài khoản?"
+        },
+        "signUp": {
+            "title": "Đăng ký",
+            "desc-1": "Bằng cách đăng ký, bạn đồng ý với",
+            "desc-2": "Chính sách bảo mật",
+            "desc-3": "và",
+            "desc-4": "Điều khoản dịch vụ của chúng tôi",
+            "name": "Nhập tên của bạn",
+            "email": "Nhập email của bạn",
+            "password": "Nhập mật khẩu của bạn",
+            "submit": "Đăng ký",
+            "href": "Đăng nhập",
+            "sign-desc": "Bạn đã có tài khoản?"
+        }
     }
 }

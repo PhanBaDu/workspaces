@@ -1,7 +1,6 @@
 'use client';
+import SidebarLogo from '@/components/sidebar-logo';
 import { Button } from '@/components/ui/button';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -11,29 +10,13 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
     const pathname = usePathname();
-    const { theme } = useTheme();
     const isSignIn = pathname === '/sign-in';
-
     return (
         <div className="bg-muted min-h-screen">
             <main className="mx-auto max-w-screen-2xl p-4">
                 <nav className="flex justify-between items-center">
                     <div className="flex items-center">
-                        <Image
-                            src={
-                                theme === 'light'
-                                    ? '/light-logo.svg'
-                                    : '/dark-logo.svg'
-                            }
-                            height={152}
-                            width={56}
-                            alt="Logo Workspaces"
-                            priority
-                            style={{ height: '47px', width: '57px' }}
-                        />
-                        <h1 className="text-primary font-extrabold text-2xl mt-2 uppercase">
-                            orkspaces
-                        </h1>
+                        <SidebarLogo />
                     </div>
                     <div className="flex items-center gap-2">
                         <Button variant={'outline'} asChild>

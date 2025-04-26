@@ -84,8 +84,8 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />
-                <ul className="flex flex-col gap-y-4">
-                    {data.slice(0, 5).map((task) => (
+                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    {data.slice(0, 10).map((task) => (
                         <li key={task.id}>
                             <Link
                                 href={`/workspaces/${workspaceId}/tasks/${task.$id}`}
@@ -152,7 +152,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                 </div>
                 <DashedSeparator className="my-4" />
                 <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    {data.map((project) => (
+                    {data.slice(0, 10).map((project) => (
                         <li key={project.id}>
                             <Link
                                 href={`/workspaces/${workspaceId}/projects/${project.$id}`}
@@ -194,7 +194,7 @@ export const MembersList = ({ data, total }: MembersListProps) => {
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">Member ({total})</p>
+                    <p className="text-lg font-semibold">Members ({total})</p>
                     <Button asChild variant={'primary'} size={'icon'}>
                         <Link href={`/workspaces/${workspaceId}/members`}>
                             <SettingsIcon className="size-4" />
@@ -203,7 +203,7 @@ export const MembersList = ({ data, total }: MembersListProps) => {
                 </div>
                 <DashedSeparator className="my-4" />
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {data.map((member) => (
+                    {data.slice(0, 10).map((member) => (
                         <li key={member.id}>
                             <Card className="shadow-none border-none rounded-lg overflow-hidden">
                                 <CardContent className="p-3 flex flex-col items-center gap-x-2">

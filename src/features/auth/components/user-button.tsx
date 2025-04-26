@@ -11,6 +11,7 @@ import { useLogout } from '@/features/auth/api/use-logout';
 import { useCurrent } from '@/features/auth/api/use-current';
 import { Loader, LogOut } from 'lucide-react';
 import { DashedSeparator } from '@/components/dashed-separator';
+import { ModeToggle } from '@/components/mode-toggle';
 
 export const UserButton = () => {
     const { data: user, isLoading } = useCurrent();
@@ -62,11 +63,15 @@ export const UserButton = () => {
                 <DashedSeparator />
                 <DropdownMenuItem
                     onClick={() => logout()}
-                    className="h-10 dark:text-red-500 text-destructive flex justify-center items-center font-medium cursor-pointer mt-1 focus:text-destuctive"
+                    className="h-10 dark:text-red-500 text-destructive flex justify-center items-center font-medium cursor-pointer my-1 focus:text-destuctive"
                 >
                     <LogOut className="size-4" />
                     Log out
                 </DropdownMenuItem>
+                <DashedSeparator />
+                <div className="mt-1">
+                    <ModeToggle />
+                </div>
             </DropdownMenuContent>
         </DropdownMenu>
     );

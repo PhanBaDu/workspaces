@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import setLanguageValue from '@/i18n/action';
-import { CheckCheck, X } from 'lucide-react';
+import { CheckCheck, ChevronDown, X } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
 
@@ -23,22 +23,29 @@ export default function SetLocale() {
                     variant={'outline'}
                     className="text-sm font-medium flex items-center"
                 >
-                    {locale === 'vi' ? 'VN' : 'EN'}{' '}
-                    {locale === 'vi' ? (
-                        <Image
-                            src={'/vi.png'}
-                            alt="vi"
-                            width={14}
-                            height={14}
-                        />
-                    ) : (
-                        <Image
-                            src={'/en.png'}
-                            alt="vi"
-                            width={14}
-                            height={14}
-                        />
-                    )}
+                    <div className="flex items-center gap-1">
+                        {locale === 'vi' ? 'VN' : 'EN'}
+                        {locale === 'vi' ? (
+                            <Image
+                                src={'/vi.png'}
+                                alt="vi"
+                                width={100}
+                                height={100}
+                                quality={100}
+                                className="w-4 h-3 mb-[0.5px]"
+                            />
+                        ) : (
+                            <Image
+                                src={'/en.png'}
+                                alt="vi"
+                                width={100}
+                                height={100}
+                                quality={100}
+                                className="w-4 h-3 mb-[1px]"
+                            />
+                        )}
+                    </div>{' '}
+                    <ChevronDown />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
@@ -56,8 +63,10 @@ export default function SetLocale() {
                         <Image
                             src={'/vi.png'}
                             alt="vi"
-                            width={14}
-                            height={14}
+                            width={100}
+                            height={100}
+                            quality={100}
+                            className="w-4 h-3 mb-[0.5px]"
                         />
                     </div>
                 </DropdownMenuItem>
@@ -76,8 +85,10 @@ export default function SetLocale() {
                         <Image
                             src={'/en.png'}
                             alt="vi"
-                            width={14}
-                            height={14}
+                            width={100}
+                            height={100}
+                            quality={100}
+                            className="w-4 h-3 mb-[1px]"
                         />
                     </div>
                 </DropdownMenuItem>

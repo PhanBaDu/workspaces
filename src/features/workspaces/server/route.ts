@@ -99,6 +99,16 @@ const app = new Hono()
 
             const { name, image } = c.req.valid('form');
 
+            const existing = await databases.listDocuments(
+                DATABASE_ID,
+                WORKSPACES_ID,
+                [Query.equal('name', name)],
+            );
+
+            if (existing.total > 0) {
+                return c.json({ error: 'Workspace name already exists' }, 409);
+            }
+
             let uploadedImageUrl = '';
             if (image instanceof File) {
                 const file = await storage.createFile(
@@ -163,6 +173,23 @@ const app = new Hono()
 
             if (!member || member.role !== MemberRole.ADMIN) {
                 return c.json({ error: 'Unauthorized' }, 401);
+            }
+
+            if (typeof name === 'string') {
+                const existing = await databases.listDocuments(
+                    DATABASE_ID,
+                    WORKSPACES_ID,
+                    [
+                        Query.equal('name', name),
+                        Query.notEqual('$id', workspaceId),
+                    ],
+                );
+                if (existing.total > 0) {
+                    return c.json(
+                        { error: 'Workspace name already exists' },
+                        409,
+                    );
+                }
             }
 
             let uploadedImageUrl: string | undefined;

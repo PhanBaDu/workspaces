@@ -22,7 +22,6 @@ const app = new Hono()
             const databases = c.get('databases');
             const storage = c.get('storage');
             const user = c.get('user');
-
             const { name, image, workspaceId } = c.req.valid('form');
 
             const member = await getMember({
@@ -33,6 +32,21 @@ const app = new Hono()
 
             if (!member) {
                 return c.json({ error: 'Unauthorized' }, 401);
+            }
+
+            const existing = await databases.listDocuments(
+                DATABASE_ID,
+                PROJECTS_ID,
+                [
+                    Query.equal('workspaceId', workspaceId),
+                    Query.equal('name', name),
+                ],
+            );
+            if (existing.total > 0) {
+                return c.json(
+                    { error: 'Project name already exists in this workspace' },
+                    409,
+                );
             }
 
             let uploadedImageUrl: string | undefined;
@@ -146,6 +160,26 @@ const app = new Hono()
 
             if (!member) {
                 return c.json({ error: 'Unauthorized' }, 401);
+            }
+
+            if (typeof name === 'string') {
+                const dup = await databases.listDocuments(
+                    DATABASE_ID,
+                    PROJECTS_ID,
+                    [
+                        Query.equal('workspaceId', existingProject.workspaceId),
+                        Query.equal('name', name),
+                        Query.notEqual('$id', projectId),
+                    ],
+                );
+                if (dup.total > 0) {
+                    return c.json(
+                        {
+                            error: 'Project name already exists in this workspace',
+                        },
+                        409,
+                    );
+                }
             }
 
             let uploadedImageUrl: string | undefined;

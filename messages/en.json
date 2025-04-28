@@ -62,5 +62,45 @@
             "success": "Workspace created",
             "fail": "Failed to create Workspace"
         }
+    },
+    "Navbar": {
+        "Client": {
+            "label_workspace": "Workspaces",
+            "home": "Home",
+            "my_tasks": "My Tasks",
+            "settings": "Settings",
+            "members": "Members",
+            "label_project": "Projects"
+        }
+    },
+    "Header": {
+        "Client": {
+            "home": "Home",
+            "home_desc": "Monitor all of your projects and tasks here",
+            "tasks": "My Tasks",
+            "tasks_desc": "Monitor all of your tasks here",
+            "projects": "My Projects",
+            "projects_desc": "Monitor all of your projects here"
+        }
+    },
+    "Analytic": {
+        "Client": {
+            "total": "Total tasks",
+            "assigned": "Assigned Tasks",
+            "completed": "Completed Tasks",
+            "overdue": "Overdue Tasks",
+            "incomplete": "Incomplete Tasks"
+        }
+    },
+    "HomePage": {
+        "Client": {
+            "projects": "Projects",
+            "tasks": "Tasks",
+            "members": "Members",
+            "show": "Show All",
+            "tasks_found": "No tasks found",
+            "projects_found": "No projects found",
+            "members_found": "No members found"
+        }
     }
 }

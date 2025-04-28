@@ -20,6 +20,7 @@ import { useGetWorkspaceAnalytics } from '@/features/workspaces/api/use-get-work
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { formatDistanceToNow } from 'date-fns';
 import { CalendarIcon, PlusIcon, SettingsIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export const WorkspaceIdClient = () => {
@@ -69,12 +70,15 @@ interface TaskListProps {
 export const TaskList = ({ data, total }: TaskListProps) => {
     const { open: createTask } = useCreateTaskModal();
     const workspaceId = useWorkspaceId();
+    const t = useTranslations('HomePage');
 
     return (
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">Tasks ({total})</p>
+                    <p className="text-lg font-semibold">
+                        {t('Client.tasks')} ({total})
+                    </p>
                     <Button
                         variant={'primary'}
                         size={'icon'}
@@ -115,12 +119,12 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                         </li>
                     ))}
                     <li className="text-sm text-muted-foreground text-start hidden first-of-type:block">
-                        No tasks found
+                        {t('Client.tasks_found')}
                     </li>
                 </ul>
                 <Button variant={'primary'} className="mt-4 w-full">
                     <Link href={`/workspaces/${workspaceId}/tasks`}>
-                        Show All
+                        {t('Client.show')}
                     </Link>
                 </Button>
             </div>
@@ -136,12 +140,15 @@ interface ProjectListProps {
 export const ProjectList = ({ data, total }: ProjectListProps) => {
     const { open: createProject } = useCreateProjectModal();
     const workspaceId = useWorkspaceId();
+    const t = useTranslations('HomePage');
 
     return (
         <div className="flex flex-col gap-y-4 col-span-1 bg-muted rounded-lg">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">Projects ({total})</p>
+                    <p className="text-lg font-semibold">
+                        {t('Client.projects')} ({total})
+                    </p>
                     <Button
                         variant={'primary'}
                         size={'icon'}
@@ -174,7 +181,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                         </li>
                     ))}
                     <li className="text-sm text-muted-foreground text-start hidden first-of-type:block">
-                        No project found
+                        {t('Client.projects_found')}
                     </li>
                 </ul>
             </div>
@@ -189,12 +196,15 @@ interface MembersListProps {
 
 export const MembersList = ({ data, total }: MembersListProps) => {
     const workspaceId = useWorkspaceId();
+    const t = useTranslations('HomePage');
 
     return (
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">Members ({total})</p>
+                    <p className="text-lg font-semibold">
+                        {t('Client.members')} ({total})
+                    </p>
                     <Button asChild variant={'primary'} size={'icon'}>
                         <Link href={`/workspaces/${workspaceId}/members`}>
                             <SettingsIcon className="size-4" />
@@ -224,7 +234,7 @@ export const MembersList = ({ data, total }: MembersListProps) => {
                         </li>
                     ))}
                     <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">
-                        No members found
+                        {t('Client.members_found')}
                     </li>
                 </ul>
             </div>

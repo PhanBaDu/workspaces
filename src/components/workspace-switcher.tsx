@@ -12,10 +12,13 @@ import { WorkspaceAvatar } from '@/features/workspaces/components/workspace-avat
 import { useCreateWorkspaceModal } from '@/features/workspaces/hooks/use-create-workspace-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { SquarePlus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 export default function WorkspaceSwitcher() {
     const workspaceId = useWorkspaceId();
+    const t = useTranslations('Navbar');
+
     const router = useRouter();
     const { data: workspaces } = useGetWorkspaces();
     const { open } = useCreateWorkspaceModal();
@@ -27,7 +30,9 @@ export default function WorkspaceSwitcher() {
     return (
         <div className="flex flex-col gap-y-2">
             <div className="flex items-center justify-between">
-                <p className="text-sm uppercase font-bold">Workspaces</p>
+                <p className="text-sm uppercase font-bold">
+                    {t('Client.label_workspace')}
+                </p>
                 <SquarePlus
                     onClick={open}
                     strokeWidth={2.4}

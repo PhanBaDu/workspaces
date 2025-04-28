@@ -62,5 +62,45 @@
             "success": "Tạo không gian làm việc thành công",
             "fail": "Tạo không gian làm việc thất bại"
         }
+    },
+    "Navbar": {
+        "Client": {
+            "label_workspace": "Không gian làm việc",
+            "home": "Trang chủ",
+            "my_tasks": "Nhiệm vụ của tôi",
+            "settings": "Cài đặt",
+            "members": "Thành viên",
+            "label_project": "Danh sách dự án"
+        }
+    },
+    "Header": {
+        "Client": {
+            "home": "Trang chủ",
+            "home_desc": "Giám sát tất cả các dự án và nhiệm vụ của bạn ở đây",
+            "tasks": "Nhiện vụ của tôi",
+            "tasks_desc": "Giám sát tất cả các nhiệm vụ của bạn ở đây",
+            "projects": "Các dự án của tôi",
+            "projects_desc": "Giám sát tất cả các dự án của bạn tại đây"
+        }
+    },
+    "Analytic": {
+        "Client": {
+            "total": "Tổng số nhiệm vụ",
+            "assigned": "Nhiệm vụ được giao",
+            "completed": "Nhiệm vụ hoàn thành",
+            "overdue": "Nhiệm vụ quá hạn",
+            "incomplete": "Nhiệm vụ chưa hoàn thành"
+        }
+    },
+    "HomePage": {
+        "Client": {
+            "projects": "Dự án",
+            "tasks": "Nhiệm vụ",
+            "members": "Thành viên",
+            "show": "Xem tất cả",
+            "tasks_found": "Không có nhiệm vụ nào được tìm thấy",
+            "projects_found": "Không có dự án nào được tìm thấy",
+            "members_found": "Không có thành viên nào được tìm thấy"
+        }
     }
 }

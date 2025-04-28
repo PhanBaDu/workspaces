@@ -2,25 +2,28 @@
 import { MobileSideBar } from '@/components/mobile-sidebar';
 import SetLocale from '@/components/set-locale';
 import { UserButton } from '@/features/auth/components/user-button';
+import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 
-const pathnameMap = {
-    tasks: {
-        title: 'My Tasks',
-        description: 'Monitor all of your tasks here',
-    },
-    projects: {
-        title: 'My Projects',
-        description: 'Monitor all of your projects here',
-    },
-};
-
-const defaultMap = {
-    title: 'Home',
-    description: 'Monitor all of your projects and tasks here',
-};
-
 export default function Navbar() {
+    const t = useTranslations('Header');
+
+    const defaultMap = {
+        title: `${t('Client.home')}`,
+        description: `${t('Client.home_desc')}`,
+    };
+
+    const pathnameMap = {
+        tasks: {
+            title: `${t('Client.tasks')}`,
+            description: `${t('Client.tasks_desc')}`,
+        },
+        projects: {
+            title: `${t('Client.projects')}`,
+            description: `${t('Client.projects_desc')}`,
+        },
+    };
+
     const pathname = usePathname();
     const pathnameParts = pathname.split('/');
     const pathnameKey = pathnameParts[3] as keyof typeof pathnameMap;

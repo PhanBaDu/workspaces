@@ -10,37 +10,39 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
-
-const routes = [
-    {
-        label: 'Home',
-        href: '',
-        icon: LayoutDashboard,
-        activeIcon: CheckCheck,
-    },
-    {
-        label: 'My Tasks',
-        href: '/tasks',
-        icon: CalendarCheck2,
-        activeIcon: CheckCheck,
-    },
-    {
-        label: 'Settings',
-        href: '/settings',
-        icon: SettingsIcon,
-        activeIcon: CheckCheck,
-    },
-    {
-        label: 'Members',
-        href: '/members',
-        icon: UsersIcon,
-        activeIcon: CheckCheck,
-    },
-];
+import { useTranslations } from 'next-intl';
 
 export default function Navigation() {
     const pathname = usePathname();
     const workspaceId = useWorkspaceId();
+    const t = useTranslations('Navbar');
+
+    const routes = [
+        {
+            label: `${t('Client.home')}`,
+            href: '',
+            icon: LayoutDashboard,
+            activeIcon: CheckCheck,
+        },
+        {
+            label: `${t('Client.my_tasks')}`,
+            href: '/tasks',
+            icon: CalendarCheck2,
+            activeIcon: CheckCheck,
+        },
+        {
+            label: `${t('Client.settings')}`,
+            href: '/settings',
+            icon: SettingsIcon,
+            activeIcon: CheckCheck,
+        },
+        {
+            label: `${t('Client.members')}`,
+            href: '/members',
+            icon: UsersIcon,
+            activeIcon: CheckCheck,
+        },
+    ];
 
     return (
         <ul className="flex flex-col">
@@ -60,7 +62,9 @@ export default function Navigation() {
                         <Link href={fullHref}>
                             <div className="flex items-center gap-2">
                                 <Icon strokeWidth={2} />
-                                <span className="mt-[2px]">{item.label}</span>
+                                <span className="mt-[2px] capitalize">
+                                    {item.label}
+                                </span>
                             </div>
                             {isActive && <IconActive />}
                         </Link>

@@ -7,11 +7,13 @@ import { useCreateProjectModal } from '@/features/projects/hooks/use-create-proj
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { cn } from '@/lib/utils';
 import { CheckCheck, SquarePlus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export const Projects = () => {
     const pathname = usePathname();
+    const t = useTranslations('Navbar');
     const workspaceId = useWorkspaceId();
     const { open } = useCreateProjectModal();
     const { data } = useGetProjects({ workspaceId });
@@ -19,7 +21,9 @@ export const Projects = () => {
     return (
         <div className="flex flex-col gap-y-2">
             <div className="flex items-center justify-between">
-                <p className="text-sm uppercase font-semibold">Projects</p>
+                <p className="text-sm uppercase font-semibold">
+                    {t('Client.label_project')}
+                </p>
                 <SquarePlus
                     onClick={open}
                     strokeWidth={2.4}

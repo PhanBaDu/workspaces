@@ -4,12 +4,16 @@ import { InferRequestType, InferResponseType } from 'hono';
 import { client } from '@/lib/rpc';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 
-type ResponseType = InferResponseType<(typeof client.api.auth.register)['$post']>;
+type ResponseType = InferResponseType<
+    (typeof client.api.auth.register)['$post']
+>;
 type RequestType = InferRequestType<(typeof client.api.auth.register)['$post']>;
 
 export const useRegister = () => {
     const router = useRouter();
+    const t = useTranslations('Server');
     const queryClient = useQueryClient();
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -23,12 +27,12 @@ export const useRegister = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success('Registered');
+            toast.success(`${t('register.success')}`);
             router.refresh();
             queryClient.invalidateQueries({ queryKey: ['current'] });
         },
         onError: () => {
-            toast.error('Failed to register');
+            toast.error(`${t('register.success')}`);
         },
     });
 

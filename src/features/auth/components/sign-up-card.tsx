@@ -29,7 +29,7 @@ import { useRegister } from '@/features/auth/api/use-register';
 import { useTranslations } from 'next-intl';
 
 export default function SignUpCard() {
-    const { mutate } = useRegister();
+    const { mutate, isPending } = useRegister();
     const t = useTranslations('AuthPage');
 
     const form = useForm<z.infer<typeof registerSchema>>({
@@ -129,7 +129,7 @@ export default function SignUpCard() {
 
                         <Button
                             className="w-full uppercase"
-                            disabled={false}
+                            disabled={isPending}
                             size={'lg'}
                         >
                             {t('signUp.submit')}
@@ -142,7 +142,7 @@ export default function SignUpCard() {
             </div>
             <CardContent className="p-7 flex flex-col gap-y-4">
                 <Button
-                    disabled={false}
+                    disabled={isPending}
                     variant={'outline'}
                     size={'lg'}
                     className="w-full"
@@ -151,7 +151,7 @@ export default function SignUpCard() {
                     {t('google')}
                 </Button>
                 <Button
-                    disabled={false}
+                    disabled={isPending}
                     variant={'outline'}
                     size={'lg'}
                     className="w-full"

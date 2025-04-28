@@ -10,7 +10,7 @@ export function ModeToggle() {
     const { theme, setTheme } = useTheme();
 
     return (
-        <div className="flex justify-between w-full gap-4 cursor-pointer">
+        <div className="flex justify-between w-full gap-2 cursor-pointer">
             <Card
                 onClick={() => setTheme('light')}
                 className="shadow-none rounded-md flex-1 bg-gray-100 p-0 pt-3 pl-3"

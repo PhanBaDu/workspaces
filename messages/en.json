@@ -23,5 +23,24 @@
             "href": "Sign In",
             "sign-desc": "Already have an account?"
         }
+    },
+    "Server": {
+        "login": {
+            "success": "Login success",
+            "fail": "Failed to login"
+        },
+        "register": {
+            "success": "Resgister success",
+            "fail": "Failed to register"
+        },
+        "logout": {
+            "success": "Logout success",
+            "fail": "Failed to logout"
+        },
+        "error": {
+            "401": "Không được phép truy cập",
+            "500": "Lỗi máy chủ",
+            "503": "Dịch vụ tạm thời không khả dụng"
+        }
     }
 }

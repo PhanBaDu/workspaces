@@ -23,5 +23,24 @@
             "href": "Đăng nhập",
             "sign-desc": "Bạn đã có tài khoản?"
         }
+    },
+    "Server": {
+        "login": {
+            "success": "Đăng nhập thành công",
+            "fail": "Đăng nhập thất bại"
+        },
+        "register": {
+            "success": "Đăng ký thành công",
+            "fail": "Đăng ký thất bại"
+        },
+        "logout": {
+            "success": "Đăng xuất thành công",
+            "fail": "Đăng ký thất bại"
+        },
+        "error": {
+            "401": "Không được phép truy cập",
+            "500": "Lỗi máy chủ",
+            "503": "Dịch vụ tạm thời không khả dụng"
+        }
     }
 }

@@ -18,9 +18,12 @@ export default function SetLocale() {
 
     return (
         <DropdownMenu modal={false}>
-            <DropdownMenuTrigger asChild className="focus:outline-none ring-0">
-                <Button className="text-sm font-medium">
-                    {locale === 'vi' ? 'Vietnamese' : 'English'}{' '}
+            <DropdownMenuTrigger asChild className="focus:outline-none">
+                <Button
+                    variant={'outline'}
+                    className="text-sm font-medium flex items-center"
+                >
+                    {locale === 'vi' ? 'VN' : 'EN'}{' '}
                     {locale === 'vi' ? (
                         <Image
                             src={'/vi.png'}

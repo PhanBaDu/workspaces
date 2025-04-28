@@ -3,12 +3,19 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
-type ResponseType = InferResponseType<(typeof client.api.members)[':memberId']['$patch'], 200>;
-type RequestType = InferRequestType<(typeof client.api.members)[':memberId']['$patch']>;
+type ResponseType = InferResponseType<
+    (typeof client.api.members)[':memberId']['$patch'],
+    200
+>;
+type RequestType = InferRequestType<
+    (typeof client.api.members)[':memberId']['$patch']
+>;
 
 export const useUpdateMember = () => {
     const queryClient = useQueryClient();
+    const t = useTranslations('MembersPage');
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ param, json }) => {
@@ -24,11 +31,11 @@ export const useUpdateMember = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success('Member updated');
+            toast.success(`${t('Server.member_success')}`);
             queryClient.invalidateQueries({ queryKey: ['members'] });
         },
         onError: () => {
-            toast.error('Failed to update member');
+            toast.error(`${t('Server.member_fail')}`);
         },
     });
 

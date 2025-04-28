@@ -138,5 +138,39 @@
             "danger_success": "Đã xóa workspace",
             "danger_fail": "Không thể xóa workspace"
         }
+    },
+    "MembersPage": {
+        "Client": {
+            "back": "Quay lại",
+            "title": "Danh sách thành viên",
+            "admin": "Đặt làm quản trị viên",
+            "member": "Đặt làm thành viên",
+            "remove": "Xóa",
+            "remove_title": "Xóa thành viên",
+            "remove_desc": "Thành viên này sẽ bị xóa khỏi workspace"
+        },
+        "Server": {
+            "delete_success": "Đã xóa thành viên",
+            "delete_fail": "Không thể xóa thành viên",
+            "member_success": "Đã cập nhật quyền cho thành viên",
+            "member_fail": "Không thể cập nhật quyền cho thành viên"
+        }
+    },
+    "ProjectTasks": {
+        "Client": {
+            "table": "Bảng",
+            "kanban": "Bảng Kanban",
+            "calendar": "Lịch",
+            "new": "Tạo nhiệm vụ",
+            "all_status": "Tất cả trạng thái",
+            "backlog_status": "Việc tồn đọng",
+            "progress_status": "Đang tiến hành",
+            "review_status": "Đang xem xét",
+            "todo_status": "Cần làm",
+            "done_status": "Hoàn thành",
+            "all_assignee": "Tất cả người được giao",
+            "due_date": "Hạn hoàn thành",
+            "all_project": "Tất cả dự án"
+        }
     }
 }

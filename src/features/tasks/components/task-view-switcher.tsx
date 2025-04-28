@@ -17,6 +17,7 @@ import { TaskStatus } from '@/features/tasks/types';
 import { useBulkUpdateTasks } from '@/features/tasks/api/use-bulk-update-tasks';
 import DataCanlendar from '@/features/tasks/components/data-calendar';
 import { useProjectId } from '@/features/projects/hooks/use-project-id';
+import { useTranslations } from 'next-intl';
 
 interface TaskViewSwitcherProps {
     hideProjectFilter?: boolean;
@@ -24,6 +25,7 @@ interface TaskViewSwitcherProps {
 
 const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
     const { mutate: bulkUpdate } = useBulkUpdateTasks();
+    const t = useTranslations('ProjectTasks');
 
     const [{ status, assigneeId, dueDate, projectId, search }] =
         useTaskFilters();
@@ -64,19 +66,19 @@ const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
                             className="h-8 w-full lg:w-auto"
                             value="table"
                         >
-                            Table
+                            {t('Client.table')}
                         </TabsTrigger>
                         <TabsTrigger
                             className="h-8 w-full lg:w-auto"
                             value="kanban"
                         >
-                            Kanban
+                            {t('Client.kanban')}
                         </TabsTrigger>
                         <TabsTrigger
                             className="h-8 w-full lg:w-auto"
                             value="calendar"
                         >
-                            Calendar
+                            {t('Client.calendar')}
                         </TabsTrigger>
                     </TabsList>
                     <Button
@@ -84,7 +86,7 @@ const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
                         size={'sm'}
                         className="w-full lg:w-auto"
                     >
-                        <PlusIcon className="size-4" /> New
+                        <PlusIcon className="size-4" /> {t('Client.new')}
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />

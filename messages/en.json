@@ -110,7 +110,7 @@
             "title": "Update Workspace",
             "label": "Workspace Name",
             "placeholder": "Enter workspace name",
-            "submit": "Save Workspace",
+            "submit": "Save Changes",
             "img-desc-1": "Workspace Icon",
             "img-desc-2": "JPG, PNG, SVG or JPEG, max 1MB",
             "upload": "Upload Image",
@@ -137,6 +137,40 @@
             "invite_fail": "Failed to reset invite code",
             "danger_success": "Workspace deleted",
             "danger_fail": "Failed to delete workspace"
+        }
+    },
+    "MembersPage": {
+        "Client": {
+            "back": "Back",
+            "title": "Members Lists",
+            "admin": "Set as Administrator",
+            "member": "Set as Member",
+            "remove": "Remove",
+            "remove_title": "Remove member",
+            "remove_desc": "This member will be removed from the workspace"
+        },
+        "Server": {
+            "delete_success": "Member deleted",
+            "delete_fail": "Failed to delete member",
+            "member_success": "Member updated",
+            "member_fail": "Failed to update member"
+        }
+    },
+    "ProjectTasks": {
+        "Client": {
+            "table": "Table",
+            "kanban": "Kanban",
+            "calendar": "Calendar",
+            "new": "New",
+            "all_status": "All statuses",
+            "backlog_status": "Backlog",
+            "progress_status": "In Progress",
+            "review_status": "In Review",
+            "todo_status": "To do",
+            "done_status": "Done",
+            "all_assignee": "All assignees",
+            "due_date": "Due date",
+            "all_project": "All projects"
         }
     }
 }

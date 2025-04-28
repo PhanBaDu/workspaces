@@ -17,16 +17,18 @@ import { MemberRole } from '@/features/members/types';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
 import { ArrowLeftIcon, MoreVertical } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
 export default function MembersList() {
     const workspaceId = useWorkspaceId();
+    const t = useTranslations('MembersPage');
     const { data } = useGetMembers({ workspaceId });
 
     const [ConfirmDialog, confirm] = useConfirm(
-        'Remove member',
-        'This member will be removed from the workspace',
+        `${t('Client.remove_title')}`,
+        `${t('Client.remove_desc')}`,
         'destructive',
     );
 
@@ -64,11 +66,11 @@ export default function MembersList() {
                 <Button asChild variant={'secondary'} size="sm">
                     <Link href={`/workspaces/${workspaceId}`}>
                         <ArrowLeftIcon />
-                        Back
+                        {t('Client.back')}
                     </Link>
                 </Button>
                 <CardTitle className="text-lg font-bold uppercase">
-                    Members list
+                    {t('Client.title')}
                 </CardTitle>
             </CardHeader>
             <div className="px-7">
@@ -113,7 +115,7 @@ export default function MembersList() {
                                         }
                                         disabled={isUpdatingMember}
                                     >
-                                        Set as Administrator
+                                        {t('Client.admin')}
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         className="font-medium cursor-pointer"
@@ -125,7 +127,7 @@ export default function MembersList() {
                                         }
                                         disabled={isUpdatingMember}
                                     >
-                                        Set as Member
+                                        {t('Client.member')}
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         className="font-medium dark:text-red-500 text-destructive cursor-pointer focus:text-destructive"
@@ -134,7 +136,7 @@ export default function MembersList() {
                                         }
                                         disabled={isDeletingMember}
                                     >
-                                        Remove {member.name}
+                                        {t('Client.remove')} {member.name}
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>

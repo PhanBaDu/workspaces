@@ -277,7 +277,7 @@ export default function EditWorkspaceForm({
                                     onClick={onCancel}
                                     disabled={isPending}
                                 >
-                                    Save Changes
+                                    {t('Client.submit')}
                                 </Button>
                             </div>
                         </form>

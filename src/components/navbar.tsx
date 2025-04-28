@@ -1,5 +1,6 @@
 'use client';
 import { MobileSideBar } from '@/components/mobile-sidebar';
+import SetLocale from '@/components/set-locale';
 import { UserButton } from '@/features/auth/components/user-button';
 import { usePathname } from 'next/navigation';
 
@@ -32,7 +33,10 @@ export default function Navbar() {
                 <p className="text-muted-foreground text-sm">{description}</p>
             </div>
             <MobileSideBar />
-            <UserButton />
+            <div className="flex justify-between items-center gap-4">
+                <SetLocale />
+                <UserButton />
+            </div>
         </nav>
     );
 }

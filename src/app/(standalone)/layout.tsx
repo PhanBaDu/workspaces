@@ -1,3 +1,4 @@
+import SetLocale from '@/components/set-locale';
 import SidebarLogo from '@/components/sidebar-logo';
 import { UserButton } from '@/features/auth/components/user-button';
 import Link from 'next/link';
@@ -14,7 +15,10 @@ const StandloneLayout = ({ children }: StandloneLayoutProps) => {
                     <Link href={'/'} className="flex items-center">
                         <SidebarLogo />
                     </Link>
-                    <UserButton />
+                    <div className="flex justify-between items-center gap-4">
+                        <SetLocale />
+                        <UserButton />
+                    </div>
                 </nav>
                 <div className="flex flex-col items-center justify-center py-4">
                     {children}

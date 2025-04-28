@@ -42,5 +42,25 @@
             "500": "Lỗi máy chủ",
             "503": "Dịch vụ tạm thời không khả dụng"
         }
+    },
+    "WorkspacePage": {
+        "CreatePage": {
+            "title": "Create a new workspace",
+            "label": "Workspace Name",
+            "placeholder": "Enter workspace name",
+            "submit": "Create Workspace",
+            "img-desc-1": "Workspace Icon",
+            "img-desc-2": "JPG, PNG, SVG or JPEG, max 1MB",
+            "upload": "Upload Image",
+            "remove": "Remove Image",
+            "cancel": "Cancel"
+        },
+        "Client": {
+            "fail": "Required"
+        },
+        "Server": {
+            "success": "Workspace created",
+            "fail": "Failed to create Workspace"
+        }
     }
 }

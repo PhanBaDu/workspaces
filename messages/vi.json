@@ -42,5 +42,25 @@
             "500": "Lỗi máy chủ",
             "503": "Dịch vụ tạm thời không khả dụng"
         }
+    },
+    "WorkspacePage": {
+        "CreatePage": {
+            "title": "Tạo không gian làm việc mới",
+            "label": "Tên không gian làm việc",
+            "placeholder": "Nhập tên không gian làm việc",
+            "submit": "Tạo Workspace",
+            "img-desc-1": "Biểu tượng không gian làm việc",
+            "img-desc-2": "JPG, PNG, SVG hoặc JPEG, tối đa 1MB",
+            "upload": "Tải Ảnh",
+            "remove": "Xóa Ảnh",
+            "cancel": "Thoát"
+        },
+        "Client": {
+            "fail": "Không để trống tên không gian làm việc"
+        },
+        "Server": {
+            "success": "Tạo không gian làm việc thành công",
+            "fail": "Tạo không gian làm việc thất bại"
+        }
     }
 }

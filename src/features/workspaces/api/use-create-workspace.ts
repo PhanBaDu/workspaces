@@ -4,11 +4,13 @@ import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<(typeof client.api.workspaces)['$post']>;
 type RequestType = InferRequestType<(typeof client.api.workspaces)['$post']>;
 
 export const useCreateWorkspace = () => {
+    const t = useTranslations('WorkspacePage');
     const router = useRouter();
     const queryClient = useQueryClient();
 
@@ -23,12 +25,12 @@ export const useCreateWorkspace = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Workspace created');
+            toast.success(`${t('Server.success')}`);
             router.push(`/workspaces/${data.$id}`);
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
         },
         onError: () => {
-            toast.error('Failed to create Workspace');
+            toast.error(`${t('Server.fail')}`);
         },
     });
 

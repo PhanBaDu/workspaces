@@ -1,8 +1,8 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { createWorkspaceSchema } from '../schemas';
+import { makeCreateWorkspaceSchema } from '../schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { DashedSeparator } from '@/components/dashed-separator';
@@ -21,6 +21,7 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface CreateWorkspaceFormProps {
     onCancel?: () => void;
@@ -29,24 +30,32 @@ interface CreateWorkspaceFormProps {
 export default function CreateWorkspaceForm({
     onCancel,
 }: CreateWorkspaceFormProps) {
+    const t = useTranslations('WorkspacePage');
     const { mutate, isPending } = useCreateWorkspace();
 
     const inputRef = useRef<HTMLInputElement>(null);
+    const schema = useMemo(() => makeCreateWorkspaceSchema(t), [t]);
 
-    const form = useForm<z.infer<typeof createWorkspaceSchema>>({
-        resolver: zodResolver(createWorkspaceSchema),
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             name: '',
         },
     });
 
-    const onSubmit = (values: z.infer<typeof createWorkspaceSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         const finalValues = {
             ...values,
             image: values.image instanceof File ? values.image : '',
         };
-
-        mutate({ form: finalValues });
+        mutate(
+            { form: finalValues },
+            {
+                onSuccess: () => {
+                    onCancel?.();
+                },
+            },
+        );
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +69,7 @@ export default function CreateWorkspaceForm({
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
                 <CardTitle className="text-xl font-semibold uppercase">
-                    Create a new workspace
+                    {t('CreatePage.title')}
                 </CardTitle>
             </CardHeader>
             <div className="px-7">
@@ -75,11 +84,15 @@ export default function CreateWorkspaceForm({
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Workspace Name</FormLabel>
+                                        <FormLabel>
+                                            {t('CreatePage.label')}
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
-                                                placeholder="Enter workspace name"
+                                                placeholder={t(
+                                                    'CreatePage.placeholder',
+                                                )}
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -121,11 +134,10 @@ export default function CreateWorkspaceForm({
                                             )}
                                             <div className="flex flex-col mb-1">
                                                 <p className="text-sm text-muted-foreground">
-                                                    Workspace Icon
+                                                    {t('CreatePage.img-desc-1')}
                                                 </p>
                                                 <p className="text-sm to-muted-foreground text-muted-foreground">
-                                                    JPG, PNG, SVG or JPEG, max
-                                                    1MB
+                                                    {t('CreatePage.img-desc-2')}
                                                 </p>
                                                 <input
                                                     type="file"
@@ -153,7 +165,7 @@ export default function CreateWorkspaceForm({
                                                                     '';
                                                         }}
                                                     >
-                                                        Remove Image
+                                                        {t('CreatePage.remove')}
                                                     </Button>
                                                 ) : (
                                                     <Button
@@ -166,7 +178,7 @@ export default function CreateWorkspaceForm({
                                                             inputRef.current?.click()
                                                         }
                                                     >
-                                                        Upload Image
+                                                        {t('CreatePage.upload')}
                                                     </Button>
                                                 )}
                                             </div>
@@ -185,15 +197,14 @@ export default function CreateWorkspaceForm({
                                 disabled={isPending}
                                 className={cn(!onCancel && 'invisible')}
                             >
-                                Cancel
+                                {t('CreatePage.cancel')}
                             </Button>
                             <Button
                                 type="submit"
                                 size={'lg'}
-                                onClick={onCancel}
                                 disabled={isPending}
                             >
-                                Create Workspace
+                                {t('CreatePage.submit')}
                             </Button>
                         </div>
                     </form>

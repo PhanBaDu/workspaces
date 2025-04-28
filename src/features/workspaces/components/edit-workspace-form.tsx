@@ -1,8 +1,8 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { updateWorkspaceSchema } from '../schemas';
+import { makeUpdateWorkspaceSchema } from '../schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { DashedSeparator } from '@/components/dashed-separator';
@@ -27,6 +27,7 @@ import { useConfirm } from '@/hooks/use-confirm';
 import { useDeleteWorkspace } from '@/features/workspaces/api/use-delete-workspace';
 import { toast } from 'sonner';
 import { useResetInviteCode } from '@/features/workspaces/api/use-reset-invite-code';
+import { useTranslations } from 'next-intl';
 
 interface EditWorkspaceFormProps {
     onCancel?: () => void;
@@ -37,6 +38,7 @@ export default function EditWorkspaceForm({
     onCancel,
     initialValues,
 }: EditWorkspaceFormProps) {
+    const t = useTranslations('SettingsPage');
     const router = useRouter();
     const { mutate, isPending } = useUpdateWorkspace();
     const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } =
@@ -45,21 +47,23 @@ export default function EditWorkspaceForm({
         useResetInviteCode();
 
     const [DeleteDialog, confirmDelete] = useConfirm(
-        'Delete Workspace',
-        'Are you sure you want to delete this workspace? This action cannot be undone.',
+        `${t('Client.danger_modal_title')}`,
+        `${t('Client.danger_modal_desc')}`,
         'destructive',
     );
 
     const [ResetDialog, confirmReset] = useConfirm(
-        'Reset invite link',
-        'This will invalidate the current invite link',
+        `${t('Client.invite_modal_title')}`,
+        `${t('Client.invite_modal_desc')}`,
         'destructive',
     );
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const form = useForm<z.infer<typeof updateWorkspaceSchema>>({
-        resolver: zodResolver(updateWorkspaceSchema),
+    const schema = useMemo(() => makeUpdateWorkspaceSchema(t), [t]);
+
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             ...initialValues,
             image: initialValues.imageUrl ?? '',
@@ -75,13 +79,13 @@ export default function EditWorkspaceForm({
             { param: { workspaceId: initialValues.$id } },
             {
                 onSuccess: () => {
-                    window.location.href = '/';
+                    router.push(`/`);
                 },
             },
         );
     };
 
-    const onSubmit = (values: z.infer<typeof updateWorkspaceSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         const finalValues = {
             ...values,
             image: values.image instanceof File ? values.image : '',
@@ -112,7 +116,7 @@ export default function EditWorkspaceForm({
     const handleCopyInviteLink = () => {
         navigator.clipboard
             .writeText(fullInviteLink)
-            .then(() => toast.success('Invite link copied to clipboard'));
+            .then(() => toast.success(`${t('Client.copy_toast')}`));
     };
 
     return (
@@ -134,10 +138,10 @@ export default function EditWorkspaceForm({
                         }
                     >
                         <ArrowLeftIcon className="size-4" />
-                        Back
+                        {t('Client.back')}
                     </Button>
                     <CardTitle className="uppercase">
-                        Update Workspace
+                        {t('Client.title')}
                     </CardTitle>
                 </CardHeader>
                 <div className="px-7">
@@ -153,12 +157,14 @@ export default function EditWorkspaceForm({
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
-                                                Workspace Name
+                                                {t('Client.label')}
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
                                                     {...field}
-                                                    placeholder="Enter workspace name"
+                                                    placeholder={t(
+                                                        'Client.placeholder',
+                                                    )}
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -196,11 +202,10 @@ export default function EditWorkspaceForm({
                                                 )}
                                                 <div className="flex flex-col mb-1">
                                                     <p className="text-sm text-muted-foreground">
-                                                        Workspace Icon
+                                                        {t('Client.img-desc-1')}
                                                     </p>
                                                     <p className="text-sm text-muted-foreground">
-                                                        JPG, PNG, SVG or JPEG,
-                                                        max 1MB
+                                                        {t('Client.img-desc-2')}
                                                     </p>
                                                     <input
                                                         type="file"
@@ -232,7 +237,7 @@ export default function EditWorkspaceForm({
                                                                         '';
                                                             }}
                                                         >
-                                                            Remove Image
+                                                            {t('Client.remove')}
                                                         </Button>
                                                     ) : (
                                                         <Button
@@ -245,7 +250,7 @@ export default function EditWorkspaceForm({
                                                                 inputRef.current?.click()
                                                             }
                                                         >
-                                                            Upload Image
+                                                            {t('Client.upload')}
                                                         </Button>
                                                     )}
                                                 </div>
@@ -282,10 +287,9 @@ export default function EditWorkspaceForm({
             <Card className="w-full h-full border-none shadow-none">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
-                        <h3 className="font-bold">Invite Members</h3>
+                        <h3 className="font-bold">{t('Client.invite')}</h3>
                         <p className="text-sm text-muted-foreground">
-                            Use the invite link to add members to your
-                            workspace.
+                            {t('Client.invite_desc')}
                         </p>
                         <div className="mt-4">
                             <div className="flex items-center gap-x-2">
@@ -308,7 +312,7 @@ export default function EditWorkspaceForm({
                             disabled={isPending || isResettingInviteCode}
                             onClick={handleResetInviteCode}
                         >
-                            Reset invite link
+                            {t('Client.invite_reset')}
                         </Button>
                     </div>
                 </CardContent>
@@ -316,10 +320,11 @@ export default function EditWorkspaceForm({
             <Card className="w-full h-full border-none shadow-none">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
-                        <h3 className="font-bold">Danger Zone</h3>
+                        <h3 className="font-bold">
+                            {t('Client.danger_title')}
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            Deleteing a workspace is irreversible and will
-                            remove all associated data.
+                            {t('Client.danger_desc')}
                         </p>
                         <DashedSeparator className="py-7" />
 
@@ -331,7 +336,7 @@ export default function EditWorkspaceForm({
                             disabled={isDeletingWorkspace || isPending}
                             onClick={handleDelete}
                         >
-                            Delete Workspace
+                            {t('Client.danger_button')}
                         </Button>
                     </div>
                 </CardContent>

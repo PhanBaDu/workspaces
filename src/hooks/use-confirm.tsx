@@ -1,14 +1,22 @@
 import { useState } from 'react';
 
 import { Button, type ButtonProps } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { ResponsiveModal } from '@/components/reponsive-modal';
+import { useTranslations } from 'next-intl';
 
 export const useConfirm = (
     title: string,
     message: string,
     variant: ButtonProps['variant'] = 'primary',
 ): [() => JSX.Element, () => Promise<unknown>] => {
+    const t = useTranslations('SettingsPage');
     const [promise, setPromise] = useState<{
         resolve: (value: boolean) => void;
     } | null>(null);
@@ -47,14 +55,14 @@ export const useConfirm = (
                             variant={'outline'}
                             className="w-full lg:w-auto"
                         >
-                            Cancel
+                            {t('Client.invite_modal_cancel')}
                         </Button>
                         <Button
                             onClick={handleConfirm}
                             variant={variant}
                             className="w-full lg:w-auto"
                         >
-                            Confirm
+                            {t('Client.invite_modal_confirm')}
                         </Button>
                     </div>
                 </CardContent>

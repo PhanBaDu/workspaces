@@ -70,7 +70,8 @@
             "my_tasks": "My Tasks",
             "settings": "Settings",
             "members": "Members",
-            "label_project": "Projects"
+            "label_project": "Projects",
+            "select": "No workspace seleted"
         }
     },
     "Header": {
@@ -101,6 +102,41 @@
             "tasks_found": "No tasks found",
             "projects_found": "No projects found",
             "members_found": "No members found"
+        }
+    },
+    "SettingsPage": {
+        "Client": {
+            "back": "Back",
+            "title": "Update Workspace",
+            "label": "Workspace Name",
+            "placeholder": "Enter workspace name",
+            "submit": "Save Workspace",
+            "img-desc-1": "Workspace Icon",
+            "img-desc-2": "JPG, PNG, SVG or JPEG, max 1MB",
+            "upload": "Upload Image",
+            "remove": "Remove Image",
+            "zod": "Must be 1 or more characters",
+            "invite": "Invite Members",
+            "invite_desc": "Use the invite link to add members to your workspace.",
+            "invite_reset": "Reset invite link",
+            "copy_toast": "Invite link copied to clipboard",
+            "invite_modal_title": "Reset invite link",
+            "invite_modal_desc": "This will invalidate the current invite link",
+            "invite_modal_cancel": "Cancel",
+            "invite_modal_confirm": "Confirm",
+            "danger_title": "Danger Zone",
+            "danger_desc": "Deleteing a workspace is irreversible and will remove all associated data.",
+            "danger_button": "Delete Workspace",
+            "danger_modal_title": "Delete Workspace",
+            "danger_modal_desc": "Are you sure you want to delete this workspace? This action cannot be undone."
+        },
+        "Server": {
+            "success": "Workspace updated",
+            "fail": "Failed to update Workspace",
+            "invite_success": "Reset invite code",
+            "invite_fail": "Failed to reset invite code",
+            "danger_success": "Workspace deleted",
+            "danger_fail": "Failed to delete workspace"
         }
     }
 }

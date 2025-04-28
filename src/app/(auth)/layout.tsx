@@ -1,5 +1,4 @@
 'use client';
-import SetLocale from '@/components/set-locale';
 import SidebarLogo from '@/components/sidebar-logo';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
@@ -22,16 +21,13 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                     <div className="flex items-center">
                         <SidebarLogo />
                     </div>
-                    <div className="flex items-center gap-2">
-                        <SetLocale />
-                        <Button variant={'outline'} asChild>
-                            <Link href={isSignIn ? '/sign-up' : '/sign-in'}>
-                                {isSignIn
-                                    ? `${t('signIn.href')}`
-                                    : `${t('signUp.href')}`}
-                            </Link>
-                        </Button>
-                    </div>
+                    <Button variant={'outline'} asChild>
+                        <Link href={isSignIn ? '/sign-up' : '/sign-in'}>
+                            {isSignIn
+                                ? `${t('signIn.href')}`
+                                : `${t('signUp.href')}`}
+                        </Link>
+                    </Button>
                 </nav>
                 <div className="flex flex-col items-center justify-center pt-4 md:pt-14">
                     {children}

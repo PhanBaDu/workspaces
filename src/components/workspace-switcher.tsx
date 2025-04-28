@@ -43,7 +43,7 @@ export default function WorkspaceSwitcher() {
 
             <Select onValueChange={onSelect} value={workspaceId}>
                 <SelectTrigger className="w-full bg-primary font-medium px-1 h-12 text-background">
-                    <SelectValue placeholder="No workspace seleted" />
+                    <SelectValue placeholder={t('Client.select')} />
                 </SelectTrigger>
                 <SelectContent>
                     {workspaces?.documents.map((workspace) => (

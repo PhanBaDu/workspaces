@@ -70,7 +70,8 @@
             "my_tasks": "Nhiệm vụ của tôi",
             "settings": "Cài đặt",
             "members": "Thành viên",
-            "label_project": "Danh sách dự án"
+            "label_project": "Danh sách dự án",
+            "select": "Không có không gian làm việc nào được chọn"
         }
     },
     "Header": {
@@ -101,6 +102,41 @@
             "tasks_found": "Không có nhiệm vụ nào được tìm thấy",
             "projects_found": "Không có dự án nào được tìm thấy",
             "members_found": "Không có thành viên nào được tìm thấy"
+        }
+    },
+    "SettingsPage": {
+        "Client": {
+            "back": "Quay lại",
+            "title": "Cài đặt",
+            "label": "Tên không gian làm việc",
+            "placeholder": "Nhập tên không gian làm việc",
+            "submit": "Lưu",
+            "img-desc-1": "Biểu tượng không gian làm việc",
+            "img-desc-2": "JPG, PNG, SVG hoặc JPEG, tối đa 1MB",
+            "upload": "Tải Ảnh",
+            "remove": "Xóa Ảnh",
+            "zod": "Phải có 1 hoặc nhiều ký tự",
+            "invite": "Mời thành viên",
+            "invite_desc": "Sử dụng liên kết mời để thêm thành viên vào không gian làm việc của bạn.",
+            "invite_reset": "Đặt lại liên kết mời",
+            "copy_toast": "Liên kết mời đã được sao chép vào bảng tạm",
+            "invite_modal_title": "Đặt lại liên kết mời",
+            "invite_modal_desc": "Hành động này sẽ vô hiệu hóa liên kết mời hiện tại",
+            "invite_modal_cancel": "Hủy",
+            "invite_modal_confirm": "Xác nhận",
+            "danger_title": "Khu vực nguy hiểm",
+            "danger_desc": "Việc xóa workspace là không thể hoàn tác và sẽ xóa mọi dữ liệu liên quan.",
+            "danger_button": "Xóa workspace",
+            "danger_modal_title": "Xóa workspace",
+            "danger_modal_desc": "Bạn có chắc muốn xóa workspace này không? Hành động này không thể hoàn tác."
+        },
+        "Server": {
+            "success": "Cập nhật không gian làm việc thành công",
+            "fail": "Cập nhật không gian làm việc thất bại",
+            "invite_success": "Đặt lại mã mời",
+            "invite_fail": "Không thể đặt lại mã mời",
+            "danger_success": "Đã xóa workspace",
+            "danger_fail": "Không thể xóa workspace"
         }
     }
 }

@@ -10,7 +10,7 @@ import { useQueryState } from 'nuqs';
 import DataFilters from '@/features/tasks/components/data-filters';
 import { useTaskFilters } from '@/features/tasks/hooks/use-task-filters';
 import { DataTable } from '@/features/tasks/components/data-table';
-import { columns } from '@/features/tasks/components/columns';
+import { useTaskColumns } from '@/features/tasks/components/columns';
 import DataKanban from '@/features/tasks/components/data-kanban';
 import { useCallback } from 'react';
 import { TaskStatus } from '@/features/tasks/types';
@@ -25,6 +25,7 @@ interface TaskViewSwitcherProps {
 
 const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
     const { mutate: bulkUpdate } = useBulkUpdateTasks();
+    const columns = useTaskColumns();
     const t = useTranslations('ProjectTasks');
 
     const [{ status, assigneeId, dueDate, projectId, search }] =

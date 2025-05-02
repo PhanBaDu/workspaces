@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useCreateTaskModal } from '@/features/tasks/hooks/use-create-task-modal';
 import { TaskStatus } from '@/features/tasks/types';
-import { snakeCaseToTitleCase } from '@/lib/utils';
+// import { snakeCaseToTitleCase } from '@/lib/utils';
 import {
     CircleCheckIcon,
     CircleDashedIcon,
@@ -10,6 +10,7 @@ import {
     CircleIcon,
     PlusIcon,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface KanbanColumnHeaderProps {
     board: TaskStatus;
@@ -38,13 +39,15 @@ export default function KanbanColumnHeader({
 }: KanbanColumnHeaderProps) {
     const { open } = useCreateTaskModal();
     const icon = statusIconMap[board];
+    const t = useTranslations('Task.Client');
 
     return (
         <div className="px-2 py-1.5 flex items-center justify-between">
             <div className="flex items-center gap-x-2">
                 {icon}
                 <h2 className="text-sm font-medium">
-                    {snakeCaseToTitleCase(board)}
+                    {/* {snakeCaseToTitleCase(board)} */}
+                    {t(board)}
                 </h2>
                 <div className="size-5 flex items-center justify-center rounded-md bg-muted-foreground/15 text-[10px] text-primary font-medium">
                     {taskCount}

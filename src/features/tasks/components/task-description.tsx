@@ -4,6 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useUpdateTask } from '@/features/tasks/api/use-update-task';
 import { Task } from '@/features/tasks/types';
 import { PencilIcon, XIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 interface TaskDescriptionProps {
@@ -12,6 +13,7 @@ interface TaskDescriptionProps {
 
 export default function TaskDescription({ task }: TaskDescriptionProps) {
     const [isEditing, setIsEditting] = useState(false);
+    const t = useTranslations('Task.Client');
     const [value, setValue] = useState(task.description);
     const { mutate, isPending } = useUpdateTask();
 
@@ -32,7 +34,9 @@ export default function TaskDescription({ task }: TaskDescriptionProps) {
     return (
         <div className="p-4 border rounded-lg">
             <div className="flex items-center justify-between">
-                <p className="text-lg font-semibold">Overview</p>
+                <p className="text-lg font-semibold">
+                    {t('overview_title_desc')}
+                </p>
                 <Button
                     onClick={() => setIsEditting((prev) => !prev)}
                     size="sm"
@@ -43,7 +47,7 @@ export default function TaskDescription({ task }: TaskDescriptionProps) {
                     ) : (
                         <PencilIcon className="size-4 mr-2" />
                     )}
-                    {isEditing ? 'Cancel' : 'Edit'}
+                    {isEditing ? `${t('cancel')}` : `${t('edit')}`}
                 </Button>
             </div>
             <DashedSeparator className="my-4" />
@@ -51,7 +55,7 @@ export default function TaskDescription({ task }: TaskDescriptionProps) {
             {isEditing ? (
                 <div className="flex flex-col gap-y-4">
                     <Textarea
-                        placeholder="Add a description..."
+                        placeholder={t('overview_title_pla')}
                         value={value}
                         rows={4}
                         onChange={(e) => setValue(e.target.value)}
@@ -63,14 +67,14 @@ export default function TaskDescription({ task }: TaskDescriptionProps) {
                         onClick={handleSave}
                         disabled={isPending}
                     >
-                        {isPending ? 'Saving...' : 'Save Changes'}
+                        {isPending ? `${t('loading')}` : `${t('submit')}`}
                     </Button>
                 </div>
             ) : (
                 <div>
                     {task.description || (
                         <span className="text-muted-foreground">
-                            No description set
+                            {t('overview_title_pla')}
                         </span>
                     )}
                 </div>

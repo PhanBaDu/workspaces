@@ -29,6 +29,7 @@ import { MemberAvatar } from '@/features/members/components/members-avatar';
 import { Task, TaskStatus } from '@/features/tasks/types';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { useUpdateTask } from '@/features/tasks/api/use-update-task';
+import { useTranslations } from 'next-intl';
 
 interface EditTaskFormProps {
     onCancel?: () => void;
@@ -44,6 +45,7 @@ export const EditTaskForm = ({
     initialValues,
 }: EditTaskFormProps) => {
     const { mutate, isPending } = useUpdateTask();
+    const t = useTranslations('Task.Client');
 
     const form = useForm<z.infer<typeof createTaskSchema>>({
         resolver: zodResolver(createTaskSchema.omit({ description: true })),
@@ -70,7 +72,9 @@ export const EditTaskForm = ({
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle className="uppercase">Edit a task</CardTitle>
+                <CardTitle className="uppercase">
+                    {t('action_edit_label_name')}
+                </CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />
@@ -84,12 +88,16 @@ export const EditTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Task Name</FormLabel>
+                                        <FormLabel>
+                                            {t('action_edit_label_name')}
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 type="text"
-                                                placeholder="Enter task name"
+                                                placeholder={t(
+                                                    'action_edit_pla_name',
+                                                )}
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -101,7 +109,9 @@ export const EditTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Due Date</FormLabel>
+                                        <FormLabel>
+                                            {t('due_date_label')}
+                                        </FormLabel>
                                         <FormControl>
                                             {/* TODO: Date Picker */}
                                             <DatePicker {...field} />
@@ -115,7 +125,9 @@ export const EditTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>AssigneeId</FormLabel>
+                                        <FormLabel>
+                                            {t('due_date_ass')}
+                                        </FormLabel>
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
@@ -153,7 +165,9 @@ export const EditTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Status</FormLabel>
+                                        <FormLabel>
+                                            {t('status_label')}
+                                        </FormLabel>
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
@@ -168,29 +182,29 @@ export const EditTaskForm = ({
                                                 <SelectItem
                                                     value={TaskStatus.BACKLOG}
                                                 >
-                                                    Backlog
+                                                    {t('BACKLOG')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={
                                                         TaskStatus.IN_PROGRESS
                                                     }
                                                 >
-                                                    In Progress
+                                                    {t('IN_PROGRESS')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={TaskStatus.IN_REVIEW}
                                                 >
-                                                    In Review
+                                                    {t('IN_REVIEW')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={TaskStatus.TODO}
                                                 >
-                                                    Todo
+                                                    {t('TODO')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={TaskStatus.DONE}
                                                 >
-                                                    Done
+                                                    {t('DONE')}
                                                 </SelectItem>
                                             </SelectContent>
                                         </Select>
@@ -203,7 +217,9 @@ export const EditTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Project</FormLabel>
+                                        <FormLabel>
+                                            {t('project_label')}
+                                        </FormLabel>
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
@@ -252,7 +268,7 @@ export const EditTaskForm = ({
                                 disabled={isPending}
                                 className={cn(!onCancel && 'invisible')}
                             >
-                                Cancel
+                                {t('cancel')}
                             </Button>
 
                             <Button
@@ -260,7 +276,7 @@ export const EditTaskForm = ({
                                 type="submit"
                                 size={'lg'}
                             >
-                                Save Changes
+                                {t('submit')}
                             </Button>
                         </div>
                     </form>

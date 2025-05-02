@@ -201,5 +201,54 @@
             "modal_title": "Xóa dự án",
             "modal_desc": "Hành động này không thể hoàn tác"
         }
+    },
+    "Task": {
+        "Client": {
+            "col_1": "Tên công việc",
+            "col_2": "Dự án",
+            "col_3": "Người được giao",
+            "col_4": "Hạn cuối",
+            "col_5": "Trạng thái",
+            "BACKLOG": "Chưa bắt đầu",
+            "IN_PROGRESS": "Đang thực hiện",
+            "IN_REVIEW": "Đang kiểm tra",
+            "TODO": "Cần làm",
+            "DONE": "Hoàn thành",
+            "action_open_project": "Mở dự án",
+            "action_task_details": "Chi tiết công việc",
+            "action_edit_task": "Chỉnh sửa công việc",
+            "action_delete_task": "Xóa công việc",
+            "action_delete_title": "Xóa công việc",
+            "action_delete_desc": "Hành động này không thể hoàn tác",
+            "action_edit_label_name": "Tên công việc",
+            "action_edit_pla_name": "Nhập tên công việc",
+            "due_date_ass": "Người được giao",
+            "due_date_ass_pla": "Chọn người được giao",
+            "due_date_label": "Hạn cuối",
+            "due_date_pla": "Chọn hạn cuối",
+            "status_label": "Trạng thái",
+            "status_pla": "Chọn trạng thái",
+            "project_label": "Dự án",
+            "project_pla": "Nhập tên dự án",
+            "cancel": "Hủy",
+            "submit": "Lưu thay đổi",
+            "new_title": "Tạo công việc mới",
+            "delete_label": "Xóa công việc",
+            "overview_title": "Tổng quan nhiệm vụ",
+            "overview_title_desc": "Mô tả",
+            "overview_title_pla": "Chưa có mô tả",
+            "edit": "Chỉnh sửa",
+            "loading": "Đang lưu..."
+        },
+        "Server": {
+            "action_delete_success": "Xóa công việc thành công",
+            "action_delete_fail": "Xóa công việc thất bại",
+            "action_edit_success": "Cập nhật công việc thành công",
+            "action_edit_fail": "Cập nhật công việc thất bại",
+            "action_new_success": "Tạo công việc thành công",
+            "action_new_fail": "Tạo công việc thất bại",
+            "action_bulk_success": "Cập nhật công việc thành công",
+            "action_bulk_fail": "Cập nhật công việc thất bại"
+        }
     }
 }

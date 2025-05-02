@@ -30,6 +30,7 @@ import {
 import { MemberAvatar } from '@/features/members/components/members-avatar';
 import { TaskStatus } from '@/features/tasks/types';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
+import { useTranslations } from 'next-intl';
 interface CreateTaskFormProps {
     onCancel?: () => void;
     projectOptions: { id: string; name: string; imageUrl: string }[];
@@ -43,7 +44,7 @@ export const CreateTaskForm = ({
 }: CreateTaskFormProps) => {
     const workspaceId = useWorkspaceId();
     const { mutate, isPending } = useCreateTask();
-
+    const t = useTranslations('Task.Client');
     const form = useForm<z.infer<typeof createTaskSchema>>({
         resolver: zodResolver(createTaskSchema),
         defaultValues: {
@@ -66,7 +67,7 @@ export const CreateTaskForm = ({
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle className="uppercase">Create a new task</CardTitle>
+                <CardTitle className="uppercase">{t('new_title')}</CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />
@@ -80,12 +81,16 @@ export const CreateTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Task Name</FormLabel>
+                                        <FormLabel>
+                                            {t('action_edit_label_name')}
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 type="text"
-                                                placeholder="Enter task name"
+                                                placeholder={t(
+                                                    'action_edit_pla_name',
+                                                )}
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -97,10 +102,15 @@ export const CreateTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Due Date</FormLabel>
+                                        <FormLabel>
+                                            {t('due_date_label')}
+                                        </FormLabel>
                                         <FormControl>
                                             {/* TODO: Date Picker */}
-                                            <DatePicker {...field} />
+                                            <DatePicker
+                                                {...field}
+                                                placeholder={t('due_date_pla')}
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -111,14 +121,20 @@ export const CreateTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>AssigneeId</FormLabel>
+                                        <FormLabel>
+                                            {t('due_date_ass')}
+                                        </FormLabel>
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
                                         >
                                             <FormControl>
                                                 <SelectTrigger className="h-12">
-                                                    <SelectValue placeholder="Select assignee" />
+                                                    <SelectValue
+                                                        placeholder={t(
+                                                            'due_date_ass_pla',
+                                                        )}
+                                                    />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <FormMessage />
@@ -149,14 +165,20 @@ export const CreateTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Status</FormLabel>
+                                        <FormLabel>
+                                            {t('status_label')}
+                                        </FormLabel>
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
                                         >
                                             <FormControl>
                                                 <SelectTrigger className="h-12">
-                                                    <SelectValue placeholder="Select status" />
+                                                    <SelectValue
+                                                        placeholder={t(
+                                                            'status_pla',
+                                                        )}
+                                                    />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <FormMessage />
@@ -164,29 +186,33 @@ export const CreateTaskForm = ({
                                                 <SelectItem
                                                     value={TaskStatus.BACKLOG}
                                                 >
-                                                    Backlog
+                                                    {t('BACKLOG')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={
                                                         TaskStatus.IN_PROGRESS
                                                     }
                                                 >
-                                                    In Progress
+                                                    {' '}
+                                                    {t('IN_PROGRESS')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={TaskStatus.IN_REVIEW}
                                                 >
-                                                    In Review
+                                                    {' '}
+                                                    {t('IN_REVIEW')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={TaskStatus.TODO}
                                                 >
-                                                    Todo
+                                                    {' '}
+                                                    {t('TODO')}
                                                 </SelectItem>
                                                 <SelectItem
                                                     value={TaskStatus.DONE}
                                                 >
-                                                    Done
+                                                    {' '}
+                                                    {t('DONE')}
                                                 </SelectItem>
                                             </SelectContent>
                                         </Select>
@@ -199,14 +225,20 @@ export const CreateTaskForm = ({
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Project</FormLabel>
+                                        <FormLabel>
+                                            {t('project_label')}
+                                        </FormLabel>
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
                                         >
                                             <FormControl>
                                                 <SelectTrigger className="h-12">
-                                                    <SelectValue placeholder="Select project" />
+                                                    <SelectValue
+                                                        placeholder={t(
+                                                            'project_pla',
+                                                        )}
+                                                    />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <FormMessage />

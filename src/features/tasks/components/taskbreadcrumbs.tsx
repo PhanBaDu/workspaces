@@ -6,6 +6,7 @@ import { Task } from '@/features/tasks/types';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
 import { ChevronRightIcon, TrashIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -20,12 +21,12 @@ export default function TaskBreadcrumbs({
 }: TaskBreadcrumbsProps) {
     const workspaceId = useWorkspaceId();
     const router = useRouter();
-
+    const t = useTranslations('Task.Client');
     const { mutate, isPending } = useDeleteTask();
 
     const [ConfigDialog, confirm] = useConfirm(
-        'Delete task',
-        'This action cannot be undone.',
+        `${t('action_delete_task')}`,
+        `${t('action_delete_desc')}`,
         'destructive',
     );
 
@@ -69,7 +70,7 @@ export default function TaskBreadcrumbs({
                 disabled={isPending}
             >
                 <TrashIcon className="size-4 lg:mr-2" />
-                <span className="hidden lg:block">Delete Task</span>
+                <span className="hidden lg:block">{t('delete_label')}</span>
             </Button>
         </div>
     );

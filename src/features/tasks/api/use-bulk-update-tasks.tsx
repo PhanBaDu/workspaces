@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<
     (typeof client.api.tasks)['bulk-update']['$post'],
@@ -14,6 +15,7 @@ type RequestType = InferRequestType<
 
 export const useBulkUpdateTasks = () => {
     const queryClient = useQueryClient();
+    const t = useTranslations('Task.Server');
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ json }) => {
@@ -28,7 +30,7 @@ export const useBulkUpdateTasks = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success('Tasks updated');
+            toast.success(`${t('action_bulk_success')}`);
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -36,7 +38,7 @@ export const useBulkUpdateTasks = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
         },
         onError: () => {
-            toast.error('Failed to update tasks');
+            toast.error(`${t('action_bulk_fail')}`);
         },
     });
 

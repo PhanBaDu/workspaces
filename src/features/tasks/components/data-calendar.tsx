@@ -8,7 +8,7 @@ import {
     addMonths,
     subMonths,
 } from 'date-fns';
-import { enUS } from 'date-fns/locale';
+import { enUS, vi } from 'date-fns/locale';
 import { useState } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -16,9 +16,11 @@ import './data-calendar.css';
 import EventCard from '@/features/tasks/components/event-card';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
 const locales = {
     'en-US': enUS,
+    vi: vi,
 };
 
 const localizer = dateFnsLocalizer({
@@ -39,6 +41,13 @@ interface CustomToolbarProps {
 }
 
 const CustomToobar = ({ date, onNavigate }: CustomToolbarProps) => {
+    const locale = useLocale();
+    const formatted = new Intl.DateTimeFormat('vi-VN', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    }).format(date);
+
     return (
         <div className="flex mb-4 gap-x-2 items-center w-full lg:w-auto justify-center lg:justify-start">
             <Button
@@ -51,7 +60,11 @@ const CustomToobar = ({ date, onNavigate }: CustomToolbarProps) => {
             </Button>
             <div className="flex items-center border border-input rounded-md px-3 py-2 h-8 justify-center w-full lg:w-auto">
                 <CalendarIcon className="size-4 mr-2" />
-                <p className="text-sm">{format(date, 'MMMM yyyy')}</p>
+                <p className="text-sm">
+                    {locale === 'vi'
+                        ? `${formatted}`
+                        : `${format(date, 'MMMM yyyy')} `}
+                </p>
             </div>
             <Button
                 onClick={() => onNavigate('NEXT')}
@@ -68,7 +81,7 @@ export default function DataCanlendar({ data }: DataCanlendarProps) {
     const [value, setValue] = useState(
         data.length > 0 ? new Date(data[0].dueDate) : new Date(),
     );
-
+    const locale = useLocale();
     const events = data.map((task) => ({
         project: task.project,
         title: task.name,
@@ -119,6 +132,7 @@ export default function DataCanlendar({ data }: DataCanlendarProps) {
             views={['month']}
             defaultView="month"
             toolbar
+            culture={locale}
             showAllEvents
             className="h-full"
             max={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}

@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<
     (typeof client.api.tasks)[':taskId']['$delete'],
@@ -13,6 +14,7 @@ type RequestType = InferRequestType<
 >;
 
 export const useDeleteTask = () => {
+    const t = useTranslations('Task.Server');
     const queryClient = useQueryClient();
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -28,7 +30,7 @@ export const useDeleteTask = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Task deleted successfully');
+            toast.success(`${t('action_delete_success')}`);
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -37,7 +39,7 @@ export const useDeleteTask = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
-            toast.error('Failed to delete task');
+            toast.error(`${t('action_delete_fail')}`);
         },
     });
 

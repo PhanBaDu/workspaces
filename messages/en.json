@@ -201,5 +201,55 @@
             "modal_title": "Delete Project",
             "modal_desc": "This action cannot be undone"
         }
+    },
+    "Task": {
+        "Client": {
+            "col_1": "Task Name",
+            "col_2": "Project",
+            "col_3": "Assignee",
+            "col_4": "Due Date",
+            "col_5": "Status",
+            "BACKLOG": "Backlog",
+            "IN_PROGRESS": "In Progress",
+            "IN_REVIEW": "In Review",
+            "TODO": "To do",
+            "DONE": "Done",
+            "action_open_project": "Open Project",
+            "action_task_details": "Task Details",
+            "action_edit_task": "Edit Task",
+            "action_delete_task": "Delete Task",
+            "action_delete_title": "Delete Task",
+            "action_delete_desc": "This action cannot be undone",
+            "action_edit_title": "Edit A Task",
+            "action_edit_label_name": "Task Name",
+            "action_edit_pla_name": "Enter task name",
+            "due_date_label": "Due Date",
+            "due_date_pla": "Select due date",
+            "due_date_ass": "AssigneeId",
+            "due_date_ass_pla": "Select Assignee",
+            "status_label": "Status",
+            "project_label": "Project",
+            "project_pla": "Select Project",
+            "status_pla": "Select Status",
+            "cancel": "Cancel",
+            "submit": "Save Changes",
+            "new_title": "Create a new task",
+            "delete_label": "Delete Task",
+            "overview_title": "Task Overview",
+            "overview_title_desc": "Overview",
+            "overview_title_pla": "No description set",
+            "edit": "Edit",
+            "loading": "Saving..."
+        },
+        "Server": {
+            "action_delete_success": "Task deleted successfully",
+            "action_delete_fail": "Failed to delete task",
+            "action_edit_success": "Task updated successfully",
+            "action_edit_fail": "Failed to update task",
+            "action_new_success": "Task created successfully",
+            "action_new_fail": "Failed to create task",
+            "action_bulk_success": "Tasks updated",
+            "action_bulk_fail": "Failed to update tasks"
+        }
     }
 }

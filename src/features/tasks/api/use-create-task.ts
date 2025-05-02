@@ -3,12 +3,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<(typeof client.api.tasks)['$post'], 200>;
 type RequestType = InferRequestType<(typeof client.api.tasks)['$post']>;
 
 export const useCreateTask = () => {
     const queryClient = useQueryClient();
+    const t = useTranslations('Task.Server');
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ json }) => {
@@ -21,7 +23,7 @@ export const useCreateTask = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success('Task created');
+            toast.success(`${t('action_new_success')}`);
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -29,7 +31,7 @@ export const useCreateTask = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
         },
         onError: () => {
-            toast.error('Failed to create task');
+            toast.error(`${t('action_new_fail')}`);
         },
     });
 

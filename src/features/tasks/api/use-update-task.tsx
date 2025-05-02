@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<
     (typeof client.api.tasks)[':taskId']['$patch'],
@@ -14,7 +15,7 @@ type RequestType = InferRequestType<
 
 export const useUpdateTask = () => {
     const queryClient = useQueryClient();
-
+    const t = useTranslations('Task.Server');
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ json, param }) => {
             const response = await client.api.tasks[':taskId']['$patch']({
@@ -29,7 +30,7 @@ export const useUpdateTask = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Task updated');
+            toast.success(`${t('action_edit_success')}`);
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -38,7 +39,7 @@ export const useUpdateTask = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
-            toast.error('Failed to update task');
+            toast.error(`${t('action_edit_fail')}`);
         },
     });
 

@@ -2,9 +2,9 @@
 import {
     CalendarCheck2,
     CheckCheck,
-    LayoutDashboard,
     SettingsIcon,
     UsersIcon,
+    Waypoints,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -21,7 +21,7 @@ export default function Navigation() {
         {
             label: `${t('Client.home')}`,
             href: '',
-            icon: LayoutDashboard,
+            icon: Waypoints,
             activeIcon: CheckCheck,
         },
         {

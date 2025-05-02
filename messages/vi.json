@@ -172,5 +172,34 @@
             "due_date": "Hạn hoàn thành",
             "all_project": "Tất cả dự án"
         }
+    },
+    "Project": {
+        "Server": {
+            "c_success": "Tạo dự án thành công",
+            "c_fail": "Đã xảy ra lỗi không tạo được dự án",
+            "u_success": "Cập nhật dự án thành công",
+            "u_fail": "Đã xảy ra lỗi không cập nhật được dự án",
+            "d_success": "Đã xóa dự án",
+            "d_fail": "Xóa dự án thất bại"
+        },
+        "Client": {
+            "title": "Tạo dự án mới",
+            "label": "Tên dự án",
+            "placeholder": "Nhập tên dự án",
+            "submit": "Tạo dự án",
+            "img-desc-1": "Biểu tượng dự án",
+            "img-desc-2": "JPG, PNG, SVG hoặc JPEG, tối đa 1MB",
+            "upload": "Tải ảnh lên",
+            "remove": "Xóa ảnh",
+            "cancel": "Hủy",
+            "edit_title": "Chỉnh sửa dự án",
+            "edit_submit": "Lưu thay đổi",
+            "back": "Quay lại",
+            "danger": "Vùng nguy hiểm",
+            "danger_desc": "Việc xóa dự án là không thể khôi phục và sẽ xóa toàn bộ dữ liệu liên quan.",
+            "danger_button": "Xóa dự án",
+            "modal_title": "Xóa dự án",
+            "modal_desc": "Hành động này không thể hoàn tác"
+        }
     }
 }

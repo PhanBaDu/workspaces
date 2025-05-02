@@ -11,8 +11,10 @@ import PageLoader from '@/components/page-loader';
 import PageError from '@/components/page-error';
 import { useGetProjectAnalytics } from '@/features/projects/api/use-get-project-analytics';
 import Analytics from '@/components/analytics';
+import { useTranslations } from 'next-intl';
 
 export const ProjectIdClient = () => {
+    const t = useTranslations('Project');
     const projectId = useProjectId();
     const { data: project, isLoading: isLoadingProject } = useGetProject({
         projectId: projectId,
@@ -45,7 +47,7 @@ export const ProjectIdClient = () => {
                             href={`/workspaces/${project.workspaceId}/projects/${project.$id}/settings`}
                         >
                             <PencilIcon className="size-4 mr-2" />
-                            Edit Project
+                            {t('Client.edit_title')}
                         </Link>
                     </Button>
                 </div>

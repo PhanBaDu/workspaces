@@ -24,6 +24,7 @@ import { createProjectSchema } from '@/features/projects/schema';
 import { useCreateProject } from '@/features/projects/api/use-create-project';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { DashedSeparator } from '@/components/dashed-separator';
+import { useTranslations } from 'next-intl';
 
 interface CreateProjectFormProps {
     onCancel?: () => void;
@@ -34,7 +35,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     const workspaceId = useWorkspaceId();
     const { mutate, isPending } = useCreateProject();
     const inputRef = useRef<HTMLInputElement>(null);
-
+    const t = useTranslations('Project');
     const form = useForm<z.infer<typeof createProjectSchema>>({
         resolver: zodResolver(createProjectSchema),
         defaultValues: {
@@ -73,9 +74,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="flex p-7">
-                <CardTitle className="uppercase">
-                    Create a new project
-                </CardTitle>
+                <CardTitle className="uppercase">{t('Client.title')}</CardTitle>
             </CardHeader>
             <div className="px-7">
                 <DashedSeparator />
@@ -89,12 +88,16 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Project Name</FormLabel>
+                                        <FormLabel>
+                                            {t('Client.label')}
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 type="text"
-                                                placeholder="Enter workspace name"
+                                                placeholder={t(
+                                                    'Client.placeholder',
+                                                )}
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -135,11 +138,10 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                             )}
                                             <div className="flex flex-col mb-1">
                                                 <p className="text-sm text-muted-foreground">
-                                                    Project Icon
+                                                    {t('Client.img-desc-1')}
                                                 </p>
                                                 <p className="text-sm text-muted-foreground">
-                                                    JPG, PNG, SVG or JPEG, max
-                                                    1MB
+                                                    {t('Client.img-desc-2')}
                                                 </p>
                                                 <input
                                                     type="file"
@@ -168,7 +170,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                         }}
                                                         size={'xs'}
                                                     >
-                                                        Remove Image
+                                                        {t('Client.remove')}
                                                     </Button>
                                                 ) : (
                                                     <Button
@@ -181,7 +183,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                                         }
                                                         size={'xs'}
                                                     >
-                                                        Upload Image
+                                                        {t('Client.upload')}
                                                     </Button>
                                                 )}
                                             </div>
@@ -200,7 +202,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                 disabled={isPending}
                                 className={cn(!onCancel && 'invisible')}
                             >
-                                Cancel
+                                {t('Client.cancel')}
                             </Button>
 
                             <Button
@@ -208,7 +210,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                                 type="submit"
                                 size={'lg'}
                             >
-                                Create Project
+                                {t('Client.submit')}
                             </Button>
                         </div>
                     </form>

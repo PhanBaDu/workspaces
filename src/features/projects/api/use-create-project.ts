@@ -3,12 +3,17 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
-type ResponseType = InferResponseType<(typeof client.api.projects)['$post'], 200>;
+type ResponseType = InferResponseType<
+    (typeof client.api.projects)['$post'],
+    200
+>;
 type RequestType = InferRequestType<(typeof client.api.projects)['$post']>;
 
 export const useCreateProject = () => {
     const queryClient = useQueryClient();
+    const t = useTranslations('Project');
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ form }) => {
@@ -21,12 +26,12 @@ export const useCreateProject = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Projects created');
+            toast.success(`${t('Server.c_success')}`);
             queryClient.invalidateQueries({ queryKey: ['projects'] });
             queryClient.invalidateQueries({ queryKey: ['projects', data.$id] });
         },
         onError: () => {
-            toast.error('Failed to create projects');
+            toast.error(`${t('Server.c_fail')}`);
         },
     });
 

@@ -22,6 +22,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 interface CreateWorkspaceFormProps {
     onCancel?: () => void;
@@ -30,6 +31,7 @@ interface CreateWorkspaceFormProps {
 export default function CreateWorkspaceForm({
     onCancel,
 }: CreateWorkspaceFormProps) {
+    const router = useRouter();
     const t = useTranslations('WorkspacePage');
     const { mutate, isPending } = useCreateWorkspace();
 
@@ -51,8 +53,8 @@ export default function CreateWorkspaceForm({
         mutate(
             { form: finalValues },
             {
-                onSuccess: () => {
-                    onCancel?.();
+                onSuccess: ({ data }) => {
+                    router.push(`/workspaces/${data.$id}`);
                 },
             },
         );

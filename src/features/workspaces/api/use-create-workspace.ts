@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<
@@ -14,7 +13,6 @@ type RequestType = InferRequestType<(typeof client.api.workspaces)['$post']>;
 
 export const useCreateWorkspace = () => {
     const t = useTranslations('WorkspacePage');
-    const router = useRouter();
     const queryClient = useQueryClient();
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -27,9 +25,8 @@ export const useCreateWorkspace = () => {
 
             return await response.json();
         },
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
             toast.success(`${t('Server.success')}`);
-            router.push(`/workspaces/${data.$id}`);
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
         },
         onError: () => {

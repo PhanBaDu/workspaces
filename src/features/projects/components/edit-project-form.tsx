@@ -26,6 +26,7 @@ import { useConfirm } from '@/hooks/use-confirm';
 import { useUpdateProject } from '../api/use-update-project';
 import { DashedSeparator } from '@/components/dashed-separator';
 import { useDeleteProject } from '@/features/projects/api/use-delete-project';
+import { useTranslations } from 'next-intl';
 
 interface EditProjectFormProps {
     onCancel?: () => void;
@@ -38,12 +39,12 @@ export const EditProjectForm = ({
 }: EditProjectFormProps) => {
     const router = useRouter();
     const { mutate, isPending } = useUpdateProject();
-
+    const t = useTranslations('Project');
     const { mutate: deleteProject } = useDeleteProject();
 
     const [DeleteDialog, confirmDelete] = useConfirm(
-        'Delete project',
-        'This action cannot be undone',
+        `${t('Client.modal_title')}`,
+        `${t('Client.modal_desc')}`,
         'destructive',
     );
 
@@ -66,7 +67,7 @@ export const EditProjectForm = ({
             { param: { projectId: initialValues.$id } },
             {
                 onSuccess: () => {
-                    window.location.href = `/workspaces/${initialValues.workspaceId}`;
+                    router.push(`/workspaces/${initialValues.workspaceId}`);
                 },
             },
         );
@@ -108,13 +109,10 @@ export const EditProjectForm = ({
                         }
                     >
                         <ArrowLeftIcon className="size-4" />
-                        Back
+                        {t('Client.back')}
                     </Button>
-                    <CardTitle>
-                        <span className="uppercase mr-2 text-muted-foreground">
-                            Project Name:{' '}
-                        </span>
-                        {initialValues.name}
+                    <CardTitle className="uppercase">
+                        {t('Client.edit_title')}
                     </CardTitle>
                 </CardHeader>
                 <div className="px-7">
@@ -129,12 +127,16 @@ export const EditProjectForm = ({
                                     control={form.control}
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Project Name</FormLabel>
+                                            <FormLabel>
+                                                {t('Client.label')}
+                                            </FormLabel>
                                             <FormControl>
                                                 <Input
                                                     {...field}
                                                     type="text"
-                                                    placeholder="Enter workspace name"
+                                                    placeholder={t(
+                                                        'Client.placeholder',
+                                                    )}
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -172,11 +174,10 @@ export const EditProjectForm = ({
                                                 )}
                                                 <div className="flex flex-col mb-1">
                                                     <p className="text-sm">
-                                                        Project Icon
+                                                        {t('Client.img-desc-1')}
                                                     </p>
                                                     <p className="text-sm to-muted-foreground">
-                                                        JPG, PNG, SVG or JPEG,
-                                                        max 1MB
+                                                        {t('Client.img-desc-2')}
                                                     </p>
                                                     <input
                                                         type="file"
@@ -209,7 +210,7 @@ export const EditProjectForm = ({
                                                             }}
                                                             size={'xs'}
                                                         >
-                                                            Remove Image
+                                                            {t('Client.remove')}
                                                         </Button>
                                                     ) : (
                                                         <Button
@@ -222,7 +223,7 @@ export const EditProjectForm = ({
                                                             }
                                                             size={'xs'}
                                                         >
-                                                            Upload Image
+                                                            {t('Client.upload')}
                                                         </Button>
                                                     )}
                                                 </div>
@@ -249,7 +250,7 @@ export const EditProjectForm = ({
                                     type="submit"
                                     size={'lg'}
                                 >
-                                    Save Changes
+                                    {t('Client.edit_submit')}
                                 </Button>
                             </div>
                         </form>
@@ -260,10 +261,9 @@ export const EditProjectForm = ({
             <Card className="w-full h-full border-none shadow-none">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
-                        <h3 className="font-bold">Danger Zone</h3>
+                        <h3 className="font-bold">{t('Client.danger')}</h3>
                         <p className="text-sm text-muted-foreground">
-                            Deleteing a project is irreversible and will remove
-                            all associated data.
+                            {t('Client.danger_desc')}
                         </p>
                         <DashedSeparator className="py-7" />
 
@@ -275,7 +275,7 @@ export const EditProjectForm = ({
                             disabled={isPending}
                             onClick={handleDelete}
                         >
-                            Delete Project
+                            {t('Client.danger_button')}
                         </Button>
                     </div>
                 </CardContent>

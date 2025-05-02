@@ -79,7 +79,7 @@ export default function EditWorkspaceForm({
             { param: { workspaceId: initialValues.$id } },
             {
                 onSuccess: () => {
-                    router.push(`/`);
+                    window.location.href = `/`;
                 },
             },
         );

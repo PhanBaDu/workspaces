@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<
     (typeof client.api.projects)[':projectId']['$patch'],
@@ -14,7 +15,7 @@ type RequestType = InferRequestType<
 
 export const useUpdateProject = () => {
     const queryClient = useQueryClient();
-
+    const t = useTranslations('Project');
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ form, param }) => {
             const response = await client.api.projects[':projectId']['$patch']({
@@ -29,7 +30,7 @@ export const useUpdateProject = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Projects updated');
+            toast.success(`${t('Server.u_success')}`);
             queryClient.invalidateQueries({ queryKey: ['project'] });
             queryClient.invalidateQueries({ queryKey: ['projects'] });
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
@@ -38,7 +39,7 @@ export const useUpdateProject = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
-            toast.error('Failed to update projects');
+            toast.error(`${t('Server.u_fail')}`);
         },
     });
 

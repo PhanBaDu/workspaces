@@ -266,7 +266,8 @@
             "isAdmin_3": "mới được phép truy cập vào trang này",
             "MEMBER": "Thành viên",
             "ADMIN": "Quản trị viên",
-            "Founder": "Chủ sở hữu"
+            "Founder": "Chủ sở hữu",
+            "check": "Member này đã bị xóa khỏi workspace"
         }
     },
     "PageError": {

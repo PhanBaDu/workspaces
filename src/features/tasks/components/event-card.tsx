@@ -5,6 +5,7 @@ import { Project } from '@/features/projects/types';
 import { TaskStatus } from '@/features/tasks/types';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 interface EventCardProps {
@@ -32,7 +33,7 @@ export default function EventCard({
 }: EventCardProps) {
     const workspaceId = useWorkspaceId();
     const router = useRouter();
-
+    const t = useTranslations('Member.Client');
     const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
         router.push(`/workspaces/${workspaceId}/tasks/${id}`);
@@ -48,12 +49,20 @@ export default function EventCard({
             >
                 <p className="text-primary truncate ">{title}</p>
                 <div className="flex items-center gap-x-1 truncate">
-                    <MemberAvatar name={assignee?.name} />
-                    <div className="size-1 rounded-full bg-muted-foreground" />
-                    <ProjectAvatar
-                        name={project?.name}
-                        image={project?.imageUrl}
-                    />
+                    {!assignee ? (
+                        <h1 className="text-xs text-destructive">
+                            {t('check')}
+                        </h1>
+                    ) : (
+                        <>
+                            <MemberAvatar name={assignee?.name} />
+                            <div className="size-1 rounded-full bg-muted-foreground" />
+                            <ProjectAvatar
+                                name={project?.name}
+                                image={project?.imageUrl}
+                            />
+                        </>
+                    )}
                 </div>
             </div>
         </div>

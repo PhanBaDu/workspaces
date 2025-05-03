@@ -14,6 +14,7 @@ export const TaskIdClient = () => {
     const taskId = useTaskId();
     const t = useTranslations('PageError.Client');
     const { data, isLoading } = useGetTask({ taskId });
+
     if (isLoading) return <PageLoader />;
     if (!data) return <PageError message={t('task_not_found')} />;
 

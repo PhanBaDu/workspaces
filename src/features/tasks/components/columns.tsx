@@ -12,6 +12,7 @@ import { useTranslations } from 'next-intl';
 
 export function useTaskColumns(): ColumnDef<Task>[] {
     const t = useTranslations('Task.Client');
+    const x = useTranslations('Member.Client');
 
     return [
         {
@@ -74,15 +75,22 @@ export function useTaskColumns(): ColumnDef<Task>[] {
             ),
             cell: ({ row }) => {
                 const assignee = row.original.assignee;
-                if (!assignee) return null;
                 return (
                     <div className="flex items-center gap-x-2 text-sm font-medium">
-                        <MemberAvatar
-                            className="size-6"
-                            fallbackClassName="text-xs"
-                            name={assignee?.name}
-                        />
-                        <p className="line-clamp-1">{assignee?.name}</p>
+                        {!assignee ? (
+                            <h1 className="text-xs text-destructive">
+                                {x('check')}
+                            </h1>
+                        ) : (
+                            <>
+                                <MemberAvatar
+                                    className="size-6"
+                                    fallbackClassName="text-xs"
+                                    name={assignee?.name}
+                                />
+                                <p className="line-clamp-1">{assignee?.name}</p>
+                            </>
+                        )}
                     </div>
                 );
             },

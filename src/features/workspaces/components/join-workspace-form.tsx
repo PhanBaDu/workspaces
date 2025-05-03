@@ -1,10 +1,17 @@
 'use client';
 import { DashedSeparator } from '@/components/dashed-separator';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { useJoinWorkspace } from '@/features/workspaces/api/use-join-workspace';
 import { useInviteCode } from '@/features/workspaces/hooks/use-invite-code';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -14,8 +21,11 @@ interface JoinWorkspaceFormProps {
     };
 }
 
-export default function JoinWorkspaceForm({ initialValues }: JoinWorkspaceFormProps) {
+export default function JoinWorkspaceForm({
+    initialValues,
+}: JoinWorkspaceFormProps) {
     const router = useRouter();
+    const t = useTranslations('Join.Client');
     const { mutate, isPending } = useJoinWorkspace();
     const inviteCode = useInviteCode();
     const workspaceId = useWorkspaceId();
@@ -38,10 +48,10 @@ export default function JoinWorkspaceForm({ initialValues }: JoinWorkspaceFormPr
         <div className="w-full h-full border-none shadow-none">
             <Card className="p-7">
                 <CardHeader>
-                    <CardTitle>Join workspace</CardTitle>
+                    <CardTitle>{t('title')}</CardTitle>
                     <CardDescription>
-                        You&apos;ve been invited to join <strong>{initialValues.name}</strong>{' '}
-                        workspace
+                        {t('desc_1')} <strong>{initialValues.name}</strong>{' '}
+                        {t('desc_2')}
                     </CardDescription>
                 </CardHeader>
                 <div className="px-7">
@@ -56,7 +66,7 @@ export default function JoinWorkspaceForm({ initialValues }: JoinWorkspaceFormPr
                             asChild
                             className="w-full lg:w-fit"
                         >
-                            <Link href={'/'}>Cancel</Link>
+                            <Link href={'/'}>{t('cancel')}</Link>
                         </Button>
 
                         <Button
@@ -66,7 +76,7 @@ export default function JoinWorkspaceForm({ initialValues }: JoinWorkspaceFormPr
                             onClick={onSubmit}
                             disabled={isPending}
                         >
-                            Join Workspace
+                            {t('button')}
                         </Button>
                     </div>
                 </CardContent>

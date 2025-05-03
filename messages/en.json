@@ -261,5 +261,28 @@
             "ADMIN": "Admin",
             "Founder": "Founder"
         }
+    },
+    "PageError": {
+        "Client": {
+            "title": "Something went wrong",
+            "back": "Back to home",
+            "Something_went_wrong": "Something went wrong",
+            "project_not_found": "Project not found",
+            "task_not_found": "Task not found",
+            "member_not_found": "Member not found"
+        }
+    },
+    "Join": {
+        "Client": {
+            "title": "Join workspace",
+            "desc_1": "You've been invited to join",
+            "desc_2": "workspace",
+            "cancel": "Cancel",
+            "button": "Joined workspace"
+        },
+        "Server": {
+            "success": "Joined workspace",
+            "fail": "Failed to join workspace"
+        }
     }
 }

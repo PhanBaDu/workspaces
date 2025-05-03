@@ -260,5 +260,28 @@
             "ADMIN": "Quản trị viên",
             "Founder": "Người sáng lập"
         }
+    },
+    "PageError": {
+        "Client": {
+            "title": "Đã có lỗi xảy ra",
+            "back": "Quay về trang chủ",
+            "Something_went_wrong": "Đã có lỗi xảy ra, vui lòng thử lại sau",
+            "project_not_found": "Dự án không tồn tại",
+            "task_not_found": "Nhiệm vụ không tồn tại",
+            "member_not_found": "Thành viên không tồn tại"
+        }
+    },
+    "Join": {
+        "Client": {
+            "title": "Tham gia không gian làm việc",
+            "desc_1": "Bạn đã được mời tham gia",
+            "desc_2": "không gian làm việc",
+            "cancel": "Hủy",
+            "button": "Đã tham gia"
+        },
+        "Server": {
+            "success": "Tham gia không gian làm việc thành công",
+            "fail": "Tham gia không gian làm việc thất bại"
+        }
     }
 }

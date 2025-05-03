@@ -102,7 +102,7 @@ const app = new Hono()
             const existing = await databases.listDocuments(
                 DATABASE_ID,
                 WORKSPACES_ID,
-                [Query.equal('name', name)],
+                [Query.equal('name', name), Query.equal('userId', user.$id)],
             );
 
             if (existing.total > 0) {
@@ -233,7 +233,17 @@ const app = new Hono()
             userId: user.$id,
         });
 
-        if (!member || member.role !== MemberRole.ADMIN) {
+        const workspace = await databases.getDocument<Workspace>(
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId,
+        );
+
+        if (
+            !member ||
+            member.role !== MemberRole.ADMIN ||
+            workspace.userId !== user.$id
+        ) {
             return c.json({ error: 'Unauthorized' }, 401);
         }
 

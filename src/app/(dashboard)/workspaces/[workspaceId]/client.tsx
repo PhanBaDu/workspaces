@@ -16,6 +16,7 @@ import { Project } from '@/features/projects/types';
 import { useGetTasks } from '@/features/tasks/api/use-get-tasks';
 import { useCreateTaskModal } from '@/features/tasks/hooks/use-create-task-modal';
 import { Task } from '@/features/tasks/types';
+import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
 import { useGetWorkspaceAnalytics } from '@/features/workspaces/api/use-get-workspace-analytics';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { formatDistanceToNow } from 'date-fns';
@@ -25,7 +26,9 @@ import Link from 'next/link';
 
 export const WorkspaceIdClient = () => {
     const workspaceId = useWorkspaceId();
-
+    const { data: workspace, isLoading: isLoadingWorkspace } = useGetWorkspace({
+        workspaceId,
+    });
     const { data: analytics, isLoading: isLoadingAnalytics } =
         useGetWorkspaceAnalytics({ workspaceId });
 
@@ -44,11 +47,13 @@ export const WorkspaceIdClient = () => {
         isLoadingAnalytics ||
         isLoadingTasks ||
         isLoadingProjects ||
-        isLoadingMembers;
+        isLoadingMembers ||
+        isLoadingWorkspace;
 
     if (isLoading) return <PageLoader />;
 
-    if (!analytics || !tasks || !projects || !members) return <PageError />;
+    if (!analytics || !tasks || !projects || !members || !workspace)
+        return <PageError />;
 
     return (
         <div className="h-full flex flex-col space-y-4">

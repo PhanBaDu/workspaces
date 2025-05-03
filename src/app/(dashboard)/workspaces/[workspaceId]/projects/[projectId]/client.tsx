@@ -15,6 +15,8 @@ import { useTranslations } from 'next-intl';
 
 export const ProjectIdClient = () => {
     const t = useTranslations('Project');
+    const x = useTranslations('PageError.Client');
+
     const projectId = useProjectId();
     const { data: project, isLoading: isLoadingProject } = useGetProject({
         projectId: projectId,
@@ -28,7 +30,7 @@ export const ProjectIdClient = () => {
 
     if (isLoading) return <PageLoader />;
 
-    if (!project) return <PageError message="Project not found" />;
+    if (!project) return <PageError message={x('project_not_found')} />;
 
     return (
         <div className="flex flex-col gap-y-4">

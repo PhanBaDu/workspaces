@@ -8,12 +8,14 @@ import TaskDescription from '@/features/tasks/components/task-description';
 import TaskOverview from '@/features/tasks/components/task-overview';
 import TaskBreadcrumbs from '@/features/tasks/components/taskbreadcrumbs';
 import { useTaskId } from '@/features/tasks/hooks/use-task-id';
+import { useTranslations } from 'next-intl';
 
 export const TaskIdClient = () => {
     const taskId = useTaskId();
+    const t = useTranslations('PageError.Client');
     const { data, isLoading } = useGetTask({ taskId });
     if (isLoading) return <PageLoader />;
-    if (!data) return <PageError message="Task not found" />;
+    if (!data) return <PageError message={t('task_not_found')} />;
 
     return (
         <div className="flex flex-col">

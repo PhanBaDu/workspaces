@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 export const WorkspaceIdSettingsClient = () => {
     const workspaceId = useWorkspaceId();
     const t = useTranslations('Member.Client');
+    const x = useTranslations('PageError.Client');
     const { data: initialValues, isLoading } = useGetWorkspace({
         workspaceId,
     });
@@ -20,9 +21,8 @@ export const WorkspaceIdSettingsClient = () => {
 
     if (isLoading || isLoadingMember) return <PageLoader />;
 
-    if (!initialValues) return <PageError message="Project not found" />;
-
-    if (!member) return <PageError message="Project not found" />;
+    if (!initialValues || !member)
+        return <PageError message={x('project_not_found')} />;
 
     return (
         <div className="w-full lg:max-w-xl">

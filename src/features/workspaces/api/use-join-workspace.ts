@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 
 import { client } from '@/lib/rpc';
+import { useTranslations } from 'next-intl';
 
 type ResponseType = InferResponseType<
     (typeof client.api.workspaces)[':workspaceId']['join']['$post'],
@@ -14,6 +15,7 @@ type RequestType = InferRequestType<
 
 export const useJoinWorkspace = () => {
     const queryClient = useQueryClient();
+    const t = useTranslations('Join.Server');
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ json, param }) => {
@@ -31,7 +33,7 @@ export const useJoinWorkspace = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success('Joined workspace');
+            toast.success(`${t('success')}`);
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
 
             queryClient.invalidateQueries({
@@ -42,7 +44,7 @@ export const useJoinWorkspace = () => {
             });
         },
         onError: () => {
-            toast.error('Failed to reset join workspace');
+            toast.error(`${t('fail')}`);
         },
     });
 

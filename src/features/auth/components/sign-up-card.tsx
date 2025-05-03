@@ -24,7 +24,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
-import { registerSchema } from '@/features/auth/schema';
+import { makeRegisterSchema } from '@/features/auth/schema';
 import { useRegister } from '@/features/auth/api/use-register';
 import { useTranslations } from 'next-intl';
 
@@ -32,8 +32,9 @@ export default function SignUpCard() {
     const { mutate, isPending } = useRegister();
     const t = useTranslations('AuthPage');
 
-    const form = useForm<z.infer<typeof registerSchema>>({
-        resolver: zodResolver(registerSchema),
+    const schema = makeRegisterSchema(t);
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             name: '',
             email: '',
@@ -41,7 +42,7 @@ export default function SignUpCard() {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof registerSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         mutate({ json: values });
     };
 

@@ -22,6 +22,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -32,6 +33,7 @@ export function DataTable<TData, TValue>({
     columns,
     data,
 }: DataTableProps<TData, TValue>) {
+    const t = useTranslations('Table.Client');
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] =
         React.useState<ColumnFiltersState>([]);
@@ -98,7 +100,7 @@ export function DataTable<TData, TValue>({
                                     colSpan={columns.length}
                                     className="h-24 text-center"
                                 >
-                                    No results.
+                                    {t('no_data')}
                                 </TableCell>
                             </TableRow>
                         )}

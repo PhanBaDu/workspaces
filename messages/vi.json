@@ -8,7 +8,9 @@
             "password": "Nhập mật khẩu của bạn...",
             "submit": "Đăng nhập",
             "href": "Đăng ký",
-            "sign-desc": "Bạn chưa có tài khoản?"
+            "sign-desc": "Bạn chưa có tài khoản?",
+            "required": "Không được để trống",
+            "email-invalid": "Email không hợp lệ"
         },
         "signUp": {
             "title": "Đăng ký",
@@ -21,7 +23,10 @@
             "password": "Nhập mật khẩu của bạn",
             "submit": "Đăng ký",
             "href": "Đăng nhập",
-            "sign-desc": "Bạn đã có tài khoản?"
+            "sign-desc": "Bạn đã có tài khoản?",
+            "name-invalid": "Tên không được để trống",
+            "email-invalid": "Email không hợp lệ",
+            "password-invalid": "Mật khẩu phải có ít nhất 8 ký tự"
         }
     },
     "Server": {
@@ -199,7 +204,9 @@
             "danger_desc": "Việc xóa dự án là không thể khôi phục và sẽ xóa toàn bộ dữ liệu liên quan.",
             "danger_button": "Xóa dự án",
             "modal_title": "Xóa dự án",
-            "modal_desc": "Hành động này không thể hoàn tác"
+            "modal_desc": "Hành động này không thể hoàn tác",
+            "required": "Không được để trống",
+            "minimum": "Tối thiểu 1 ký tự"
         }
     },
     "Task": {
@@ -229,7 +236,7 @@
             "status_label": "Trạng thái",
             "status_pla": "Chọn trạng thái",
             "project_label": "Dự án",
-            "project_pla": "Nhập tên dự án",
+            "project_pla": "Chọn tên dự án",
             "cancel": "Hủy",
             "submit": "Lưu thay đổi",
             "new_title": "Tạo công việc mới",
@@ -238,7 +245,8 @@
             "overview_title_desc": "Mô tả",
             "overview_title_pla": "Chưa có mô tả",
             "edit": "Chỉnh sửa",
-            "loading": "Đang lưu..."
+            "loading": "Đang lưu...",
+            "create": "Tạo nhiệm vụ"
         },
         "Server": {
             "action_delete_success": "Xóa công việc thành công",
@@ -286,5 +294,15 @@
     },
     "UserButton": {
         "logout": "Đăng xuất"
+    },
+    "Table": {
+        "Client": {
+            "no_data": "Không có dữ liệu."
+        }
+    },
+    "TaskForm": {
+        "Client": {
+            "Required": "Không được để trống"
+        }
     }
 }

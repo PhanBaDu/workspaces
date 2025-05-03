@@ -45,6 +45,7 @@ export const CreateTaskForm = ({
     const workspaceId = useWorkspaceId();
     const { mutate, isPending } = useCreateTask();
     const t = useTranslations('Task.Client');
+
     const form = useForm<z.infer<typeof createTaskSchema>>({
         resolver: zodResolver(createTaskSchema),
         defaultValues: {
@@ -280,7 +281,7 @@ export const CreateTaskForm = ({
                                 disabled={isPending}
                                 className={cn(!onCancel && 'invisible')}
                             >
-                                Cancel
+                                {t('cancel')}
                             </Button>
 
                             <Button
@@ -288,7 +289,7 @@ export const CreateTaskForm = ({
                                 type="submit"
                                 size={'lg'}
                             >
-                                Create Task
+                                {t('create')}
                             </Button>
                         </div>
                     </form>

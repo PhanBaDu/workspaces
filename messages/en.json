@@ -8,7 +8,9 @@
             "password": "Enter password",
             "submit": "Login",
             "href": "Sign Up",
-            "sign-desc": "Don't havev an account?"
+            "sign-desc": "Don't havev an account?",
+            "required": "Required",
+            "email-invalid": "Invalid email"
         },
         "signUp": {
             "title": "Sign Up",
@@ -21,7 +23,10 @@
             "password": "Enter password",
             "submit": "Register",
             "href": "Sign In",
-            "sign-desc": "Already have an account?"
+            "sign-desc": "Already have an account?",
+            "name-invalid": "Invalid name",
+            "email-invalid": "Invalid email",
+            "password-invalid": "Password must be at least 8 characters"
         }
     },
     "Server": {
@@ -199,7 +204,9 @@
             "danger_desc": "Deleteing a project is irreversible and will remove all associated data.",
             "danger_button": "Delete Project",
             "modal_title": "Delete Project",
-            "modal_desc": "This action cannot be undone"
+            "modal_desc": "This action cannot be undone",
+            "required": "Required",
+            "minimum": "Minimum 1 character required"
         }
     },
     "Task": {
@@ -239,7 +246,8 @@
             "overview_title_desc": "Overview",
             "overview_title_pla": "No description set",
             "edit": "Edit",
-            "loading": "Saving..."
+            "loading": "Saving...",
+            "create": "Create Task"
         },
         "Server": {
             "action_delete_success": "Task deleted successfully",
@@ -287,5 +295,15 @@
     },
     "UserButton": {
         "logout": "Logout"
+    },
+    "Table": {
+        "Client": {
+            "no_data": "No results."
+        }
+    },
+    "TaskForm": {
+        "Client": {
+            "Required": "Required"
+        }
     }
 }

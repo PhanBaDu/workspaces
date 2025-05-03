@@ -17,7 +17,7 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import Link from 'next/link';
-import { loginSchema } from '@/features/auth/schema';
+import { makeLoginSchema } from '@/features/auth/schema';
 import { useLogin } from '@/features/auth/api/use-login';
 import { signUpWithGithub, signUpWithGoogle } from '@/lib/server/oauth';
 import { useTranslations } from 'next-intl';
@@ -26,15 +26,17 @@ export default function SignInCard() {
     const { mutate, isPending } = useLogin();
     const t = useTranslations('AuthPage');
 
-    const form = useForm<z.infer<typeof loginSchema>>({
-        resolver: zodResolver(loginSchema),
+    const schema = makeLoginSchema(t);
+
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             email: '',
             password: '',
         },
     });
 
-    const onSubmit = (values: z.infer<typeof loginSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         mutate({ json: values });
     };
 

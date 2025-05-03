@@ -21,12 +21,12 @@ import { ArrowLeftIcon, ImageIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Project } from '../types';
-import { updateProjectSchema } from '../schema';
 import { useConfirm } from '@/hooks/use-confirm';
 import { useUpdateProject } from '../api/use-update-project';
 import { DashedSeparator } from '@/components/dashed-separator';
 import { useDeleteProject } from '@/features/projects/api/use-delete-project';
 import { useTranslations } from 'next-intl';
+import { makeUpdateProjectSchema } from '@/features/projects/schema';
 
 interface EditProjectFormProps {
     onCancel?: () => void;
@@ -47,11 +47,12 @@ export const EditProjectForm = ({
         `${t('Client.modal_desc')}`,
         'destructive',
     );
+    const schema = makeUpdateProjectSchema(t);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const form = useForm<z.infer<typeof updateProjectSchema>>({
-        resolver: zodResolver(updateProjectSchema),
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             ...initialValues,
             image: initialValues.imageUrl ?? '',
@@ -73,7 +74,7 @@ export const EditProjectForm = ({
         );
     };
 
-    const onSubmit = (values: z.infer<typeof updateProjectSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         const finalValues = {
             ...values,
             image: values.image instanceof File ? values.image : '',

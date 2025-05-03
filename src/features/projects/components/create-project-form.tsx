@@ -20,7 +20,7 @@ import Image from 'next/image';
 import { ImageIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { createProjectSchema } from '@/features/projects/schema';
+import { makeCreateProjectSchema } from '@/features/projects/schema';
 import { useCreateProject } from '@/features/projects/api/use-create-project';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { DashedSeparator } from '@/components/dashed-separator';
@@ -36,8 +36,11 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     const { mutate, isPending } = useCreateProject();
     const inputRef = useRef<HTMLInputElement>(null);
     const t = useTranslations('Project');
-    const form = useForm<z.infer<typeof createProjectSchema>>({
-        resolver: zodResolver(createProjectSchema),
+
+    const schema = makeCreateProjectSchema(t);
+
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             name: '',
             workspaceId: '',
@@ -45,7 +48,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof createProjectSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         const finalValues = {
             ...values,
             workspaceId,

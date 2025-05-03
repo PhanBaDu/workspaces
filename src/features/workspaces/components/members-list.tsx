@@ -9,6 +9,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
+import { useCurrent } from '@/features/auth/api/use-current';
 import { useDeleteMember } from '@/features/members/api/use-delete-member';
 import { useGetMembers } from '@/features/members/api/use-get-members';
 import { useUpdateMember } from '@/features/members/api/use-update-member';
@@ -17,7 +18,7 @@ import { MemberRole } from '@/features/members/types';
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
-import { ArrowLeftIcon, MoreVertical } from 'lucide-react';
+import { ArrowLeftIcon, CheckCheck, MoreVertical } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Fragment } from 'react';
@@ -28,6 +29,7 @@ export default function MembersList() {
     const x = useTranslations('Member.Client');
     const { data } = useGetMembers({ workspaceId });
     const { data: workspace } = useGetWorkspace({ workspaceId });
+    const { data: user } = useCurrent();
 
     const [ConfirmDialog, confirm] = useConfirm(
         `${t('Client.remove_title')}`,
@@ -102,15 +104,32 @@ export default function MembersList() {
                                     : `${x(member.role)}`}
                             </div>
                             <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button
-                                        className="ml-auto"
-                                        variant={'secondary'}
-                                        size={'icon'}
+                                {user?.$id === member?.userId ? (
+                                    <DropdownMenuTrigger
+                                        asChild
+                                        className="bg-transparent"
                                     >
-                                        <MoreVertical className="size-4 text-muted-foreground" />
-                                    </Button>
-                                </DropdownMenuTrigger>
+                                        <Button
+                                            className="ml-auto !bg-transparent !text-primary"
+                                            disabled={true}
+                                            variant={'secondary'}
+                                            size={'icon'}
+                                        >
+                                            <CheckCheck />
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                ) : (
+                                    <DropdownMenuTrigger asChild>
+                                        <Button
+                                            className="ml-auto"
+                                            variant={'secondary'}
+                                            size={'icon'}
+                                        >
+                                            <MoreVertical className="size-4 text-muted-foreground" />
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                )}
+
                                 <DropdownMenuContent side="bottom" align="end">
                                     <DropdownMenuItem
                                         className="font-medium cursor-pointer"

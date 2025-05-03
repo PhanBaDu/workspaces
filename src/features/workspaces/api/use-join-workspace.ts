@@ -17,7 +17,9 @@ export const useJoinWorkspace = () => {
 
     const mutation = useMutation<ResponseType, Error, RequestType>({
         mutationFn: async ({ json, param }) => {
-            const response = await client.api.workspaces[':workspaceId']['join']['$post']({
+            const response = await client.api.workspaces[':workspaceId'][
+                'join'
+            ]['$post']({
                 json,
                 param,
             });
@@ -34,6 +36,9 @@ export const useJoinWorkspace = () => {
 
             queryClient.invalidateQueries({
                 queryKey: ['workspace', data.$id],
+            });
+            queryClient.invalidateQueries({
+                queryKey: ['members', data.$id],
             });
         },
         onError: () => {

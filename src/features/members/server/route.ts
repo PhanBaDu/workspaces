@@ -1,4 +1,4 @@
-import { DATABASE_ID, MEMBERS_ID } from '@/config';
+import { DATABASE_ID, MEMBERS_ID, WORKSPACES_ID } from '@/config';
 import { Member, MemberRole } from '@/features/members/types';
 import { getMember } from '@/features/members/utils';
 import { createAdminClient } from '@/lib/appwrite';
@@ -95,13 +95,37 @@ const app = new Hono()
             userId: user.$id,
         });
 
+        const workspace = await databases.getDocument(
+            DATABASE_ID,
+            WORKSPACES_ID,
+            memberToDelete.workspaceId,
+        );
+
         if (!member) return c.json({ error: 'Unauthorized' }, 401);
 
+        if (member.userId === memberToDelete.userId) {
+            return c.json({ error: 'Unauthorized' }, 401);
+        }
+
         if (
-            member.id !== memberToDelete.$id &&
+            member.$id !== memberToDelete.$id &&
             member.role !== MemberRole.ADMIN
         )
             return c.json({ error: 'Unauthorized' }, 401);
+
+        if (
+            member.role === MemberRole.ADMIN &&
+            memberToDelete.role === MemberRole.ADMIN
+        ) {
+            if (workspace?.userId !== member.userId) {
+                return c.json(
+                    {
+                        error: 'You do not have the right to cancel this admin right.',
+                    },
+                    401,
+                );
+            }
+        }
 
         if (allMembersInWorkspace.total === 1)
             return c.json({ error: 'Cannot delete the only member' }, 400);
@@ -132,6 +156,12 @@ const app = new Hono()
                 [Query.equal('workspaceId', memberToUpdate.workspaceId)],
             );
 
+            const workspace = await databases.getDocument(
+                DATABASE_ID,
+                WORKSPACES_ID,
+                memberToUpdate.workspaceId,
+            );
+
             const member = await getMember({
                 databases,
                 workspaceId: memberToUpdate.workspaceId,
@@ -142,6 +172,20 @@ const app = new Hono()
 
             if (member.role !== MemberRole.ADMIN)
                 return c.json({ error: 'Unauthorized' }, 401);
+
+            if (
+                member.role === MemberRole.ADMIN &&
+                memberToUpdate.role === MemberRole.ADMIN
+            ) {
+                if (workspace?.userId !== member.userId) {
+                    return c.json(
+                        {
+                            error: 'You do not have the right to cancel this admin right.',
+                        },
+                        401,
+                    );
+                }
+            }
 
             if (allMembersInWorkspace.total === 1)
                 return c.json(

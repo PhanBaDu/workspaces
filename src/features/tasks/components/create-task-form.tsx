@@ -15,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { createTaskSchema } from '../schemas';
+import { makeCreateTaskSchema } from '../schemas';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { DashedSeparator } from '@/components/dashed-separator';
 import { useCreateTask } from '@/features/tasks/api/use-create-task';
@@ -45,15 +45,18 @@ export const CreateTaskForm = ({
     const workspaceId = useWorkspaceId();
     const { mutate, isPending } = useCreateTask();
     const t = useTranslations('Task.Client');
+    const x = useTranslations('TaskForm');
 
-    const form = useForm<z.infer<typeof createTaskSchema>>({
-        resolver: zodResolver(createTaskSchema),
+    const schema = makeCreateTaskSchema(x);
+
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
             workspaceId,
         },
     });
 
-    const onSubmit = (values: z.infer<typeof createTaskSchema>) => {
+    const onSubmit = (values: z.infer<typeof schema>) => {
         mutate(
             { json: { ...values, workspaceId } },
             {

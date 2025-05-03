@@ -6,7 +6,6 @@ import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { TaskActions } from '@/features/tasks/components/task-actions';
 import { TaskDate } from '@/features/tasks/components/task-date';
 import { Task } from '@/features/tasks/types';
-// import { snakeCaseToTitleCase } from '@/lib/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, MoreVertical } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -47,6 +46,7 @@ export function useTaskColumns(): ColumnDef<Task>[] {
             ),
             cell: ({ row }) => {
                 const project = row.original.project;
+                if (!project) return null;
                 return (
                     <div className="flex items-center gap-x-2 text-sm font-medium">
                         <ProjectAvatar
@@ -74,14 +74,15 @@ export function useTaskColumns(): ColumnDef<Task>[] {
             ),
             cell: ({ row }) => {
                 const assignee = row.original.assignee;
+                if (!assignee) return null;
                 return (
                     <div className="flex items-center gap-x-2 text-sm font-medium">
                         <MemberAvatar
                             className="size-6"
                             fallbackClassName="text-xs"
-                            name={assignee.name}
+                            name={assignee?.name}
                         />
-                        <p className="line-clamp-1">{assignee.name}</p>
+                        <p className="line-clamp-1">{assignee?.name}</p>
                     </div>
                 );
             },

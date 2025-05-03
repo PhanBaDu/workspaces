@@ -54,9 +54,9 @@ export default function SetLocale() {
                     onClick={() => setLanguageValue('vi')}
                 >
                     {locale === 'vi' ? (
-                        <CheckCheck />
+                        <CheckCheck className="text-primary" />
                     ) : (
-                        <X className="text-destructive" />
+                        <X className="text-transparent" />
                     )}
                     <div className="flex justify-between items-center w-full">
                         <span>Vietnamese</span>
@@ -76,9 +76,9 @@ export default function SetLocale() {
                     onClick={() => setLanguageValue('en')}
                 >
                     {locale === 'en' ? (
-                        <CheckCheck />
+                        <CheckCheck className="text-primary" />
                     ) : (
-                        <X className="text-destructive" />
+                        <X className="text-transparent" />
                     )}
                     <div className="flex justify-between items-center w-full">
                         <span>English</span>

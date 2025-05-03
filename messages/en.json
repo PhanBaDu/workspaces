@@ -284,5 +284,8 @@
             "success": "Joined workspace",
             "fail": "Failed to join workspace"
         }
+    },
+    "UserButton": {
+        "logout": "Logout"
     }
 }

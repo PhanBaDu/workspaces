@@ -12,11 +12,12 @@ import { useCurrent } from '@/features/auth/api/use-current';
 import { Loader, LogOut } from 'lucide-react';
 import { DashedSeparator } from '@/components/dashed-separator';
 import { ModeToggle } from '@/components/mode-toggle';
+import { useTranslations } from 'next-intl';
 
 export const UserButton = () => {
     const { data: user, isLoading } = useCurrent();
     const { mutate: logout } = useLogout();
-
+    const t = useTranslations('UserButton');
     if (isLoading) {
         return (
             <div className="size-10 rounded-full flex items-center justify-center bg-muted border border-input">
@@ -70,7 +71,7 @@ export const UserButton = () => {
                     className="h-10 dark:text-red-500 text-destructive flex justify-center items-center font-medium cursor-pointer mt-1 focus:text-destuctive"
                 >
                     <LogOut className="size-4" />
-                    Log out
+                    {t('logout')}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

@@ -283,5 +283,8 @@
             "success": "Tham gia không gian làm việc thành công",
             "fail": "Tham gia không gian làm việc thất bại"
         }
+    },
+    "UserButton": {
+        "logout": "Đăng xuất"
     }
 }

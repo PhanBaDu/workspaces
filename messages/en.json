@@ -267,7 +267,7 @@
             "isAdmin_3": "are allowed to access this page",
             "MEMBER": "Member",
             "ADMIN": "Admin",
-            "Founder": "Founder"
+            "Founder": "Onwer"
         }
     },
     "PageError": {

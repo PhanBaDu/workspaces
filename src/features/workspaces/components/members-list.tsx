@@ -14,6 +14,7 @@ import { useGetMembers } from '@/features/members/api/use-get-members';
 import { useUpdateMember } from '@/features/members/api/use-update-member';
 import { MemberAvatar } from '@/features/members/components/members-avatar';
 import { MemberRole } from '@/features/members/types';
+import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
 import { ArrowLeftIcon, MoreVertical } from 'lucide-react';
@@ -24,14 +25,15 @@ import { Fragment } from 'react';
 export default function MembersList() {
     const workspaceId = useWorkspaceId();
     const t = useTranslations('MembersPage');
+    const x = useTranslations('Member.Client');
     const { data } = useGetMembers({ workspaceId });
+    const { data: workspace } = useGetWorkspace({ workspaceId });
 
     const [ConfirmDialog, confirm] = useConfirm(
         `${t('Client.remove_title')}`,
         `${t('Client.remove_desc')}`,
         'destructive',
     );
-
     const { mutate: updateMember, isPending: isUpdatingMember } =
         useUpdateMember();
     const { mutate: deleteMember, isPending: isDeletingMember } =
@@ -87,12 +89,17 @@ export default function MembersList() {
                             "
                             />
                             <div className="flex flex-col">
-                                <p className="text-sm font-medium">
+                                <p className="text-xs lg:text-sm font-medium">
                                     {member.name}
                                 </p>
-                                <p className="text-sm text-muted-foreground">
+                                <p className="text-xs lg:text-sm text-muted-foreground">
                                     {member.email}
                                 </p>
+                            </div>
+                            <div className=" flex-1 flex justify-end lg:text-sm text-xs font-medium">
+                                {workspace?.userId === member?.userId
+                                    ? `${x('Founder')}`
+                                    : `${x(member.role)}`}
                             </div>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>

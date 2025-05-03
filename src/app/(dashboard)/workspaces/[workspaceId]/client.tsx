@@ -89,7 +89,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                 </div>
                 <DashedSeparator className="my-4" />
                 <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    {data.slice(0, 10).map((task) => (
+                    {(data ?? []).slice(0, 10).map((task) => (
                         <li key={task.id}>
                             <Link
                                 href={`/workspaces/${workspaceId}/tasks/${task.$id}`}

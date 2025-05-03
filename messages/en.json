@@ -251,5 +251,15 @@
             "action_bulk_success": "Tasks updated",
             "action_bulk_fail": "Failed to update tasks"
         }
+    },
+    "Member": {
+        "Client": {
+            "isAdmin_1": "Only",
+            "isAdmin_2": "Admin",
+            "isAdmin_3": "are allowed to access this page",
+            "MEMBER": "Member",
+            "ADMIN": "Admin",
+            "Founder": "Founder"
+        }
     }
 }

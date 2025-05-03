@@ -250,5 +250,15 @@
             "action_bulk_success": "Cập nhật công việc thành công",
             "action_bulk_fail": "Cập nhật công việc thất bại"
         }
+    },
+    "Member": {
+        "Client": {
+            "isAdmin_1": "Chỉ có quyền",
+            "isAdmin_2": "Admin",
+            "isAdmin_3": "mới được phép truy cập vào trang này",
+            "MEMBER": "Thành viên",
+            "ADMIN": "Quản trị viên",
+            "Founder": "Người sáng lập"
+        }
     }
 }

@@ -50,6 +50,28 @@ const app = new Hono()
             });
         },
     )
+    .get(
+        '/member',
+        sessionMiddleware,
+        zValidator('query', z.object({ workspaceId: z.string() })),
+        async (c) => {
+            const databases = c.get('databases');
+            const user = c.get('user');
+            const { workspaceId } = c.req.valid('query');
+
+            const member = await getMember({
+                databases,
+                workspaceId,
+                userId: user.$id,
+            });
+
+            if (!member) return c.json({ error: 'Unauthorized' }, 401);
+
+            return c.json({
+                data: { member },
+            });
+        },
+    )
     .delete('/:memberId', sessionMiddleware, async (c) => {
         const { memberId } = c.req.param();
         const user = c.get('user');

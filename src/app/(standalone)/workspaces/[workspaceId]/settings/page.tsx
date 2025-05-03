@@ -5,6 +5,6 @@ import { redirect } from 'next/navigation';
 export default async function WorkspaceIdSettingsPage() {
     const user = await getCurrent();
     if (!user) redirect('/sign-in');
-
+    // if (user && )
     return <WorkspaceIdSettingsClient />;
 }

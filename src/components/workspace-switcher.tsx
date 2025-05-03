@@ -11,7 +11,7 @@ import { useGetWorkspaces } from '@/features/workspaces/api/use-get-workspaces';
 import { WorkspaceAvatar } from '@/features/workspaces/components/workspace-avatar';
 import { useCreateWorkspaceModal } from '@/features/workspaces/hooks/use-create-workspace-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
-import { SquarePlus } from 'lucide-react';
+import { GitBranchPlus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
@@ -33,9 +33,8 @@ export default function WorkspaceSwitcher() {
                 <p className="text-sm uppercase font-bold">
                     {t('Client.label_workspace')}
                 </p>
-                <SquarePlus
+                <GitBranchPlus
                     onClick={open}
-                    strokeWidth={2.4}
                     size={18}
                     className="cursor-pointer hover:opacity-75 transition"
                 />

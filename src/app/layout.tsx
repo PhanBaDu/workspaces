@@ -26,7 +26,9 @@ export default async function RootLayout({
 
     return (
         <html lang={locale}>
-            <body className={`${inter.className} 'antialiased min-h-screen'`}>
+            <body
+                className={`${inter.className} 'antialiased min-h-screen blue'`}
+            >
                 <QueryProvider>
                     <ThemeProvider
                         attribute="class"

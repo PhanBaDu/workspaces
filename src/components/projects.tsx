@@ -6,7 +6,7 @@ import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { useCreateProjectModal } from '@/features/projects/hooks/use-create-project-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { cn } from '@/lib/utils';
-import { CheckCheck, SquarePlus } from 'lucide-react';
+import { CheckCheck, GitBranchPlus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,9 +24,8 @@ export const Projects = () => {
                 <p className="text-sm uppercase font-semibold">
                     {t('Client.label_project')}
                 </p>
-                <SquarePlus
+                <GitBranchPlus
                     onClick={open}
-                    strokeWidth={2.4}
                     size={18}
                     className="cursor-pointer hover:opacity-75 transition"
                 />

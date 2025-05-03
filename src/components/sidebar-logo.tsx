@@ -42,7 +42,7 @@ export default function SidebarLogo() {
                 alt="Logo Workspaces"
                 priority
             />
-            <h1 className="text-primary font-extrabold text-2xl mt-2 uppercase">
+            <h1 className="text-primary font-extrabold text-2xl mt-2 uppercase truncate">
                 orkspaces
             </h1>
         </div>

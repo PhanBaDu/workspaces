@@ -31,7 +31,7 @@ export default function SystemAnalyticPage() {
     )
         return <PageError />;
     return (
-        <div className="min-h-screen bg-muted text-sm p-10 flex flex-col gap-4">
+        <div className="text-sm">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <AnalyticsRound chart={workspaces} title={'Workspaces'} />
                 <AnalyticsRound chart={users} title={'Users'} />

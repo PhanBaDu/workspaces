@@ -306,5 +306,10 @@
         "Client": {
             "Required": "Required"
         }
+    },
+    "System": {
+        "Client": {
+            "href": "Go to admin page"
+        }
     }
 }

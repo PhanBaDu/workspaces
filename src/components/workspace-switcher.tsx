@@ -41,7 +41,7 @@ export default function WorkspaceSwitcher() {
             </div>
 
             <Select onValueChange={onSelect} value={workspaceId}>
-                <SelectTrigger className="w-full bg-primary font-medium px-1 h-12 text-background">
+                <SelectTrigger className="w-full bg-gradient-to-r from-primary to-red-500 font-medium px-1 h-12 text-background dark:text-white">
                     <SelectValue placeholder={t('Client.select')} />
                 </SelectTrigger>
                 <SelectContent>

@@ -305,5 +305,10 @@
         "Client": {
             "Required": "Không được để trống"
         }
+    },
+    "System": {
+        "Client": {
+            "href": "Đến trang quản lý"
+        }
     }
 }

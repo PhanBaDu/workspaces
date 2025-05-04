@@ -18,6 +18,7 @@ import {
 import { format } from 'date-fns';
 import { TaskAnalyticsData } from '@/features/admin/api/use-get-analytics-tasks';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const chartConfig = {
     tasks: {
@@ -31,6 +32,7 @@ export function CharDots({
 }: {
     analyticTask: TaskAnalyticsData | undefined;
 }) {
+    const t = useTranslations('System.Client');
     const date = new Date();
     const fullDate = format(date, 'dd/MM/yyyy');
 
@@ -42,18 +44,20 @@ export function CharDots({
             { status: 'In Progress', tasks: analyticTask.IN_PROGRESS },
             { status: 'In Review', tasks: analyticTask.IN_REVIEW },
             { status: 'Done', tasks: analyticTask.DONE },
-            { status: 'Total', tasks: analyticTask.total },
+            { status: 'Total tasks', tasks: analyticTask.total },
         ];
     }, [analyticTask]);
 
     if (!analyticTask) return <div>Loading...</div>;
 
     return (
-        <Card className="shadow-none rounded-lg border-none">
+        <Card className="shadow-none rounded-lg">
             <CardHeader className="items-center">
-                <CardTitle>BIỂU ĐỒ RADAR - TASKS</CardTitle>
+                <CardTitle className="uppercase">
+                    {t('label')} RADAR - TASKS
+                </CardTitle>
                 <CardDescription>
-                    Thống kê trạng thái các tasks {fullDate}
+                    {t('status')} {fullDate}
                 </CardDescription>
             </CardHeader>
             <CardContent className="pb-0">
@@ -81,7 +85,7 @@ export function CharDots({
             </CardContent>
             <CardFooter className="flex-col gap-2 text-sm">
                 <div className="flex items-center gap-2 leading-none text-muted-foreground">
-                    Tổng số Tasks có trong hệ thống vào ngày {fullDate}
+                    {t('total')} {fullDate}
                 </div>
             </CardFooter>
         </Card>

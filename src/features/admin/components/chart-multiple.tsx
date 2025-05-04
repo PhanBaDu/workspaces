@@ -3,7 +3,6 @@ import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -15,6 +14,7 @@ import {
     ChartTooltipContent,
 } from '@/components/ui/chart';
 import { MonthlyAnalyticsData } from '@/features/admin/api/use-get-analytics-all';
+import { useTranslations } from 'next-intl';
 
 const chartConfig = {
     workspaces: {
@@ -36,14 +36,12 @@ export function ChartMultiple({
 }: {
     analyticsAll: MonthlyAnalyticsData[];
 }) {
+    const t = useTranslations('System.Client');
+
     return (
-        <Card className="border-none shadow-none rounded-lg">
+        <Card className="shadow-none rounded-lg">
             <CardHeader>
-                <CardTitle>
-                    BIỂU ĐỒ THANH THỐNG KÊ SỐ LƯỢNG WORKSPACE, PROJECT, TASK
-                    THEO THÁNG TRONG NĂM (2025)
-                </CardTitle>
-                <CardDescription>January - June 2024</CardDescription>
+                <CardTitle>{t('desc_3')} (2025)</CardTitle>
             </CardHeader>
             <CardContent className="h-96 w-full overflow-x-auto">
                 <div className="min-w-[1000px] h-full">
@@ -91,7 +89,7 @@ export function ChartMultiple({
             </CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm pt-2">
                 <div className="leading-none text-muted-foreground">
-                    Bảng thống kê theo từng tháng trong năm hiện tại (2025)
+                    {t('desc_4')} (2025)
                 </div>
             </CardFooter>
         </Card>

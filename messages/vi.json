@@ -308,7 +308,16 @@
     },
     "System": {
         "Client": {
-            "href": "Đến trang quản lý"
+            "href": "Đến trang quản lý",
+            "title": "Thống kê",
+            "desc_1": "Tổng số",
+            "desc_2": "có trong hệ thống",
+            "label": "Biểu đồ",
+            "status": "Thống kê trạng thái các",
+            "total": "Tổng số Tasks có trong hệ thống vào ngày",
+            "desc_3": "BIỂU ĐỒ THANH THỐNG KÊ SỐ LƯỢNG WORKSPACE, PROJECT, TASK THEO THÁNG TRONG NĂM ",
+            "desc_4": "Bảng thống kê theo từng tháng trong năm hiện tại ",
+            "out": "Trở về trang chính"
         }
     }
 }

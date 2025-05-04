@@ -309,7 +309,16 @@
     },
     "System": {
         "Client": {
-            "href": "Go to admin page"
+            "href": "Go to admin page",
+            "title": "Analytic",
+            "desc_1": "Total number of",
+            "desc_2": "in the system",
+            "label": "Chart",
+            "status": "Status statistics of the",
+            "total": "Total number of Tasks in the system on the date",
+            "desc_3": "BAR CHART OF NUMBER OF WORKSPACES, PROJECTS, TASK BY MONTH IN THE YEAR ",
+            "desc_4": "Monthly statistics table for the current year ",
+            "out": "Back to main page"
         }
     }
 }

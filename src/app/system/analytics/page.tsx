@@ -19,7 +19,20 @@ export default function SystemAnalyticPage() {
         useMonthlyAnalytics();
 
     if (isLoading || isLoadingTask || isLoadingAll)
-        return <div>Loading...</div>;
+        return (
+            <div className="p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                </div>
+                <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+            </div>
+        );
     if (
         error ||
         !tasks ||
@@ -31,14 +44,16 @@ export default function SystemAnalyticPage() {
     )
         return <PageError />;
     return (
-        <div className="text-sm">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="text-sm p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
                 <AnalyticsRound chart={workspaces} title={'Workspaces'} />
                 <AnalyticsRound chart={users} title={'Users'} />
                 <AnalyticsRound chart={projects} title={'Projects'} />
-                <AnalyticsRound chart={tasks} title={'Tasks'} />
             </div>
-            <CharDots analyticTask={analyticTask} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                <AnalyticsRound chart={tasks} title={'Tasks'} />
+                <CharDots analyticTask={analyticTask} />
+            </div>
             <ChartMultiple analyticsAll={analyticsAll} />
         </div>
     );

@@ -16,6 +16,7 @@ import {
     ChartTooltipContent,
 } from '@/components/ui/chart';
 import { format } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 const chartConfig = {
     visitors: {
@@ -36,7 +37,7 @@ export function AnalyticsRound({
     chart: WorkspaceStats[];
     title: string;
 }) {
-    // Tính tổng workspace
+    const t = useTranslations('System.Client');
     const totalVisitors = React.useMemo(() => {
         return chart.reduce((acc, curr) => acc + curr.visitors, 0);
     }, [chart]);
@@ -45,9 +46,11 @@ export function AnalyticsRound({
     const fullDate = format(date, 'dd/MM/yyyy');
 
     return (
-        <Card className="flex flex-col shadow-none rounded-lg border-none">
+        <Card className="flex flex-col shadow-none rounded-lg">
             <CardHeader className="items-center pb-0">
-                <CardTitle className="uppercase">THỐNG KÊ {title}</CardTitle>
+                <CardTitle className="uppercase">
+                    {t('title')} {title}
+                </CardTitle>
                 <CardDescription>{fullDate}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
@@ -107,9 +110,9 @@ export function AnalyticsRound({
             </CardContent>
             <CardFooter className="flex-col gap-2 text-sm">
                 <div className="leading-none text-muted-foreground">
-                    Tổng số{' '}
-                    <span className="text-primary font-bold">{title}</span> có
-                    trong hệ thống
+                    {t('desc_1')}{' '}
+                    <span className="text-primary font-bold">{title}</span>{' '}
+                    {t('desc_2')}
                 </div>
             </CardFooter>
         </Card>

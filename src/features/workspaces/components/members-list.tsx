@@ -57,7 +57,7 @@ export default function MembersList() {
             { param: { memberId } },
             {
                 onSuccess: () => {
-                    window.location.reload();
+                    // window.location.reload();
                 },
             },
         );

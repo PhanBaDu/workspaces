@@ -30,11 +30,21 @@ export const useDeleteMember = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('Server.delete_success')}`);
+            toast.success(`${t('Server.delete_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['members'] });
         },
         onError: () => {
-            toast.error(`${t('Server.delete_fail')}`);
+            toast.error(`${t('Server.delete_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

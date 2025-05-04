@@ -27,12 +27,22 @@ export const useRegister = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('register.success')}`);
+            toast.success(`${t('register.success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             router.refresh();
             queryClient.invalidateQueries({ queryKey: ['current'] });
         },
         onError: () => {
-            toast.error(`${t('register.fail')}`);
+            toast.error(`${t('register.fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

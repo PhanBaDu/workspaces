@@ -23,12 +23,22 @@ export const useLogin = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('login.success')}`);
+            toast.success(`${t('login.success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             router.refresh();
             queryClient.invalidateQueries({ queryKey: ['current'] });
         },
         onError: () => {
-            toast.error(`${t('login.fail')}`);
+            toast.error(`${t('login.fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

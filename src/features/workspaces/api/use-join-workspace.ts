@@ -33,7 +33,12 @@ export const useJoinWorkspace = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('success')}`);
+            toast.success(`${t('success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
 
             queryClient.invalidateQueries({
@@ -44,7 +49,12 @@ export const useJoinWorkspace = () => {
             });
         },
         onError: () => {
-            toast.error(`${t('fail')}`);
+            toast.error(`${t('fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

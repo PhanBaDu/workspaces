@@ -30,7 +30,12 @@ export const useDeleteTask = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('action_delete_success')}`);
+            toast.success(`${t('action_delete_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -39,7 +44,12 @@ export const useDeleteTask = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
-            toast.error(`${t('action_delete_fail')}`);
+            toast.error(`${t('action_delete_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

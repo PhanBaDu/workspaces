@@ -24,12 +24,22 @@ export const useLogout = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('logout.success')}`);
+            toast.success(`${t('logout.success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             router.refresh();
             queryClient.invalidateQueries();
         },
         onError: () => {
-            toast.error(`${t('logout.fail')}`);
+            toast.error(`${t('logout.fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

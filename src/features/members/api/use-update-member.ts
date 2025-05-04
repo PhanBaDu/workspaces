@@ -31,11 +31,21 @@ export const useUpdateMember = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('Server.member_success')}`);
+            toast.success(`${t('Server.member_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['members'] });
         },
         onError: () => {
-            toast.error(`${t('Server.member_fail')}`);
+            toast.error(`${t('Server.member_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

@@ -30,7 +30,12 @@ export const useUpdateProject = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('Server.u_success')}`);
+            toast.success(`${t('Server.u_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['project'] });
             queryClient.invalidateQueries({ queryKey: ['projects'] });
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
@@ -39,7 +44,12 @@ export const useUpdateProject = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks', data.$id] });
         },
         onError: () => {
-            toast.error(`${t('Server.u_fail')}`);
+            toast.error(`${t('Server.u_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

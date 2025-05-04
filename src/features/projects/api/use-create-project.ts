@@ -26,12 +26,22 @@ export const useCreateProject = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('Server.c_success')}`);
+            toast.success(`${t('Server.c_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['projects'] });
             queryClient.invalidateQueries({ queryKey: ['projects', data.$id] });
         },
         onError: () => {
-            toast.error(`${t('Server.c_fail')}`);
+            toast.error(`${t('Server.c_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

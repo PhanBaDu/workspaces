@@ -30,14 +30,24 @@ export const useDeleteWorkspace = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('Server.danger_success')}`);
+            toast.success(`${t('Server.danger_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace', data.$id],
             });
         },
         onError: () => {
-            toast.error(`${t('Server.danger_fail')}`);
+            toast.error(`${t('Server.danger_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

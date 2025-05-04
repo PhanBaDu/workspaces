@@ -23,7 +23,12 @@ export const useCreateTask = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('action_new_success')}`);
+            toast.success(`${t('action_new_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -31,7 +36,12 @@ export const useCreateTask = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
         },
         onError: () => {
-            toast.error(`${t('action_new_fail')}`);
+            toast.error(`${t('action_new_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

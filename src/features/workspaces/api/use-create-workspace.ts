@@ -26,11 +26,21 @@ export const useCreateWorkspace = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('Server.success')}`);
+            toast.success(`${t('Server.success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
         },
         onError: () => {
-            toast.error(`${t('Server.fail')}`);
+            toast.error(`${t('Server.fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

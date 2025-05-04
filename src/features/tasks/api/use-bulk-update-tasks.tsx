@@ -30,7 +30,12 @@ export const useBulkUpdateTasks = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success(`${t('action_bulk_success')}`);
+            toast.success(`${t('action_bulk_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['project-analytics'] });
             queryClient.invalidateQueries({
                 queryKey: ['workspace-analytics'],
@@ -38,7 +43,12 @@ export const useBulkUpdateTasks = () => {
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
         },
         onError: () => {
-            toast.error(`${t('action_bulk_fail')}`);
+            toast.error(`${t('action_bulk_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

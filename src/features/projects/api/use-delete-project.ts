@@ -32,12 +32,22 @@ export const useDeleteProject = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('Server.d_success')}`);
+            toast.success(`${t('Server.d_success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['projects'] });
             queryClient.invalidateQueries({ queryKey: ['project', data.$id] });
         },
         onError: () => {
-            toast.error(`${t('Server.d_fail')}`);
+            toast.error(`${t('Server.d_fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

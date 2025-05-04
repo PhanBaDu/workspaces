@@ -29,7 +29,12 @@ export const useUpdateWorkspace = () => {
             return await response.json();
         },
         onSuccess: ({ data }) => {
-            toast.success(`${t('Server.success')}`);
+            toast.success(`${t('Server.success')}`, {
+                style: {
+                    color: '#059669',
+                    fontWeight: 'bold',
+                },
+            });
             queryClient.invalidateQueries({ queryKey: ['workspaces'] });
             queryClient.invalidateQueries({ queryKey: ['workspace'] });
             queryClient.invalidateQueries({
@@ -40,7 +45,12 @@ export const useUpdateWorkspace = () => {
             });
         },
         onError: () => {
-            toast.error(`${t('Server.fail')}`);
+            toast.error(`${t('Server.fail')}`, {
+                style: {
+                    color: '#e11d48',
+                    fontWeight: 'bold',
+                },
+            });
         },
     });
 

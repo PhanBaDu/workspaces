@@ -162,6 +162,10 @@ const app = new Hono()
                 return c.json({ error: 'Unauthorized' }, 401);
             }
 
+            if (member.role !== 'ADMIN') {
+                return c.json({ error: 'Unauthorized' }, 401);
+            }
+
             if (typeof name === 'string') {
                 const dup = await databases.listDocuments(
                     DATABASE_ID,

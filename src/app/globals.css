@@ -11,6 +11,10 @@
     display: none;
 }
 
+body {
+    pointer-events: auto !important;
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;

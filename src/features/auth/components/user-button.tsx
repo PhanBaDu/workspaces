@@ -13,6 +13,7 @@ import { Loader, LogOut } from 'lucide-react';
 import { DashedSeparator } from '@/components/dashed-separator';
 import { ModeToggle } from '@/components/mode-toggle';
 import { useTranslations } from 'next-intl';
+import Admin from '@/features/admin/components/admin';
 
 export const UserButton = () => {
     const { data: user, isLoading } = useCurrent();
@@ -61,6 +62,7 @@ export const UserButton = () => {
                         <p className="text-xs text-muted-foreground">{email}</p>
                     </div>
                 </div>
+                <Admin />
                 <DashedSeparator />
                 <div className="my-1">
                     <ModeToggle />

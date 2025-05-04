@@ -34,6 +34,9 @@ const app = new Hono()
                 return c.json({ error: 'Unauthorized' }, 401);
             }
 
+            if (member.role !== 'ADMIN')
+                return c.json({ error: 'Unauthorized' }, 401);
+
             const existing = await databases.listDocuments(
                 DATABASE_ID,
                 PROJECTS_ID,

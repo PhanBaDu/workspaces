@@ -27,6 +27,7 @@ import { FaGithub } from 'react-icons/fa';
 import { makeRegisterSchema } from '@/features/auth/schema';
 import { useRegister } from '@/features/auth/api/use-register';
 import { useTranslations } from 'next-intl';
+import { signUpWithGithub, signUpWithGoogle } from '@/lib/server/oauth';
 
 export default function SignUpCard() {
     const { mutate, isPending } = useRegister();
@@ -146,6 +147,7 @@ export default function SignUpCard() {
                     disabled={isPending}
                     variant={'outline'}
                     size={'lg'}
+                    onClick={() => signUpWithGoogle()}
                     className="w-full"
                 >
                     <FcGoogle className="size-5" />
@@ -156,6 +158,7 @@ export default function SignUpCard() {
                     variant={'outline'}
                     size={'lg'}
                     className="w-full"
+                    onClick={() => signUpWithGithub()}
                 >
                     <FaGithub className="size-5" />
                     {t('github')}

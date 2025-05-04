@@ -3,7 +3,7 @@ import Navigation from '@/components/navigation';
 import { Projects } from '@/components/projects';
 import SidebarLogo from '@/components/sidebar-logo';
 import WorkspaceSwitcher from '@/components/workspace-switcher';
-import Admin from '@/features/admin/components/admin';
+// import Admin from '@/features/admin/components/admin';
 import Link from 'next/link';
 
 export default function Sidebar() {
@@ -18,7 +18,7 @@ export default function Sidebar() {
             <Navigation />
             <DashedSeparator className="my-5" />
             <Projects />
-            <Admin />
+            {/* <Admin /> */}
         </aside>
     );
 }

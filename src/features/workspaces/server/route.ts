@@ -98,7 +98,7 @@ const app = new Hono()
             const user = c.get('user');
 
             const { name, image } = c.req.valid('form');
-
+            console.log({ user, name, image });
             const existing = await databases.listDocuments(
                 DATABASE_ID,
                 WORKSPACES_ID,

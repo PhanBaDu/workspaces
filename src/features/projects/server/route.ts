@@ -148,7 +148,6 @@ const app = new Hono()
 
             const { projectId } = c.req.param();
             const { name, image } = c.req.valid('form');
-
             const existingProject = await databases.getDocument<Project>(
                 DATABASE_ID,
                 PROJECTS_ID,
@@ -206,6 +205,9 @@ const app = new Hono()
                 uploadedImageUrl = `data:image/png;base64,${Buffer.from(
                     arrayBuffer,
                 ).toString('base64')}`;
+            } else {
+                if (image === undefined) uploadedImageUrl = '';
+                else uploadedImageUrl = image;
             }
 
             const project = await databases.updateDocument(

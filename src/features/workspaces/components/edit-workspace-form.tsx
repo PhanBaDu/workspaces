@@ -88,8 +88,12 @@ export default function EditWorkspaceForm({
     const onSubmit = (values: z.infer<typeof schema>) => {
         const finalValues = {
             ...values,
-            image: values.image instanceof File ? values.image : '',
+            image:
+                values.image instanceof File
+                    ? values.image
+                    : initialValues.imageUrl,
         };
+
         mutate({
             form: finalValues,
             param: { workspaceId: initialValues.$id },
@@ -228,13 +232,16 @@ export default function EditWorkspaceForm({
                                                             className="w-fit mt-2"
                                                             onClick={() => {
                                                                 field.onChange(
-                                                                    null,
+                                                                    '',
                                                                 );
                                                                 if (
                                                                     inputRef.current
-                                                                )
+                                                                ) {
                                                                     inputRef.current.value =
                                                                         '';
+                                                                    initialValues.imageUrl =
+                                                                        '';
+                                                                }
                                                             }}
                                                         >
                                                             {t('Client.remove')}

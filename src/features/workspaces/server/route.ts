@@ -98,7 +98,7 @@ const app = new Hono()
             const user = c.get('user');
 
             const { name, image } = c.req.valid('form');
-            console.log({ user, name, image });
+
             const existing = await databases.listDocuments(
                 DATABASE_ID,
                 WORKSPACES_ID,
@@ -193,6 +193,7 @@ const app = new Hono()
             }
 
             let uploadedImageUrl: string | undefined;
+
             if (image instanceof File) {
                 const file = await storage.createFile(
                     IMAGE_BUCKET_ID,
@@ -209,7 +210,8 @@ const app = new Hono()
                     arrayBuffer,
                 ).toString('base64')}`;
             } else {
-                uploadedImageUrl = image;
+                if (image === undefined) uploadedImageUrl = '';
+                else uploadedImageUrl = image;
             }
 
             const workspace = await databases.updateDocument(

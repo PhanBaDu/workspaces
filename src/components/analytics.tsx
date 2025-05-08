@@ -8,7 +8,7 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
     const t = useTranslations('Analytic');
 
     return (
-        <ScrollArea className="border rounded-lg w-full whitespace-nowrap shrink-0">
+        <ScrollArea className="rounded-lg w-full whitespace-nowrap shrink-0 bg-background">
             <div className="w-full flex flex-row">
                 <div className="flex items-center flex-1">
                     <AnalyticsCard
@@ -19,7 +19,10 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         variant={data.taskCount > 0 ? 'up' : 'down'}
                         increaseValue={data.taskCount}
                     />
-                    <DashedSeparator direction="vertical" />
+                    <DashedSeparator
+                        direction="vertical"
+                        className="bg-primary"
+                    />
                 </div>
                 <div className="flex items-center flex-1">
                     <AnalyticsCard
@@ -32,7 +35,10 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         variant={data.assignedTaskCount > 0 ? 'up' : 'down'}
                         increaseValue={data.assignedTaskCount}
                     />
-                    <DashedSeparator direction="vertical" />
+                    <DashedSeparator
+                        direction="vertical"
+                        className="bg-primary"
+                    />
                 </div>
                 <div className="flex items-center flex-1">
                     <AnalyticsCard
@@ -45,7 +51,10 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         variant={data.completedTaskCount > 0 ? 'up' : 'down'}
                         increaseValue={data.completedTaskCount}
                     />
-                    <DashedSeparator direction="vertical" />
+                    <DashedSeparator
+                        direction="vertical"
+                        className="bg-primary"
+                    />
                 </div>
                 <div className="flex items-center flex-1">
                     <AnalyticsCard
@@ -56,7 +65,10 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         variant={data.overdueTaskCount > 0 ? 'up' : 'down'}
                         increaseValue={data.overdueTaskCount}
                     />
-                    <DashedSeparator direction="vertical" />
+                    <DashedSeparator
+                        direction="vertical"
+                        className="bg-primary"
+                    />
                 </div>
                 <div className="flex items-center flex-1">
                     <AnalyticsCard

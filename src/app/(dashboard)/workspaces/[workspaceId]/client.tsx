@@ -78,7 +78,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
     const t = useTranslations('HomePage');
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
             <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">
@@ -99,7 +99,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                             <Link
                                 href={`/workspaces/${workspaceId}/tasks/${task.$id}`}
                             >
-                                <Card className="shadow-none border-none rounded-lg hover:opacity-75 transition">
+                                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
                                     <CardContent className="p-4">
                                         <p className="text-xs lg:text-base font-medium truncate">
                                             {task.name}
@@ -148,7 +148,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
     const t = useTranslations('HomePage');
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1 bg-muted rounded-lg">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
             <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">
@@ -169,7 +169,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                             <Link
                                 href={`/workspaces/${workspaceId}/projects/${project.$id}`}
                             >
-                                <Card className="shadow-none border-none rounded-lg hover:opacity-75 transition">
+                                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
                                     <CardContent className="p-4 flex items-center gap-x-2.5">
                                         <ProjectAvatar
                                             className="size-12"
@@ -204,7 +204,7 @@ export const MembersList = ({ data, total }: MembersListProps) => {
     const t = useTranslations('HomePage');
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-muted">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
             <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">
@@ -220,7 +220,7 @@ export const MembersList = ({ data, total }: MembersListProps) => {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {data.slice(0, 10).map((member) => (
                         <li key={member.id}>
-                            <Card className="shadow-none border-none rounded-lg overflow-hidden">
+                            <Card className="shadow-none rounded-lg overflow-hidden">
                                 <CardContent className="p-3 flex flex-col items-center gap-x-2">
                                     <MemberAvatar
                                         className="size-12"

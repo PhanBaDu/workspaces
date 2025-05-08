@@ -101,7 +101,6 @@ export const EditProjectForm = ({
             <Card className="w-full h-full border-none shadow-none">
                 <CardHeader className="flex flex-row items-center justify-between gap-x-4 p-7 space-y-0">
                     <Button
-                        size={'sm'}
                         variant={'secondary'}
                         onClick={
                             onCancel
@@ -242,7 +241,6 @@ export const EditProjectForm = ({
                             <div className="flex items-center justify-between">
                                 <Button
                                     type="button"
-                                    size={'lg'}
                                     variant={'secondary'}
                                     onClick={onCancel}
                                     disabled={isPending}
@@ -251,11 +249,7 @@ export const EditProjectForm = ({
                                     Cancel
                                 </Button>
 
-                                <Button
-                                    disabled={isPending}
-                                    type="submit"
-                                    size={'lg'}
-                                >
+                                <Button disabled={isPending} type="submit">
                                     {t('Client.edit_submit')}
                                 </Button>
                             </div>

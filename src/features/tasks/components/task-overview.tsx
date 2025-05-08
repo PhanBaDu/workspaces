@@ -19,7 +19,7 @@ export default function TaskOverview({ task }: TaskOverviewProps) {
 
     return (
         <div className="flex flex-col gap-y-4 col-span-1">
-            <div className="border rounded-lg p-4">
+            <div className="bg-background rounded-lg p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">
                         {t('overview_title')}

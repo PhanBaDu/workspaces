@@ -30,8 +30,8 @@ export default function Navbar() {
     const { description, title } = pathnameMap[pathnameKey] || defaultMap;
 
     return (
-        <nav className="pt-4 px-6 flex items-center justify-between">
-            <div className="lg:flex flex-col hidden">
+        <nav className="flex items-center justify-between bg-background p-4 rounded-lg">
+            <div className="lg:flex flex-col hidden bg-background">
                 <h1 className="text-xl font-semibold uppercase">{title}</h1>
                 <p className="text-muted-foreground text-sm">{description}</p>
             </div>

@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import TaskViewSwitcher from '@/features/tasks/components/task-view-switcher';
-import { PencilIcon } from 'lucide-react';
+import { PencilRuler } from 'lucide-react';
 import Link from 'next/link';
 import { useProjectId } from '@/features/projects/hooks/use-project-id';
 import { useGetProject } from '@/features/projects/api/use-get-project';
@@ -34,7 +34,7 @@ export const ProjectIdClient = () => {
 
     return (
         <div className="flex flex-col gap-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between bg-background p-4 rounded-lg">
                 <div className="flex items-center gap-x-2">
                     <ProjectAvatar
                         name={project.name}
@@ -44,11 +44,11 @@ export const ProjectIdClient = () => {
                     <p className="text-lg font-semibold">{project.name}</p>
                 </div>
                 <div>
-                    <Button variant={'secondary'} size={'sm'} asChild>
+                    <Button variant={'secondary'} asChild>
                         <Link
                             href={`/workspaces/${project.workspaceId}/projects/${project.$id}/settings`}
                         >
-                            <PencilIcon className="size-4 mr-2" />
+                            <PencilRuler className="size-4" />
                             {t('Client.edit_title')}
                         </Link>
                     </Button>

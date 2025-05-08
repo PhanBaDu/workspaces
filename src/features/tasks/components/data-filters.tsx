@@ -65,7 +65,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
             >
                 <SelectTrigger
                     className="w-full
-                 lg:w-auto h-8"
+                 lg:w-auto h-8 shadow-none"
                 >
                     <div className="flex items-center pr-2 text-secondary-foreground">
                         <ListCheckIcon className="size-4 h-4 w-4 mr-2" />
@@ -74,6 +74,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
                         />
                     </div>
                 </SelectTrigger>
+
                 <SelectContent>
                     <SelectItem value="all">
                         {t('Client.all_status')}
@@ -102,7 +103,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
             >
                 <SelectTrigger
                     className="w-full
-                 lg:w-auto h-8"
+                 lg:w-auto h-8 shadow-none"
                 >
                     <div className="flex items-center pr-2 text-secondary-foreground">
                         <UserIcon className="size-4 h-4 w-4 mr-2" />
@@ -130,7 +131,7 @@ export default function DataFilters({ hideProjectFilter }: DataFiltersProps) {
                 >
                     <SelectTrigger
                         className="w-full
-                 lg:w-auto h-8"
+                 lg:w-auto h-8 shadow-none"
                     >
                         <div className="flex items-center pr-2 text-secondary-foreground">
                             <FolderIcon className="size-4 h-4 w-4 mr-2" />

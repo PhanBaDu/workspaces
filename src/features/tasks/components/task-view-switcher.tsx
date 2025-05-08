@@ -58,7 +58,7 @@ const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
         <Tabs
             defaultValue={view}
             onValueChange={setView}
-            className="flex-1 w-full border rounded-lg"
+            className="flex-1 w-full rounded-lg bg-background"
         >
             <div className="h-full flex flex-col overflow-auto p-4">
                 <div className="flex flex-col gap-y-2 lg:flex-row justify-between items-center">

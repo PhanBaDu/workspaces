@@ -67,7 +67,7 @@ export default function MembersList() {
         <Card className="w-full h-full border-none shadow-none">
             <ConfirmDialog />
             <CardHeader className="flex flex-row items-center justify-between gap-x-4 p-7 space-y-0">
-                <Button asChild variant={'secondary'} size="sm">
+                <Button asChild variant={'secondary'}>
                     <Link href={`/workspaces/${workspaceId}`}>
                         <ArrowLeftIcon />
                         {t('Client.back')}

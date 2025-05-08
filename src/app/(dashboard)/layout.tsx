@@ -11,7 +11,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-muted">
             <CreateWorkspaceModal />
             <CreateProjectModal />
             <CreateTaskModal />
@@ -23,8 +23,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 </div>
                 <div className="lg:pl-[264px] w-full">
                     <div className="mx-auto max-w-screen-2xl h-full">
-                        <Navbar />
-                        <main className="h-full py-8 px-6 flex flex-col">
+                        <div className="mt-4 px-6">
+                            <Navbar />
+                        </div>
+                        <main className="h-full py-4 px-6 flex flex-col bg-muted">
                             {children}
                         </main>
                     </div>

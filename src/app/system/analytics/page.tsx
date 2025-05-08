@@ -22,15 +22,15 @@ export default function SystemAnalyticPage() {
         return (
             <div className="p-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
-                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
-                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
-                    <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
                 </div>
-                <div className="w-full h-96 bg-muted animate-pulse rounded-lg"></div>
+                <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
             </div>
         );
     if (
@@ -44,13 +44,13 @@ export default function SystemAnalyticPage() {
     )
         return <PageError />;
     return (
-        <div className="text-sm p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+        <div className="text-sm p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
                 <AnalyticsRound chart={workspaces} title={'Workspaces'} />
                 <AnalyticsRound chart={users} title={'Users'} />
                 <AnalyticsRound chart={projects} title={'Projects'} />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <AnalyticsRound chart={tasks} title={'Tasks'} />
                 <CharDots analyticTask={analyticTask} />
             </div>

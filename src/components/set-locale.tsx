@@ -21,7 +21,7 @@ export default function SetLocale() {
             <DropdownMenuTrigger asChild className="focus:outline-none">
                 <Button
                     variant={'outline'}
-                    className="text-sm font-medium flex items-center"
+                    className="text-sm font-medium flex items-center border-input"
                 >
                     <div className="flex items-center gap-1">
                         {locale === 'vi' ? 'VN' : 'EN'}

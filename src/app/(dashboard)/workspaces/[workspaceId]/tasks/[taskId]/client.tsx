@@ -1,6 +1,5 @@
 'use client';
 
-import { DashedSeparator } from '@/components/dashed-separator';
 import PageError from '@/components/page-error';
 import PageLoader from '@/components/page-loader';
 import { useGetTask } from '@/features/tasks/api/use-get-task';
@@ -21,8 +20,7 @@ export const TaskIdClient = () => {
     return (
         <div className="flex flex-col">
             <TaskBreadcrumbs project={data.project} task={data} />
-            <DashedSeparator className="my-6" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
                 <TaskOverview task={data} />
                 <TaskDescription task={data} />
             </div>

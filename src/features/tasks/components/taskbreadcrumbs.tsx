@@ -46,7 +46,7 @@ export default function TaskBreadcrumbs({
     };
 
     return (
-        <div className="flex items-center gap-x-2">
+        <div className="flex items-center gap-x-2 bg-background p-4 rounded-lg">
             <ConfigDialog />
             <ProjectAvatar
                 name={project.name}

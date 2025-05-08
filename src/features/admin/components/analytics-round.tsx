@@ -46,7 +46,7 @@ export function AnalyticsRound({
     const fullDate = format(date, 'dd/MM/yyyy');
 
     return (
-        <Card className="flex flex-col shadow-none rounded-lg">
+        <Card className="flex flex-col shadow-none rounded-lg border-none bg-background">
             <CardHeader className="items-center pb-0">
                 <CardTitle className="uppercase">
                     {t('title')} {title}

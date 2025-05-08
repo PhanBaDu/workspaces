@@ -130,7 +130,6 @@ export default function EditWorkspaceForm({
             <Card className="w-full h-full border-none shadow-none">
                 <CardHeader className="flex flex-row items-center justify-between gap-x-4 p-7 space-y-0">
                     <Button
-                        size={'sm'}
                         variant={'secondary'}
                         onClick={
                             onCancel
@@ -270,7 +269,6 @@ export default function EditWorkspaceForm({
                             <div className="flex items-center justify-between">
                                 <Button
                                     type="button"
-                                    size={'lg'}
                                     variant={'secondary'}
                                     onClick={onCancel}
                                     disabled={isPending}
@@ -280,7 +278,6 @@ export default function EditWorkspaceForm({
                                 </Button>
                                 <Button
                                     type="submit"
-                                    size={'lg'}
                                     onClick={onCancel}
                                     disabled={isPending}
                                 >

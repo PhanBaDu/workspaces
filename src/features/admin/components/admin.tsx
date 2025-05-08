@@ -34,7 +34,7 @@ export default function Admin() {
             <DashedSeparator />
             <div className="my-1">
                 <Link href={'/system/analytics'}>
-                    <Button className="w-full text-sm" variant={'secondary'}>
+                    <Button className="w-full text-sm" variant={'primary'}>
                         {t('href')}
                         <ShieldCheck />
                     </Button>

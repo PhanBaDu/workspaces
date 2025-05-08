@@ -41,7 +41,7 @@ export default function SignInCard() {
     };
 
     return (
-        <Card className="w-full h-full md:w-[487px] border-none shadow-none rounded-md">
+        <Card className="w-full h-full md:w-[487px] border-none shadow-none rounded-md z-10">
             <CardHeader className="flex items-center justify-center text-center p-7">
                 <CardTitle className="text-2xl uppercase font-semibold">
                     {t('signIn.title')}
@@ -109,7 +109,7 @@ export default function SignInCard() {
                 <Button
                     disabled={isPending}
                     onClick={() => signUpWithGoogle()}
-                    variant={'outline'}
+                    variant={'secondary'}
                     size={'lg'}
                     className="w-full"
                 >
@@ -119,7 +119,7 @@ export default function SignInCard() {
                 <Button
                     disabled={isPending}
                     onClick={() => signUpWithGithub()}
-                    variant={'outline'}
+                    variant={'secondary'}
                     size={'lg'}
                     className="w-full"
                 >

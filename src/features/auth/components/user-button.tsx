@@ -46,7 +46,7 @@ export const UserButton = () => {
             <DropdownMenuContent
                 align="end"
                 side="bottom"
-                className="w-60"
+                className="w-60 pb-0"
                 sideOffset={10}
             >
                 <div className="flex flex-col items-center justify-center gap-2 px-2.5 py-4">
@@ -62,7 +62,7 @@ export const UserButton = () => {
                         <p className="text-xs text-muted-foreground">{email}</p>
                     </div>
                 </div>
-                <Admin />
+
                 <DashedSeparator />
                 <div className="my-1">
                     <ModeToggle />
@@ -70,11 +70,12 @@ export const UserButton = () => {
                 <DashedSeparator />
                 <DropdownMenuItem
                     onClick={() => logout()}
-                    className="h-10 dark:text-red-500 text-destructive flex justify-center items-center font-medium cursor-pointer mt-1 focus:text-destuctive"
+                    className="h-10 mb-1 dark:text-red-500 text-destructive flex justify-center items-center font-medium cursor-pointer mt-1 focus:text-destuctive"
                 >
                     <LogOut className="size-4" />
                     {t('logout')}
                 </DropdownMenuItem>
+                <Admin />
             </DropdownMenuContent>
         </DropdownMenu>
     );

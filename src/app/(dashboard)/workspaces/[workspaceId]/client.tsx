@@ -1,6 +1,7 @@
 'use client';
 
 import Analytics from '@/components/analytics';
+import { useProjectColumns } from '@/components/columns';
 import { DashedSeparator } from '@/components/dashed-separator';
 import PageError from '@/components/page-error';
 import PageLoader from '@/components/page-loader';
@@ -10,17 +11,17 @@ import { useGetMembers } from '@/features/members/api/use-get-members';
 import { MemberAvatar } from '@/features/members/components/members-avatar';
 import { Member } from '@/features/members/types';
 import { useGetProjects } from '@/features/projects/api/use-get-projects';
-import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { useCreateProjectModal } from '@/features/projects/hooks/use-create-project-modal';
 import { Project } from '@/features/projects/types';
 import { useGetTasks } from '@/features/tasks/api/use-get-tasks';
+import { useTaskColumns } from '@/features/tasks/components/columns';
+import { DataTable } from '@/features/tasks/components/data-table';
 import { useCreateTaskModal } from '@/features/tasks/hooks/use-create-task-modal';
 import { Task } from '@/features/tasks/types';
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
 import { useGetWorkspaceAnalytics } from '@/features/workspaces/api/use-get-workspace-analytics';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
-import { formatDistanceToNow } from 'date-fns';
-import { CalendarIcon, PlusIcon, SettingsIcon } from 'lucide-react';
+import { PlusIcon, SettingsIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
@@ -74,8 +75,8 @@ interface TaskListProps {
 
 export const TaskList = ({ data, total }: TaskListProps) => {
     const { open: createTask } = useCreateTaskModal();
-    const workspaceId = useWorkspaceId();
     const t = useTranslations('HomePage');
+    const columns = useTaskColumns();
 
     return (
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
@@ -93,45 +94,8 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />
-                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    {(data ?? []).slice(0, 10).map((task) => (
-                        <li key={task.id}>
-                            <Link
-                                href={`/workspaces/${workspaceId}/tasks/${task.$id}`}
-                            >
-                                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
-                                    <CardContent className="p-4">
-                                        <p className="text-xs lg:text-base font-medium truncate">
-                                            {task.name}
-                                        </p>
-                                        <div className="flex items-center gap-x-2">
-                                            <p className="text-xs lg:text-sm">
-                                                {task.project.name}
-                                            </p>
-                                            <div className="size-1 rounded-full bg-muted-foreground/80" />
-                                            <div className="text-sm text-muted-foreground flex items-center">
-                                                <CalendarIcon className="size-3 mr-1" />
-                                                <span className="truncate text-xs lg:text-sm">
-                                                    {formatDistanceToNow(
-                                                        new Date(task.dueDate),
-                                                    )}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </li>
-                    ))}
-                    <li className="text-sm text-muted-foreground text-start hidden first-of-type:block">
-                        {t('Client.tasks_found')}
-                    </li>
-                </ul>
-                <Button variant={'primary'} className="mt-4 w-full">
-                    <Link href={`/workspaces/${workspaceId}/tasks`}>
-                        {t('Client.show')}
-                    </Link>
-                </Button>
+
+                <DataTable columns={columns} data={data ?? []} />
             </div>
         </div>
     );
@@ -143,8 +107,8 @@ interface ProjectListProps {
 }
 
 export const ProjectList = ({ data, total }: ProjectListProps) => {
+    const columns = useProjectColumns();
     const { open: createProject } = useCreateProjectModal();
-    const workspaceId = useWorkspaceId();
     const t = useTranslations('HomePage');
 
     return (
@@ -163,32 +127,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                     </Button>
                 </div>
                 <DashedSeparator className="my-4" />
-                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    {data.slice(0, 10).map((project) => (
-                        <li key={project.id}>
-                            <Link
-                                href={`/workspaces/${workspaceId}/projects/${project.$id}`}
-                            >
-                                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
-                                    <CardContent className="p-4 flex items-center gap-x-2.5">
-                                        <ProjectAvatar
-                                            className="size-12"
-                                            fallbackClassName="text-lg"
-                                            name={project.name}
-                                            image={project.imageUrl}
-                                        />
-                                        <p className="text-lg font-medium truncate">
-                                            {project.name}
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </li>
-                    ))}
-                    <li className="text-sm text-muted-foreground text-start hidden first-of-type:block">
-                        {t('Client.projects_found')}
-                    </li>
-                </ul>
+                <DataTable columns={columns} data={data ?? []} />
             </div>
         </div>
     );

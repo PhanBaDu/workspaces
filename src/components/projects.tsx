@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useGetProjects } from '@/features/projects/api/use-get-projects';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { useCreateProjectModal } from '@/features/projects/hooks/use-create-project-modal';
@@ -30,35 +31,45 @@ export const Projects = () => {
                     className="cursor-pointer hover:opacity-75 transition"
                 />
             </div>
-            {data?.documents.map((project) => {
-                const href = `/workspaces/${workspaceId}/projects/${project.$id}?projectId=${project.$id}`;
-                const isActive =
-                    pathname + `?projectId=${project.$id}` === href;
-                return (
-                    <Link href={href} key={project.$id}>
-                        <Button
-                            variant={isActive ? 'primary' : 'ghost'}
-                            className={cn(
-                                'flex w-full items-center justify-between p-2.5 rounded-md transition cursor-pointer',
-                            )}
-                        >
-                            <div className="flex items-center gap-2.5">
-                                <ProjectAvatar
-                                    image={project.imageUrl}
-                                    name={project.name}
-                                    fallbackClassName={
-                                        isActive
-                                            ? 'bg-primary-foreground text-primary'
-                                            : undefined
-                                    }
-                                />
-                                <span className="truncate">{project.name}</span>
-                            </div>
-                            {isActive && <CheckCheck />}
-                        </Button>
-                    </Link>
-                );
-            })}
+            <ScrollArea
+                className={`h-[500px] w-full ${
+                    data && data?.total > 11
+                        ? 'hover:pr-4 transition-all duration-300'
+                        : 'pr-0'
+                }`}
+            >
+                {data?.documents.map((project) => {
+                    const href = `/workspaces/${workspaceId}/projects/${project.$id}?projectId=${project.$id}`;
+                    const isActive =
+                        pathname + `?projectId=${project.$id}` === href;
+                    return (
+                        <Link href={href} key={project.$id}>
+                            <Button
+                                variant={isActive ? 'primary' : 'ghost'}
+                                className={cn(
+                                    'flex w-full items-center justify-between p-2.5 rounded-md transition cursor-pointer',
+                                )}
+                            >
+                                <div className="flex items-center gap-2.5">
+                                    <ProjectAvatar
+                                        image={project.imageUrl}
+                                        name={project.name}
+                                        fallbackClassName={
+                                            isActive
+                                                ? 'bg-primary-foreground text-primary'
+                                                : undefined
+                                        }
+                                    />
+                                    <span className="truncate">
+                                        {project.name}
+                                    </span>
+                                </div>
+                                {isActive && <CheckCheck />}
+                            </Button>
+                        </Link>
+                    );
+                })}
+            </ScrollArea>
         </div>
     );
 };

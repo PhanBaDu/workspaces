@@ -188,6 +188,8 @@
             "d_fail": "Failed to delete project"
         },
         "Client": {
+            "open_project": "Open project",
+            "open_project_update": "Edit project",
             "title": "Create a new project",
             "label": "Project Name",
             "placeholder": "Enter project name",

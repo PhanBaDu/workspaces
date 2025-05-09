@@ -188,6 +188,8 @@
             "d_fail": "Xóa dự án thất bại"
         },
         "Client": {
+            "open_project": "Mở dự án",
+            "open_project_update": "Chỉnh sửa dự án",
             "title": "Tạo dự án mới",
             "label": "Tên dự án",
             "placeholder": "Nhập tên dự án",

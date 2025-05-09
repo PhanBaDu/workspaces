@@ -269,8 +269,10 @@
             "isAdmin_3": "are allowed to access this page",
             "MEMBER": "Member",
             "ADMIN": "Admin",
-            "Founder": "Onwer",
-            "check": "This member has been removed from the workspace."
+            "Founder": "Owner",
+            "check": "This member has been removed from the workspace.",
+            "member_name": "Member Name",
+            "open": "Go to settings"
         }
     },
     "PageError": {

@@ -8,7 +8,7 @@ import { useDeleteTask } from '@/features/tasks/api/use-delete-task';
 import { useEditTaskModal } from '@/features/tasks/hooks/use-update-task-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
-import { ExternalLinkIcon, PencilIcon, TrashIcon } from 'lucide-react';
+import { PencilRuler, SquareArrowOutUpRight, TrashIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
@@ -60,21 +60,21 @@ export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
                         onClick={onOpenProject}
                         className="font-medium p-[10px] cursor-pointer"
                     >
-                        <ExternalLinkIcon className="size-4 mr-2 stroke-2" />
+                        <SquareArrowOutUpRight className="size-4 stroke-2" />
                         {t('action_open_project')}
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={onOpenTask}
                         className="font-medium p-[10px] cursor-pointer"
                     >
-                        <ExternalLinkIcon className="size-4 mr-2 stroke-2" />
+                        <SquareArrowOutUpRight className="size-4 stroke-2" />
                         {t('action_task_details')}
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => open(id)}
                         className="font-medium p-[10px] cursor-pointer"
                     >
-                        <PencilIcon className="size-4 mr-2 stroke-2" />
+                        <PencilRuler className="size-4 stroke-2" />
                         {t('action_edit_task')}
                     </DropdownMenuItem>
                     <DropdownMenuItem
@@ -82,7 +82,7 @@ export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
                         disabled={isPending}
                         className="dark:text-red-500 text-destructive focus:text-destructive font-medium p-[10px] cursor-pointer"
                     >
-                        <TrashIcon className="size-4 mr-2 stroke-2" />
+                        <TrashIcon className="size-4 stroke-2" />
                         {t('action_delete_task')}
                     </DropdownMenuItem>
                 </DropdownMenuContent>

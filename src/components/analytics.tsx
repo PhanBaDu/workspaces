@@ -8,8 +8,8 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
 
     return (
         <ScrollArea className="rounded-lg w-full whitespace-nowrap shrink-0">
-            <div className="w-full flex flex-row gap-4">
-                <div className="flex items-center flex-1">
+            <div className="w-full flex flex-row gap-4 bg-background">
+                <div className="flex items-center flex-1 border-r border-dashed border-r-primary">
                     <AnalyticsCard
                         title={t('Client.total')}
                         value={data.taskCount}
@@ -23,7 +23,7 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         className="bg-primary"
                     /> */}
                 </div>
-                <div className="flex items-center flex-1">
+                <div className="flex items-center flex-1 border-r border-dashed border-r-primary">
                     <AnalyticsCard
                         title={t('Client.assigned')}
                         value={data.assignedTaskCount}
@@ -39,7 +39,7 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         className="bg-primary"
                     /> */}
                 </div>
-                <div className="flex items-center flex-1">
+                <div className="flex items-center flex-1 border-r border-dashed border-r-primary">
                     <AnalyticsCard
                         title={t('Client.completed')}
                         value={data.completedTaskCount}
@@ -55,7 +55,7 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
                         className="bg-primary"
                     /> */}
                 </div>
-                <div className="flex items-center flex-1">
+                <div className="flex items-center flex-1 border-r border-dashed border-r-primary">
                     <AnalyticsCard
                         title={t('Client.overdue')}
                         value={data.overdueTaskCount}

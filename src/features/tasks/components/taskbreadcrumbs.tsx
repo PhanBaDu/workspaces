@@ -56,12 +56,14 @@ export default function TaskBreadcrumbs({
             <Link
                 href={`/workspaces/${workspaceId}/projects/${project.$id}?projectId=${project.$id}`}
             >
-                <p className="text-xs lg:text-lg font-semibold text-muted-foreground hover:opacity-75">
+                <p className="text-sm lg:text-lg font-semibold text-muted-foreground hover:opacity-75">
                     {project.name}
                 </p>
             </Link>
             <ChevronRightIcon className="size-4 lg:size-5 text-muted-foreground" />
-            <p className="text-sm lg:text-lg font-semibold">{task.name}</p>
+            <p className="text-sm lg:text-lg font-semibold mb-[1px]">
+                {task.name}
+            </p>
             <Button
                 onClick={handleDeleteTask}
                 className="ml-auto"

@@ -45,8 +45,8 @@ export default function JoinWorkspaceForm({
     };
 
     return (
-        <div className="w-full h-full border-none shadow-none">
-            <Card className="p-7">
+        <div className="w-full h-full">
+            <Card className="p-7 border-none shadow-none">
                 <CardHeader>
                     <CardTitle>{t('title')}</CardTitle>
                     <CardDescription>

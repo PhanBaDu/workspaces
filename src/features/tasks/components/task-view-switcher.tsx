@@ -62,7 +62,7 @@ const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) => {
         >
             <div className="h-full flex flex-col overflow-auto p-4">
                 <div className="flex flex-col gap-y-2 lg:flex-row justify-between items-center">
-                    <TabsList className="w-full lg:w-auto">
+                    <TabsList className="w-full lg:w-auto p-0">
                         <TabsTrigger
                             className="h-8 w-full lg:w-auto"
                             value="table"

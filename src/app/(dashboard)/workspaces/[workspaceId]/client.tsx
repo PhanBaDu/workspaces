@@ -2,13 +2,11 @@
 
 import Analytics from '@/components/analytics';
 import { useProjectColumns } from '@/components/columns';
-import { DashedSeparator } from '@/components/dashed-separator';
+import { useMemberColumns } from '@/components/colums-members';
 import PageError from '@/components/page-error';
 import PageLoader from '@/components/page-loader';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { useGetMembers } from '@/features/members/api/use-get-members';
-import { MemberAvatar } from '@/features/members/components/members-avatar';
 import { Member } from '@/features/members/types';
 import { useGetProjects } from '@/features/projects/api/use-get-projects';
 import { useCreateProjectModal } from '@/features/projects/hooks/use-create-project-modal';
@@ -60,10 +58,10 @@ export const WorkspaceIdClient = () => {
         <div className="h-full flex flex-col space-y-4">
             <Analytics data={analytics} />
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                <ProjectList data={projects.documents} total={projects.total} />
-                <TaskList data={tasks.documents} total={tasks.total} />
                 <MembersList data={members.documents} total={members.total} />
+                <ProjectList data={projects.documents} total={projects.total} />
             </div>
+            <TaskList data={tasks.documents} total={tasks.total} />
         </div>
     );
 };
@@ -82,8 +80,11 @@ export const TaskList = ({ data, total }: TaskListProps) => {
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">
-                        {t('Client.tasks')} ({total})
+                    <p className="text-lg font-semibold flex items-center gap-2">
+                        {t('Client.tasks')}
+                        <span className="px-3 py-1 bg-muted rounded-lg text-primary text-sm">
+                            {total}
+                        </span>
                     </p>
                     <Button
                         variant={'primary'}
@@ -93,8 +94,8 @@ export const TaskList = ({ data, total }: TaskListProps) => {
                         <PlusIcon className="size-4" />
                     </Button>
                 </div>
-                <DashedSeparator className="my-4" />
-
+                {/* <DashedSeparator className="my-4" /> */}
+                <div className="my-4" />
                 <DataTable columns={columns} data={data ?? []} />
             </div>
         </div>
@@ -115,8 +116,11 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">
-                        {t('Client.projects')} ({total})
+                    <p className="text-lg font-semibold flex items-center gap-2">
+                        {t('Client.projects')}
+                        <span className="px-3 py-1 bg-muted rounded-lg text-primary text-sm">
+                            {total}
+                        </span>
                     </p>
                     <Button
                         variant={'primary'}
@@ -126,7 +130,9 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                         <PlusIcon className="size-4" />
                     </Button>
                 </div>
-                <DashedSeparator className="my-4" />
+                {/* <DashedSeparator className="my-4" />
+                 */}
+                <div className="my-4" />
                 <DataTable columns={columns} data={data ?? []} />
             </div>
         </div>
@@ -141,13 +147,17 @@ interface MembersListProps {
 export const MembersList = ({ data, total }: MembersListProps) => {
     const workspaceId = useWorkspaceId();
     const t = useTranslations('HomePage');
+    const columns = useMemberColumns();
 
     return (
         <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">
-                        {t('Client.members')} ({total})
+                    <p className="text-lg font-semibold flex items-center gap-2">
+                        {t('Client.members')}
+                        <span className="px-3 py-1 bg-muted rounded-lg text-primary text-sm">
+                            {total}
+                        </span>
                     </p>
                     <Button asChild variant={'primary'} size={'icon'}>
                         <Link href={`/workspaces/${workspaceId}/members`}>
@@ -155,32 +165,9 @@ export const MembersList = ({ data, total }: MembersListProps) => {
                         </Link>
                     </Button>
                 </div>
-                <DashedSeparator className="my-4" />
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {data.slice(0, 10).map((member) => (
-                        <li key={member.id}>
-                            <Card className="shadow-none rounded-lg overflow-hidden">
-                                <CardContent className="p-3 flex flex-col items-center gap-x-2">
-                                    <MemberAvatar
-                                        className="size-12"
-                                        name={member.name}
-                                    />
-                                    <div className="flex flex-col items-center overflow-hidden">
-                                        <p className="text-sm lg:text-base font-medium line-clamp-1">
-                                            {member.name}
-                                        </p>
-                                        <p className="text-xs lg:text-sm text-muted-foreground line-clamp-1">
-                                            {member.email}
-                                        </p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </li>
-                    ))}
-                    <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">
-                        {t('Client.members_found')}
-                    </li>
-                </ul>
+                {/* <DashedSeparator className="my-4" /> */}
+                <div className="my-4" />
+                <DataTable columns={columns} data={data ?? []} />
             </div>
         </div>
     );

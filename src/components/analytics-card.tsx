@@ -26,7 +26,7 @@ export default function AnalyticsCard({
     const Icon = variant === 'up' ? FaCaretUp : FaCaretDown;
 
     return (
-        <Card className="shadow-none w-full bg-background border-r border-l border-dashed border-t-transparent border-b-transparent border-l-primary border-r-primary rounded-lg">
+        <Card className="shadow-none w-full bg-background border-none">
             <CardHeader>
                 <div className="flex items-center gap-x-2.5">
                     <CardDescription className="flex items-center gap-x-2 font-medium overflow-hidden">

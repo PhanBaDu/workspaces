@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useUpdateTask } from '@/features/tasks/api/use-update-task';
 import { Task } from '@/features/tasks/types';
-import { PencilIcon, XIcon } from 'lucide-react';
+import { PencilRuler, XIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -43,9 +43,9 @@ export default function TaskDescription({ task }: TaskDescriptionProps) {
                     variant={'secondary'}
                 >
                     {isEditing ? (
-                        <XIcon className="size-4 mr-2" />
+                        <XIcon className="size-4" />
                     ) : (
-                        <PencilIcon className="size-4 mr-2" />
+                        <PencilRuler className="size-4" />
                     )}
                     {isEditing ? `${t('cancel')}` : `${t('edit')}`}
                 </Button>

@@ -7,7 +7,7 @@ import { TaskDate } from '@/features/tasks/components/task-date';
 import { useEditTaskModal } from '@/features/tasks/hooks/use-update-task-modal';
 import { Task } from '@/features/tasks/types';
 // import { snakeCaseToTitleCase } from '@/lib/utils';
-import { PencilIcon } from 'lucide-react';
+import { PencilRuler } from 'lucide-react';
 import { useTranslations } from 'use-intl';
 
 interface TaskOverviewProps {
@@ -29,7 +29,7 @@ export default function TaskOverview({ task }: TaskOverviewProps) {
                         size={'sm'}
                         variant={'secondary'}
                     >
-                        <PencilIcon className="size-4 mr-2" />
+                        <PencilRuler className="size-4" />
                         {t('edit')}
                     </Button>
                 </div>

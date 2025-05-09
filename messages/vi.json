@@ -72,7 +72,7 @@
         "Client": {
             "label_workspace": "Không gian làm việc",
             "home": "Trang chủ",
-            "my_tasks": "Nhiệm vụ của tôi",
+            "my_tasks": "Nhiệm vụ",
             "settings": "Cài đặt",
             "members": "Thành viên",
             "label_project": "Danh sách dự án",
@@ -83,7 +83,7 @@
         "Client": {
             "home": "Trang chủ",
             "home_desc": "Giám sát tất cả các dự án và nhiệm vụ của bạn ở đây",
-            "tasks": "Nhiện vụ của tôi",
+            "tasks": "Nhiện vụ",
             "tasks_desc": "Giám sát tất cả các nhiệm vụ của bạn ở đây",
             "projects": "Các dự án của tôi",
             "projects_desc": "Giám sát tất cả các dự án của bạn tại đây"
@@ -269,7 +269,9 @@
             "MEMBER": "Thành viên",
             "ADMIN": "Quản trị viên",
             "Founder": "Chủ sở hữu",
-            "check": "Member này đã bị xóa khỏi workspace"
+            "check": "Member này đã bị xóa khỏi workspace",
+            "member_name": "Tên thành viên",
+            "open": "Đi đến cài đặt"
         }
     },
     "PageError": {

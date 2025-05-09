@@ -114,6 +114,7 @@ export const CreateTaskForm = ({
                                             <DatePicker
                                                 {...field}
                                                 placeholder={t('due_date_pla')}
+                                                className="bg-card"
                                             />
                                         </FormControl>
                                         <FormMessage />

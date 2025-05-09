@@ -48,7 +48,7 @@ export default function SetLocale() {
                     <ChevronDown />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-40">
+            <DropdownMenuContent align="end" className="w-40 !bg-card">
                 <DropdownMenuItem
                     className="cursor-pointer"
                     onClick={() => setLanguageValue('vi')}

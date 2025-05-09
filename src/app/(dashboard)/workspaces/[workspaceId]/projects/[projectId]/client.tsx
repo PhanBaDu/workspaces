@@ -34,7 +34,7 @@ export const ProjectIdClient = () => {
 
     return (
         <div className="flex flex-col gap-y-4">
-            <div className="flex items-center justify-between bg-background p-4 rounded-lg">
+            <div className="flex items-center justify-between bg-card p-4 rounded-lg">
                 <div className="flex items-center gap-x-2">
                     <ProjectAvatar
                         name={project.name}

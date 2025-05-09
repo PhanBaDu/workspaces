@@ -25,7 +25,7 @@ export default function KanbanCard({ task }: KanbanCardProps) {
 
     return (
         <div
-            className={`${style} bg-background p-2.5 mb-1.5 rounded shadow-sm space-y-3`}
+            className={`${style} bg-card p-2.5 mb-1.5 rounded shadow-sm space-y-3`}
         >
             <div className="flex items-start justify-between gap-x-2">
                 <p className="text-sm line-clamp-2">{task?.name}</p>

@@ -51,7 +51,7 @@ export function CharDots({
     if (!analyticTask) return <div>Loading...</div>;
 
     return (
-        <Card className="shadow-none rounded-lg border-none bg-background">
+        <Card className="shadow-none rounded-lg border-none bg-card">
             <CardHeader className="items-center">
                 <CardTitle className="uppercase">
                     {t('label')} RADAR - TASKS

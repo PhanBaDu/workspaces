@@ -32,7 +32,7 @@ export default function TaskDescription({ task }: TaskDescriptionProps) {
     };
 
     return (
-        <div className="p-4 rounded-lg bg-background">
+        <div className="p-4 rounded-lg bg-card">
             <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold">
                     {t('overview_title_desc')}

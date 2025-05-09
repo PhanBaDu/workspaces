@@ -41,7 +41,7 @@ export const DatePicker = ({
                         className,
                     )}
                 >
-                    <CalendarIcon className="h-4 w-4 mr-2" />
+                    <CalendarIcon className="h-4 w-4" />
                     {value ? (
                         format(value, 'PPP', {
                             locale: locale === 'vi' ? vi : enUS,

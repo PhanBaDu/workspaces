@@ -8,7 +8,7 @@ export default function Analytics({ data }: ProjectAnalyticsResponseType) {
 
     return (
         <ScrollArea className="rounded-lg w-full whitespace-nowrap shrink-0">
-            <div className="w-full flex flex-row gap-4 bg-background">
+            <div className="w-full flex flex-row gap-4 bg-card">
                 <div className="flex items-center flex-1 border-r border-dashed border-r-primary">
                     <AnalyticsCard
                         title={t('Client.total')}

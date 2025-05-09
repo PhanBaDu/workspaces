@@ -22,15 +22,15 @@ export default function SystemAnalyticPage() {
         return (
             <div className="p-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
-                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
-                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-card animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-card animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-card animate-pulse rounded-lg"></div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
-                    <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-card animate-pulse rounded-lg"></div>
+                    <div className="w-full h-96 bg-card animate-pulse rounded-lg"></div>
                 </div>
-                <div className="w-full h-96 bg-background animate-pulse rounded-lg"></div>
+                <div className="w-full h-96 bg-card animate-pulse rounded-lg"></div>
             </div>
         );
     if (

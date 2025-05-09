@@ -77,7 +77,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
     const columns = useTaskColumns();
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg  bg-card">
             <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold flex items-center gap-2">
@@ -113,7 +113,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
     const t = useTranslations('HomePage');
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg  bg-card">
             <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold flex items-center gap-2">
@@ -150,7 +150,7 @@ export const MembersList = ({ data, total }: MembersListProps) => {
     const columns = useMemberColumns();
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-background">
+        <div className="flex flex-col gap-y-4 col-span-1 rounded-lg bg-card">
             <div className="p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold flex items-center gap-2">

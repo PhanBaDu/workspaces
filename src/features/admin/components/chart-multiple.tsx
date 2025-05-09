@@ -39,7 +39,7 @@ export function ChartMultiple({
     const t = useTranslations('System.Client');
 
     return (
-        <Card className="shadow-none rounded-lg border-none bg-background">
+        <Card className="shadow-none rounded-lg border-none bg-card">
             <CardHeader>
                 <CardTitle>{t('desc_3')} (2025)</CardTitle>
             </CardHeader>

@@ -19,7 +19,7 @@ export function AppSidebar() {
     const t = useTranslations('System.Client');
 
     return (
-        <Sidebar className="bg-background">
+        <Sidebar className="bg-card">
             <SidebarContent>
                 <SidebarGroup>
                     <div className="flex items-center gap-1">

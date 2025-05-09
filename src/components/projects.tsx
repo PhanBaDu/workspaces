@@ -32,7 +32,7 @@ export const Projects = () => {
                 />
             </div>
             <ScrollArea
-                className={`h-[400px] w-full ${
+                className={`h-[200px] lg:h-[400px] w-full ${
                     data && data?.total > 11
                         ? 'hover:pr-4 transition-all duration-300'
                         : 'pr-0'

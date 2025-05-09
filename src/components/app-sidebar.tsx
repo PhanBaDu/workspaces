@@ -19,8 +19,8 @@ export function AppSidebar() {
     const t = useTranslations('System.Client');
 
     return (
-        <Sidebar className="bg-card">
-            <SidebarContent>
+        <Sidebar className="!bg-card z-10">
+            <SidebarContent className="!bg-card">
                 <SidebarGroup>
                     <div className="flex items-center gap-1">
                         <SidebarGroupLabel className="text-2xl font-extrabold bg-gradient-to-r from-primary to-black bg-clip-text text-transparent">
@@ -35,7 +35,7 @@ export function AppSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
+            <SidebarFooter className="bg-card">
                 <Button
                     className="text-sm w-full flex justify-between items-center"
                     variant={'primary'}

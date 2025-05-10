@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Sidebar() {
     return (
-        <aside className="h-full border-r border-dashed border-r-primary p-4 w-full !bg-card z-10">
+        <aside className="h-full border-r border-dashed border-r-primary p-4 w-full">
             <Link href={'/'}>
                 <SidebarLogo />
             </Link>

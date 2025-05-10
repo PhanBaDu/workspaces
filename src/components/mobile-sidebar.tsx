@@ -24,7 +24,7 @@ export const MobileSideBar = () => {
             </SheetTrigger>
             <SheetContent
                 side={'left'}
-                className="p-0 border-none fixed top-0 left-0 bottom-0"
+                className="p-0 border-none fixed top-0 left-0 bottom-0 !bg-card z-10"
             >
                 <Sidebar />
             </SheetContent>

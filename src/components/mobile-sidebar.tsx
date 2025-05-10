@@ -22,7 +22,10 @@ export const MobileSideBar = () => {
                     <MenuIcon className="size-4 text-muted-foreground" />
                 </Button>
             </SheetTrigger>
-            <SheetContent side={'left'} className="p-0 border-none">
+            <SheetContent
+                side={'left'}
+                className="p-0 border-none fixed top-0 left-0 bottom-0"
+            >
                 <Sidebar />
             </SheetContent>
         </Sheet>
